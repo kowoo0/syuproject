@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>울창한 대나무 숲</title>
+</head>
+<style>
+  /* 초기화 */
+  body { margin: 0; padding: 0; }
+  html, body { height: 100%; }
+
+  /* 사이드 메뉴 CSS */
+  #aside-bar {
+    position: absolute;
+    top: 0; left: -30%;
+    width: 30%; height: 100%;
+    background-color: #e5e5e5;
+
+    transition: ease 1s;
+    z-index: 10;
+  }
+  .close-btn {
+    width: 100%; height: 60px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+  }
+
+  /* 메인 영역 CSS */
+  #wrap {
+    height: 100%;
+  }
+  .header {
+    position: relative;
+    width: 100%;
+    height: 60px;
+  }
+  .fixed-bar {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+
+    background-color: #fff;
+    border-bottom: 2px solid black;
+  }
+  .show-btn {
+    position: absolute;
+    width: 10%; height: 40px;
+    top: 10px; left: 10px;
+  }
+  .logo {
+    margin: 0;
+    line-height: 60px;
+    text-align: center;
+  }
+  .contents {
+    width: 100%; height: 300px;
+    margin: 20px auto 0;
+
+    background-color: #d5d5d5;
+
+    border-top: 1px solid #a6a6a6;
+    border-bottom: 1px solid #a6a6a6;
+
+    box-sizing: border-box;
+  }
+</style>
+<body>
+<!-- 좌측 슬라이드 메뉴바 -->
+<div id="aside-bar">
+  <button class="close-btn" onclick="closeMenu()">닫기</button>
+</div>
+
+<!-- 메인 영역 -->
+<div id="wrap">
+  <!-- 상단 헤더 영역 (슬라이드 메뉴바 버튼, 로고) -->
+  <div class="header">
+      <!-- 고정 메뉴바 -->
+      <div class="fixed-bar">
+        <button class="show-btn" onclick="showMenu()">목록</button>
+        <h2 class="logo">Logo</h2>
+      </div>
+  </div>
+  <!-- 크롤링한 정보들을 보여줄 콘텐츠 영역 -->
+  <div class="section">
+    <div class="contents"></div>
+    <div class="contents"></div>
+    <div class="contents"></div>
+    <div class="contents"></div>
+    <div class="contents"></div>
+    <div class="contents"></div>
+  </div>
+</div>
+<!-- JQuery 라이브러리 임포트 -->
+<script src="./components/jquery-1.12.0.min.js"></script>
+<script>
+  // 목록 버튼 클릭시 showMenu - onclick 이벤트 발생
+  var showMenu = function(show) {
+    // 인자 값이 false일 경우 사이드 메뉴 숨김, true일 경우 사이드 메뉴 등장
+    if(show === false) {
+      $('#aside-bar').css('left', '-30%');
+    } else {
+      $('#aside-bar').css('left', '0px');
+    }
+  };
+
+  // 닫기 버튼 클릭시 closeMenu - onclick 이벤트 발생
+  var closeMenu = function() {
+    // showMenu 함수에 false 값을 넘겨줌
+    showMenu(false);
+  }
+</script>
+</body>
+</html>
