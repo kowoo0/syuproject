@@ -68,7 +68,7 @@
 <body>
 <!-- 좌측 슬라이드 메뉴바 -->
 <div id="aside-bar">
-  <button class="close-btn" onclick="closeMenu()">닫기</button>
+  <button id="close-menu" class="close-btn">닫기</button>
 </div>
 
 <!-- 메인 영역 -->
@@ -77,7 +77,7 @@
   <div class="header">
       <!-- 고정 메뉴바 -->
       <div class="fixed-bar">
-        <button class="show-btn" onclick="showMenu()">목록</button>
+        <button id="show-menu" class="show-btn">목록</button>
         <h2 class="logo">Logo</h2>
       </div>
   </div>
@@ -94,21 +94,25 @@
 <!-- JQuery 라이브러리 임포트 -->
 <script src="./components/jquery-1.12.0.min.js"></script>
 <script>
-  // 목록 버튼 클릭시 showMenu - onclick 이벤트 발생
-  var showMenu = function(show) {
-    // 인자 값이 false일 경우 사이드 메뉴 숨김, true일 경우 사이드 메뉴 등장
-    if(show === false) {
-      $('#aside-bar').css('left', '-30%');
-    } else {
-      $('#aside-bar').css('left', '0px');
-    }
-  };
+  // show-menu 버튼 요소 접근
+  var showMenu = $('#show-menu');
+  // close-menu 버튼 요소 접근
+  var closeMenu = $('#close-menu');
+  // side-bar 요소 접근
+  var sideBar = $('#aside-bar');
 
-  // 닫기 버튼 클릭시 closeMenu - onclick 이벤트 발생
-  var closeMenu = function() {
-    // showMenu 함수에 false 값을 넘겨줌
-    showMenu(false);
-  }
+  // jquery 이용, show-menu 버튼 클릭 시 이벤트 발생
+  showMenu.bind('click', function() {
+    // left: -30% => 0px 이동
+    sideBar.css('left', '0px');
+  });
+
+  // jquery 이용, close-menu 버튼 클릭 시 이벤트 발생
+  closeMenu.bind('click', function() {
+    // left: 0px => -30% 이동
+    sideBar.css('left', '-30%');
+  })
+
 </script>
 </body>
 </html>
