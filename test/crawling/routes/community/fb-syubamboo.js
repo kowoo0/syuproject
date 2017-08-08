@@ -47,7 +47,6 @@ function getWallFeeds(feedLink, args, count) {
 
   // 테스트용
   if(count > 2) {
-    console.log("finish..");
     return 1;
   }
 
@@ -99,7 +98,7 @@ function processMessage(data) {
         // 동기적 실행을 위한 mongoose.Promise = global.Promise이 필요하다.
         FBfeeds.create(function(err, fbfeeds) {
           if(err) throw err;
-          console.log("Feeds Create Successfully!!");
+          console.log("facebook feeds create successfully!!");
         });
       }
     });
@@ -118,7 +117,7 @@ function processMessage(data) {
 
       arr[i] = feedsData;
     }
-
+    console.log("\nfacebook feeds save start...")
     // 사실 async 동기로 바꿀 필요 없음.. 공부해보기 위해 테스트로 써봄
     async.each(
       arr,
@@ -127,13 +126,13 @@ function processMessage(data) {
         FBfeeds.findOne({ "storyid": item.storyid }, function(err, feed){
           if(err) throw err;
           if(feed) {
-            console.log("already exists");
+            console.log("facebook feed already exists..");
             return;
           } else {
             // 데이터 저장
             item.save(function(err, fbfeeds) {
               if(err) throw err;
-              console.log("insert ok..");
+              console.log("facebook feed insert ok!");
             });
           }
         });

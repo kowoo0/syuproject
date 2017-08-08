@@ -18,3 +18,5 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
 	console.log('node start!');
 });
+
+app.set('view engine', 'ejs');

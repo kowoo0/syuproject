@@ -21,6 +21,7 @@ run.listen(30000, function(error) {
 
 // mongoose 커넥션 객체 사용
 var conn = mongoose.connection;
+mongoose.Promise = global.Promise;
 
 // 이벤트 드리븐.. 연결 시 오류가 발생할 시 이벤트 호출
 conn.on("error", console.error.bind(console, "mongoose connection error:"));
