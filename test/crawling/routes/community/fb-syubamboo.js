@@ -15,7 +15,7 @@ var conn = mongoose.connection;
 // 몽구스의 콜백 함수? 이벤트? 비동기적인 실행을 Promise를 사용해 동기적으로 실행
 mongoose.Promise = global.Promise;
 // 페이스북 피드 데이터 모델 임포트
-var FBfeeds = require('../../models/fb-syubamboo-model');
+var FBfeeds = require('../../models/all-model');
 
 // 페이지 접근을 위한 사용자의 앱 액세스 토큰 생성 함수
 function getAccessToken() {
@@ -80,15 +80,39 @@ function getWallFeeds(feedLink, args, count) {
   });
 }
 
+// test
+var padZero = function(t) {
+  if(t<10) {
+    return '0' + t;
+  }
+  return t;
+}
+var local, month, date, hour, min, sec;
+var fbDateFix = function(date) {
+  local = new Date(date.replace(/-/g, '.').replace('T', ' ').replace('+0000', ''));
+  local.setSeconds(local.getSeconds() + 32400); // 한국 시간으로 변경
+
+  month = padZero(local.getMonth()+1);
+  date = padZero(local.getDate());
+  hour = padZero(local.getHours());
+  min = padZero(local.getMinutes());
+  sec = padZero(local.getSeconds());
+
+  var localDate = `${local.getFullYear()}${month}${date}${hour}${min}${sec}`;
+  localDate = Number(localDate);
+  return localDate;
+}
+
 // 데이터를 다루는 함수
 function processMessage(data) {
   var arr = []; // 데이터 담을 배열 사용
   var convertId; // id를 정규표현식을 사용하여 원하는 값을 추출한다.
+  var convertDate;
   var regExp = /\d+$/g;
   var feedsData;  // 데이터 모델 인스턴스를 담기 위한 변수
 
   // 데이터베이스에서 Collection 검색 => fbfeeds
-  conn.db.listCollections({name: 'fbfeeds'})
+  conn.db.listCollections({name: 'allfeeds'})
     .next(function(err, collinfo) {
       if(err) throw err;
 
@@ -96,9 +120,9 @@ function processMessage(data) {
       if(!collinfo) {
         // collection 생성
         // 동기적 실행을 위한 mongoose.Promise = global.Promise이 필요하다.
-        FBfeeds.create(function(err, fbfeeds) {
+        FBfeeds.create(function(err, allfeeds) {
           if(err) throw err;
-          console.log("facebook feeds create successfully!!");
+          console.log("all collection create successfully!!");
         });
       }
     });
@@ -107,12 +131,15 @@ function processMessage(data) {
     for(var i in data) {
       // 정규표현식 사용
       convertId = data[i].id.match(regExp);
+      convertDate = fbDateFix(data[i].created_time);
 
       // 고민이다... new로 하는게 맞는지
       feedsData = new FBfeeds({
+        from: 001, // facebook number
         storyid: Number(convertId), // 스트링형식의 값을 숫자로 변경.. 비교검색을 빠르게 하기 위해서
         message: data[i].message,
-        created_time: data[i].created_time
+        link: '',
+        created_time: convertDate
       });
 
       arr[i] = feedsData;
@@ -130,7 +157,7 @@ function processMessage(data) {
             return;
           } else {
             // 데이터 저장
-            item.save(function(err, fbfeeds) {
+            item.save(function(err, allfeeds) {
               if(err) throw err;
               console.log("facebook feed insert ok!");
             });

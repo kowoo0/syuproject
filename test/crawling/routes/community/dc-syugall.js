@@ -8,7 +8,7 @@ var conn = mongoose.connection;
 // 몽구스의 콜백 함수? 이벤트? 비동기적인 실행을 Promise를 사용해 동기적으로 실행
 mongoose.Promise = global.Promise;
 // 디시인사이드 피드 데이터 모델 임포트
-var DCfeeds = require('../../models/dc-syugall-model');
+var DCfeeds = require('../../models/all-model');
 // CasperJS로 추출한 피드 데이터 파일
 var jsonData = require('../../data/dcinside-data.json');
 
@@ -21,40 +21,45 @@ function Feeds(feeds) {
     // 데이터베이스가 성공적으로 연결이 된 후, 피드를 저장할 이 함수를 호출
     function saveAfterConnection() {
       // 데이터베이스에 dcfeeds라는 콜렉션이 있는지 확인
-      conn.db.listCollections({name: 'dcfeeds'})
+      conn.db.listCollections({name: 'allfeeds'})
         .next(function(err, collinfo) {
           if(err) throw err;
 
           var arr = [];
           var feedData;
+          var convertDate;
           // 콜렉션 없을 시, 생성
           if(!collinfo) {
-            DCfeeds.create(function(err, dcfeeds) {
+            DCfeeds.create(function(err, allfeeds) {
               if(err) throw err;
-              console.log("dcinside collection create successfully!!");
+              console.log("all collection create successfully!!");
             });
           }
           // 데이터 모델화
           for(var i in datas) {
+            convertDate = datas[i].date.replace(/\./g, '').replace(' ', '').replace(/:/g, '');
+            convertDate = Number(convertDate);
+
             feedData = new DCfeeds({
-              no: datas[i].id,
-              title: datas[i].text,
+              from: 002, // dcinside number
+              storyid: datas[i].id,
+              message: datas[i].text,
               link: datas[i].attr,
-              created_time: datas[i].date
+              created_time: convertDate
             });
             arr.push(feedData);
           }
           console.log("\n\ndcinside feeds save starts...");
           arr.forEach(function(feed, index) {
             // 중복 데이터가 있는지 확인 후 저장
-            DCfeeds.findOne({ "no" : feed.no }, function(err, result) {
+            DCfeeds.findOne({ "storyid" : feed.storyid }, function(err, result) {
               if(err) throw err;
 
               if(result) {
                 console.log("dcinside feed already exists..");
                 return;
               } else {
-                feed.save(function(err, dcfeeds) {
+                feed.save(function(err, allfeeds) {
                   if(err) throw err;
                   console.log("dcinside feed insert ok!");
                 });
@@ -64,12 +69,14 @@ function Feeds(feeds) {
         });
     }
     // setTimeout을 통해, 데이터베이스가 성공 한 후 호출, 넉넉하게 5초로 설정..
-    setTimeout(saveAfterConnection, 5000);
+    setTimeout(saveAfterConnection, 7000);
   }
 }
 
 jsonData = JSON.stringify(jsonData); // dcinside-data 파일을 가져옴
 var saveFeeds = new Feeds(jsonData); // 인스턴스 생성
-saveFeeds.save(); // 호출
+setImmediate(function() {
+  saveFeeds.save(); // 호출
+});
 
 module.exports = router;
