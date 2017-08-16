@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const mg_config = require('./config/mg-config.json');
+const router = require('./routes/index');
 
 // public 폴더 안의 스크립트 파일 임포트 적용
 app.use(express.static('public'));
@@ -9,14 +12,18 @@ app.use(bodyParser.json());
 // 모름
 app.use(bodyParser.urlencoded({extended: false}));
 
-// localhost의 루트 페이지를 메인 페이지로 이동 시키도록 설정
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/public/main.html');
-});
+const conn = mongoose.connection;
+mongoose.Promise = global.Promise;
 
+conn.on('error', console.error.bind(console, "mongoose connection error:"));
+conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.userLocal}/${mg_config.db}`);
+conn.once('open', () => {
+	console.log("mongoose connect successfully..");
+});
 // 서버 실행
 app.listen(3000, () => {
 	console.log('node start!');
 });
 // use ejs template
 app.set('view engine', 'ejs');
+app.use(router);
