@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+ <meta charset='utf-8'/>
+ <title>Members</title>
+ <link rel="stylesheet" type="text/css" href="mycss2.css">
+ <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+ <script type="text/javascript" src="myscript2.js"></script>
+</head>
+<body>
+ <header></header>
+ <div class = "body">
+  <div class ="wrapper_table">
+   <table>
+    <thead>
+     <tr>
+      <td>아이디</td>
+      <td>비밀번호</td>
+      <td>이름</td>
+      <td>생년월일</td>
+      <td>휴대전화</td>
+      <td>성별</td>
+      <td>이메일</td>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td><%= m_id %></td>
+      <td><%= m_pass %></td>
+      <td><%= m_name %></td>
+      <td><%= m_tel %></td>
+      <td><%= m_date %>
+      <td><%= m_gender %></td>
+      <td><%= m_email %></td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</body>
+</html>
