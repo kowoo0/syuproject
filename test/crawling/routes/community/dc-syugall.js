@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var async = require('async');
 
 var mongoose = require('mongoose');
 
@@ -49,19 +50,32 @@ function Feeds(feeds) {
             });
             arr.push(feedData);
           }
+
           console.log("\n\ndcinside feeds save starts...");
+          var count = (function(){ // 피드의 마지막 저장 위치를 알기 위한 카운트 변수를 만들었다.
+            var staticCount = 0;
+            return staticCount;
+          })();
           arr.forEach(function(feed, index) {
             // 중복 데이터가 있는지 확인 후 저장
             DCfeeds.findOne({ "storyid" : feed.storyid }, function(err, result) {
               if(err) throw err;
-
               if(result) {
+                count++; // 저장할 때마다 카운트 증가
                 console.log("dcinside feed already exists..");
+                if(count > arr.length-1) { // 마지막 저장이면 프로세스 종료
+                  process.exit(1);
+                }
                 return;
               } else {
                 feed.save(function(err, allfeeds) {
                   if(err) throw err;
+                  count++;
                   console.log("dcinside feed insert ok!");
+                  if(count > arr.length-1) {
+                    process.exit(1);
+                  }
+                  return;
                 });
               }
             });
@@ -69,12 +83,12 @@ function Feeds(feeds) {
         });
     }
     // setTimeout을 통해, 데이터베이스가 성공 한 후 호출, 넉넉하게 5초로 설정..
-    setTimeout(saveAfterConnection, 7000);
+    setTimeout(saveAfterConnection, 5000);
   }
 }
 
 jsonData = JSON.stringify(jsonData); // dcinside-data 파일을 가져옴
-var saveFeeds = new Feeds(jsonData); // 인스턴스 생성
+var saveFeeds = new Feeds(jsonData); // 인스턴스 생성.. 사실 소스가 개판이라.. 이런게 필요는 없는듯..
 setImmediate(function() {
   saveFeeds.save(); // 호출
 });

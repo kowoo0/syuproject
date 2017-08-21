@@ -29,7 +29,7 @@ closeMenu.bind('click', function() {
 
 let fn;
 $(() => {
-  // all test
+  // 전체 피드들 렌더링
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
       if(result[i].from === 1) {
@@ -56,8 +56,7 @@ $(() => {
   }
   AJAX.allfeedload('http://localhost:3000/dbrender/allfeeds', fn);
 
-
-  // fb test
+  // 페이스북 피드만 렌더링
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
         fbContents.append(`
@@ -71,7 +70,8 @@ $(() => {
     }
   }
   AJAX.fbfeedload('http://localhost:3000/dbrender/fbfeeds', fn);
-  // dc test
+
+  // 디시인사이드 피드만 렌더링
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
         dcContents.append(`
@@ -88,6 +88,7 @@ $(() => {
   AJAX.dcfeedload('http://localhost:3000/dbrender/dcfeeds', fn);
 });
 
+// 피드 종류에 따른 슬라이드
 showallFeed.bind('click', function() {
   allContents.css('left', '0%');
   fbContents.css('left', '100%');
@@ -106,7 +107,8 @@ showdcFeed.bind('click', function() {
   dcContents.css('left', '0%');
 });
 
-const timeTest = function() {
+// 새로 업데이트 된 피드들만 렌더링
+const updatedFeedRender = function() {
   console.log('time test start!!');
   let func = function(result) {
     for(let i=result.length-1; i>=0; i--) {
@@ -134,4 +136,4 @@ const timeTest = function() {
   };
   AJAX.updatefeed('http://localhost:3000/dbrender/updatefeeds', func);
 };
-const checkLoop = setInterval(timeTest, 15000);
+const checkLoop = setInterval(updatedFeedRender, 15000); // 15초간 간격으로 피드들을 확인 후, 새로 업데이트 된 피드가 있을 시 렌더링

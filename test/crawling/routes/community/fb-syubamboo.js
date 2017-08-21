@@ -80,13 +80,14 @@ function getWallFeeds(feedLink, args, count) {
   });
 }
 
-// test
+// 시간에 0을 패딩하는 함수
 var padZero = function(t) {
   if(t<10) {
     return '0' + t;
   }
   return t;
 }
+// 페이스북 기준 시간을 한국 UTC 시간으로 변경한 후, 디비에 저장하기 위해 커스텀 포맷한다.
 var local, month, date, hour, min, sec;
 var fbDateFix = function(date) {
   local = new Date(date.replace(/-/g, '.').replace('T', ' ').replace('+0000', ''));
@@ -160,6 +161,7 @@ function processMessage(data) {
             item.save(function(err, allfeeds) {
               if(err) throw err;
               console.log("facebook feed insert ok!");
+              return;
             });
           }
         });
