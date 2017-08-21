@@ -1,11 +1,26 @@
 {
-  "name": "wow",
+  "name": "syuproject",
   "version": "1.0.0",
-  "description": "",
-  "main": "myscript2.js",
+  "description": "Integrated community of SYU",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkodu/SYUProject.git"
+  },
+  "author": "kkodu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkodu/SYUProject/issues"
+  },
+  "homepage": "https://github.com/kkodu/SYUProject#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.7",
+    "nodemon": "^1.11.0"
+  }
 }

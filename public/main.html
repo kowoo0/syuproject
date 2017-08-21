@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>울창한 대나무 숲</title>
+</head>
+<style>
+  /* 초기화 */
+  body { margin: 0; padding: 0; }
+  html, body { height: 100%; }
+
+  /* 사이드 메뉴 CSS */
+  #aside-bar {
+    position: absolute;
+    top: 0; left: -30%;
+    width: 30%; height: 100%;
+    background-color: #e5e5e5;
+
+    transition: ease 1s;
+    z-index: 10;
+  }
+  .close-btn {
+    width: 100%; height: 60px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+  }
+
+  /* 메인 영역 CSS */
+  #wrap {
+    height: 100%;
+  }
+  .header {
+    position: relative;
+    width: 100%;
+    height: 60px;
+  }
+  .fixed-bar {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+
+    background-color: #fff;
+    border-bottom: 2px solid black;
+  }
+  .show-btn {
+    position: absolute;
+    width: 10%; height: 40px;
+    top: 10px; left: 10px;
+  }
+  .logo {
+    margin: 0;
+    line-height: 60px;
+    text-align: center;
+  }
+  .contents {
+    width: 100%; height: 300px;
+    margin: 20px auto 0;
+
+    background-color: #d5d5d5;
+
+    border-top: 1px solid #a6a6a6;
+    border-bottom: 1px solid #a6a6a6;
+
+    box-sizing: border-box;
+  }
+</style>
+<body>
+<!-- 좌측 슬라이드 메뉴바 -->
+<div id="aside-bar">
+  <button id="close-menu" class="close-btn">닫기</button>
+</div>
+
+<!-- 메인 영역 -->
+<div id="wrap">
+  <!-- 상단 헤더 영역 (슬라이드 메뉴바 버튼, 로고) -->
+  <div class="header">
+      <!-- 고정 메뉴바 -->
+      <div class="fixed-bar">
+        <button id="show-menu" class="show-btn">목록</button>
+        <h2 class="logo">Logo</h2>
+      </div>
+  </div>
+  <!-- 크롤링한 정보들을 보여줄 콘텐츠 영역 -->
+  <div class="section">
+    <div class="contents"></div>
+    <div class="contents"></div>
+    <div class="contents"></div>
+    <div class="contents"></div>
+    <div class="contents"></div>
+    <div class="contents"></div>
+  </div>
+</div>
+<!-- JQuery 라이브러리 임포트 -->
+<script src="./components/jquery-1.12.0.min.js"></script>
+<script>
+  // show-menu 버튼 요소 접근
+  var showMenu = $('#show-menu');
+  // close-menu 버튼 요소 접근
+  var closeMenu = $('#close-menu');
+  // side-bar 요소 접근
+  var sideBar = $('#aside-bar');
+
+  // jquery 이용, show-menu 버튼 클릭 시 이벤트 발생
+  showMenu.bind('click', function() {
+    // left: -30% => 0px 이동
+    sideBar.css('left', '0px');
+  });
+
+  // jquery 이용, close-menu 버튼 클릭 시 이벤트 발생
+  closeMenu.bind('click', function() {
+    // left: 0px => -30% 이동
+    sideBar.css('left', '-30%');
+  })
+
+</script>
+</body>
+</html>
