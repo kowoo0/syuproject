@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const server = require('http').createServer(app);
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const mg_config = require('./config/mg-config.json');
@@ -20,8 +21,9 @@ conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.us
 conn.once('open', () => {
 	console.log("mongoose connect successfully..");
 });
+
 // 서버 실행
-app.listen(3000, () => {
+server.listen(3000, () => {
 	console.log('node start!');
 });
 // use ejs template
