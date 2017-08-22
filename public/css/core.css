@@ -1,0 +1,6 @@
+/* 초기화 */
+html, body { max-height: 100%; }
+body { margin: 0; padding: 0; }
+ul { margin: 0; padding: 0; }
+li { list-style: none; }
+a { text-decoration: none; }
