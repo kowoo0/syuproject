@@ -1,0 +1,6 @@
+{
+  "userId": "USER_ID",
+  "userPass": "USER_PASSWORD",
+  "userLocal": "localhost",
+  "db": "ADMIN_DB"
+}
