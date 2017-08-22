@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "database.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "file:node_modules/cookie-parser",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "jade": "^1.11.0",
+    "save": "^2.3.1"
+  }
+}
