@@ -60,7 +60,9 @@ app.get('/login', function(req, res){ // 예쁜 로그인 저장용 html css
   `;
   res.send(output2);
 });
-
+app.get('/facebook', function(req,res){
+  res.sendFile(__dirname + "/facebook.html");
+});
 app.get('/html2', function(req, res){
   res.sendFile(__dirname + "/html2.html");
   console.log(req.query.userid); // 쿼리 정보 가공
