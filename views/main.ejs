@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>울창한 대나무 숲</title>
+<link rel="stylesheet" href="./css/core.css">
+<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+<!-- 좌측 슬라이드 메뉴바 -->
+<div id="aside-bar">
+  <button id="close-menu" class="close-btn">닫기</button>
+  <button id="signup-menu" class="href-btn">회원가입</button>
+</div>
+
+<!-- 메인 영역 -->
+<div id="wrap">
+  <!-- 상단 헤더 영역 (슬라이드 메뉴바 버튼, 로고) -->
+  <div class="header">
+      <!-- 고정 메뉴바 -->
+      <div class="fixed-bar">
+        <button id="show-menu" class="show-btn">목록</button>
+        <h2 class="logo">Logo</h2>
+        <button id="show-allfeed" class="feed-btn1">모두보기</button>
+        <button id="show-fbfeed" class="feed-btn2">대나무숲</button>
+        <button id="show-dcfeed" class="feed-btn3">삼육갤</button>
+      </div>
+  </div>
+  <!-- 크롤링한 정보들을 보여줄 콘텐츠 영역 -->
+  <div class="section">
+    <ul class="all-contents">
+
+    </ul>
+    <ul class="fb-contents">
+
+    </ul>
+    <ul class="dc-contents">
+
+    </ul>
+  </div>
+</div>
+<!-- JQuery 라이브러리 임포트 -->
+<script src="./components/jquery-1.12.0.min.js"></script>
+<script src="./components/ajaxsend.js"></script>
+<script src="./components/main.js"></script>
+<script>
+  $('#signup-menu').bind('click', () => {
+    window.location.href = '/member';
+  })
+</script>
+</body>
+</html>
