@@ -56,5 +56,18 @@ const AJAX = {
         fn(updatedResult);
       }
     });
+  },
+  morefeed: (url, count, fn) => {
+    let data = { 'count': count };
+    data = JSON.stringify(data);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const moreResult = JSON.parse(xhr.responseText);
+      fn(moreResult);
+    });
   }
 }
