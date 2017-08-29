@@ -10,10 +10,16 @@ let mostRecentlyData = (function() {
   return staticVar;
 })();
 
+let fixedPrimaryDate;
+
 let pageShowLimit = function(min, max, docs) {
   let i;
   let limitPages = [];
   for(i=min; i<max; i++) {
+    if(docs[i] === undefined) {
+      limitPages.push({ from: 'not exist'});
+      return limitPages;
+    }
     limitPages.push(docs[i]);
   }
   return limitPages;
@@ -21,17 +27,18 @@ let pageShowLimit = function(min, max, docs) {
 
 // 데이터베이스의 모든 피드들을 가져 온다.
 router.get('/allfeeds', (req, res) => {
-  ALLFeeds.find({}).sort({ created_time: -1 }).exec(function(err, docs) {
+  ALLFeeds.find({}).sort({ 'created_time': -1 }).exec(function(err, docs) {
     if(err) return res.status(400).json(err);
     console.log("all feeds sent");
     mostRecentlyData = docs[0].created_time; // 페이지 업로드 시, 가장 최신 데이터의 시간을 저장한다.
+    fixedPrimaryDate = docs[0].created_time; // 추가 피드들을 처음 렌더링한 기준으로 불러오기 위해 쓰일 고정 시간
     let docs_25 = pageShowLimit(0, 25, docs);
     res.json(docs_25);
   });
 });
 // 페북만 가져옴
 router.get('/fbfeeds', (req, res) => {
-  FBFeeds.find({ from: 1 }).sort({ created_time: -1 }).exec(function(err, docs) {
+  FBFeeds.find({ 'from': 1 }).sort({ 'created_time': -1 }).exec(function(err, docs) {
     if(err) return res.status(400).json(err);
     console.log("facebook feeds sent");
     let docs_25 = pageShowLimit(0, 25, docs);
@@ -40,7 +47,7 @@ router.get('/fbfeeds', (req, res) => {
 });
 // 디시인사이드만 가져옴
 router.get('/dcfeeds', (req, res) => {
-  DCFeeds.find({ from: 2 }).sort({ created_time: -1 }).exec(function(err, docs) {
+  DCFeeds.find({ 'from': 2 }).sort({ 'created_time': -1 }).exec(function(err, docs) {
     if(err) return res.status(400).json(err);
     console.log("dcinside feeds sent");
     let docs_25 = pageShowLimit(0, 25, docs);
@@ -49,7 +56,7 @@ router.get('/dcfeeds', (req, res) => {
 });
 // 메인 페이지에서 setInterval을 사용하여 주기적으로 피드가 업데이트 되었는지 확인한다.
 router.get('/updatefeeds', (req, res) => {
-  ALLFeeds.find({}).sort({ created_time: -1 }).exec(function(err, docs) {
+  ALLFeeds.find({}).sort({ 'created_time': -1 }).exec(function(err, docs) {
     if(err) throw err;
     // 저장되어있는 최신 생성 시간으로 정보가 업데이트 되어있는지 아닌지를 확인하는 구문
     let arr = [];
@@ -75,14 +82,25 @@ router.get('/updatefeeds', (req, res) => {
 // 무한스크롤링 구현. 추가 피드들을 보여준다.
 router.post('/morefeeds', (req, res) => {
   let result = req.body;
-  ALLFeeds.find({}).sort({ created_time: -1 }).exec(function(err, docs) {
-    if(err) return res.status(400).json(err);
-    console.log("more feeds sent");
-    let min = 25 * (result.count - 1);
-    let max = 25 * result.count;
-    let docs_25 = pageShowLimit(min, max, docs);
-    res.json(docs_25);
-  });
+  if(result.type === 0) {
+    ALLFeeds.find({ 'created_time': { $lte: fixedPrimaryDate } }).sort({ 'created_time': -1 }).exec(function(err, docs) {
+      if(err) return res.status(400).json(err);
+      console.log("more feeds sent");
+      let min = 25 * (result.count - 1);
+      let max = 25 * result.count;
+      let docs_25 = pageShowLimit(min, max, docs);
+      res.json(docs_25);
+    });
+  } else {
+    ALLFeeds.find({ $and: [{ 'from': result.type }, {'created_time': {$lte:fixedPrimaryDate}}] }).sort({ 'created_time': -1 }).exec(function(err, docs) {
+      if(err) return res.status(400).json(err);
+      console.log("more feeds sent");
+      let min = 25 * (result.count - 1);
+      let max = 25 * result.count;
+      let docs_25 = pageShowLimit(min, max, docs);
+      res.json(docs_25);
+    });
+  }
 });
 
 

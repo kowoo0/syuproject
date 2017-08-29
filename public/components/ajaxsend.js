@@ -57,8 +57,8 @@ const AJAX = {
       }
     });
   },
-  morefeed: (url, count, fn) => {
-    let data = { 'count': count };
+  morefeed: (url, count, type, fn) => {
+    let data = { 'count': count, 'type': type };
     data = JSON.stringify(data);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url);
