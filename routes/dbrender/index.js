@@ -10,8 +10,9 @@ let mostRecentlyData = (function() {
   return staticVar;
 })();
 
-let fixedPrimaryDate;
+let fixedPrimaryDate; // 초기 데이터 시간 고정값
 
+// 무한 스크롤링 페이지 수 증가에 따른 계산
 let pageShowLimit = function(min, max, docs) {
   let i;
   let limitPages = [];

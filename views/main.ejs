@@ -38,6 +38,23 @@
 <script src="./components/ajaxsend.js"></script>
 <script src="./components/main.js"></script>
 <script>
+  // show-menu 버튼 요소 접근
+  const showMenu = $('#show-menu');
+  // close-menu 버튼 요소 접근
+  const closeMenu = $('#close-menu');
+  // side-bar 요소 접근
+  const sideBar = $('#aside-bar');
+  // jquery 이용, show-menu 버튼 클릭 시 이벤트 발생
+  showMenu.bind('click', function() {
+    // left: -30% => 0px 이동
+    sideBar.css('left', '0px');
+  });
+  // jquery 이용, close-menu 버튼 클릭 시 이벤트 발생
+  closeMenu.bind('click', function() {
+    // left: 0px => -30% 이동
+    sideBar.css('left', '-30%');
+  });
+
   $('#signup-menu').bind('click', () => {
     window.location.href = '/member';
   });
