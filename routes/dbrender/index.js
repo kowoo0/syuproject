@@ -26,6 +26,10 @@ let pageShowLimit = function(min, max, docs) {
   return limitPages;
 }
 
+let dividedByDate = function(docs) {
+
+}
+
 // 데이터베이스의 모든 피드들을 가져 온다.
 router.get('/allfeeds', (req, res) => {
   ALLFeeds.find({}).sort({ 'created_time': -1 }).exec(function(err, docs) {

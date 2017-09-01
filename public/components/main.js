@@ -10,8 +10,53 @@ const fbContents  = $('.fb-contents');
 const dcContents  = $('.dc-contents');
 
 let fn;
+let flag = 0, monthCheck = '00', dayCheck = '00';
 let type = 0;
 let allPageCount = 2, fbPageCount = 2, dcPageCount = 2;
+let primaryFeed;
+
+let getDividedDate = function(contents, feed) {
+  let date = String(feed.created_time);
+  let year = date.substring(0, 4);
+  let month = date.substring(4, 6);
+  let day = date.substring(6, 8);
+  if((flag === 1 && month === monthCheck) && day === dayCheck ) {
+    return;
+  }
+  if(year === 'unde') { return; }
+  contents.append(`<li class='dateBox'>${year}년 ${month}월 ${day}일</li>`);
+  monthCheck = month;
+  dayCheck = day;
+  flag = 1;
+}
+let getDivideUpdate = function(contents, subContents feed, num) {
+  let date = String(feed.created_time), pDate = String(primaryFeed.created_time);
+  let year = date.substring(0, 4), pYear = pDate.substring(0, 4);
+  let month = date.substring(4, 6), pMonth = pDate.substring(4, 6);
+  let day = date.substring(6, 8), pDay = pDate.substring(6, 8);
+
+  if((flag === 1 && month === pMonth) && day === pDay ) {
+    if(num === 1) {
+      console.log('fb 업데이트 추가');
+      $('.dateBox').first().after(getFbText(feed));
+    } else {
+      console.log('dc 업데이트 추가');
+      $('.dateBox').first().after(getDcText(feed));
+    }
+    return;
+  }
+  contents.prepend(`<li class='dateBox'>${year}년 ${month}월 ${day}일</li>`);
+  subContents.prepend(`<li class='dateBox'>${year}년 ${month}월 ${day}일</li>`); // 아직 미수정
+  if(num === 1) {
+    console.log('fb 업데이트 추가');
+    $('.dateBox').first().after(getFbText(feed));
+  } else {
+    console.log('dc 업데이트 추가');
+    $('.dateBox').first().after(getDcText(feed));
+  }
+  primaryFeed = feed;
+  flag = 1;
+}
 let getFbText = function(feed) {
   let fbText = `
     <li class="content">
@@ -77,6 +122,8 @@ showdcFeed.bind('click', function() {
 $(() => {
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
+      primaryFeed = result[0];
+      getDividedDate(allContents, result[i]);
       appendByType(allContents, result[i]);
     }
   }
@@ -84,6 +131,7 @@ $(() => {
   AJAX.allfeedload('http://localhost:3000/dbrender/allfeeds', fn);
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
+      getDividedDate(fbContents, result[i]);
       appendByType(fbContents, result[i]);
     }
   }
@@ -91,6 +139,7 @@ $(() => {
   AJAX.fbfeedload('http://localhost:3000/dbrender/fbfeeds', fn);
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
+      getDividedDate(dcContents, result[i]);
       appendByType(dcContents, result[i]);
     }
   }
@@ -107,6 +156,7 @@ $(window).on('scroll', function(e) {
       // setTimeout(function( preloader('hide'); ), 1000) => AJAX 콜이 성공하면 피드 추가 후, 로딩 아이콘 숨김
       fn = (result) => {
         for(let i=0; i<result.length; i++) {
+          getDividedDate(allContents, result[i]);
           appendByType(allContents, result[i]);
         }
       }
@@ -117,6 +167,7 @@ $(window).on('scroll', function(e) {
       console.log('loading...more facebook feeds');
       fn = (result) => {
         for(let i=0; i<result.length; i++) {
+          getDividedDate(fbContents, result[i]);
           appendByType(fbContents, result[i]);
         }
       }
@@ -127,6 +178,7 @@ $(window).on('scroll', function(e) {
       console.log('loading...more dcinside feeds');
       fn = (result) => {
         for(let i=0; i<result.length; i++) {
+          getDividedDate(dcContents, result[i]);
           appendByType(dcContents, result[i]);
         }
       }
@@ -141,11 +193,9 @@ const updatedFeedRender = function() {
   let func = function(result) {
     for(let i=result.length-1; i>=0; i--) {
       if(result[i].from === 1) {
-        allContents.prepend(getFbText(result[i]));
-        fbContents.prepend(getFbText(result[i]));
+        getDivideUpdate(allContents, dcContents, result[i], result[i].from);
       } else {
-        allContents.prepend(getDcText(result[i]));
-        dcContents.prepend(getDcText(result[i]));
+        getDivideUpdate(allContents, fbContents, result[i], result[i].from);
       }
     }
   };
