@@ -15,7 +15,7 @@ let type = 0;
 let allPageCount = 2, fbPageCount = 2, dcPageCount = 2;
 let primaryFeed;
 
-let getDividedDate = function(contents, feed) {
+let getDividedDate = function(contents, feed, type) {
   let date = String(feed.created_time);
   let year = date.substring(0, 4);
   let month = date.substring(4, 6);
@@ -24,35 +24,48 @@ let getDividedDate = function(contents, feed) {
     return;
   }
   if(year === 'unde') { return; }
-  contents.append(`<li class='dateBox'>${year}년 ${month}월 ${day}일</li>`);
+  if(type === 0) {
+    contents.append(`<li class='dateBox'>${year}년 ${month}월 ${day}일</li>`);
+  }
+  else if(type === 1) {
+    contents.append(`<li class='fbDateBox'>${year}년 ${month}월 ${day}일</li>`);
+  }
+  else {
+    contents.append(`<li class='dcDateBox'>${year}년 ${month}월 ${day}일</li>`);
+  }
   monthCheck = month;
   dayCheck = day;
   flag = 1;
 }
-let getDivideUpdate = function(contents, subContents feed, num) {
+let getDivideUpdate = function(contents, subContents, feed, type) {
   let date = String(feed.created_time), pDate = String(primaryFeed.created_time);
   let year = date.substring(0, 4), pYear = pDate.substring(0, 4);
   let month = date.substring(4, 6), pMonth = pDate.substring(4, 6);
   let day = date.substring(6, 8), pDay = pDate.substring(6, 8);
 
   if((flag === 1 && month === pMonth) && day === pDay ) {
-    if(num === 1) {
+    if(type === 1) {
       console.log('fb 업데이트 추가');
       $('.dateBox').first().after(getFbText(feed));
+      $('.fbDateBox').first().after(getFbText(feed));
     } else {
       console.log('dc 업데이트 추가');
       $('.dateBox').first().after(getDcText(feed));
+      $('.dcDateBox').first().after(getDcText(feed));
     }
     return;
   }
   contents.prepend(`<li class='dateBox'>${year}년 ${month}월 ${day}일</li>`);
-  subContents.prepend(`<li class='dateBox'>${year}년 ${month}월 ${day}일</li>`); // 아직 미수정
-  if(num === 1) {
+  if(type === 1) {
     console.log('fb 업데이트 추가');
+    subContents.prepend(`<li class='fbDateBox'>${year}년 ${month}월 ${day}일</li>`);
     $('.dateBox').first().after(getFbText(feed));
+    $('.fbDateBox').first().after(getFbText(feed));
   } else {
     console.log('dc 업데이트 추가');
+    subContents.prepend(`<li class='dcDateBox'>${year}년 ${month}월 ${day}일</li>`);
     $('.dateBox').first().after(getDcText(feed));
+    $('.dcDateBox').first().after(getDcText(feed));
   }
   primaryFeed = feed;
   flag = 1;
@@ -123,7 +136,7 @@ $(() => {
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
       primaryFeed = result[0];
-      getDividedDate(allContents, result[i]);
+      getDividedDate(allContents, result[i], 0);
       appendByType(allContents, result[i]);
     }
   }
@@ -131,7 +144,7 @@ $(() => {
   AJAX.allfeedload('http://localhost:3000/dbrender/allfeeds', fn);
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
-      getDividedDate(fbContents, result[i]);
+      getDividedDate(fbContents, result[i], 1);
       appendByType(fbContents, result[i]);
     }
   }
@@ -139,7 +152,7 @@ $(() => {
   AJAX.fbfeedload('http://localhost:3000/dbrender/fbfeeds', fn);
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
-      getDividedDate(dcContents, result[i]);
+      getDividedDate(dcContents, result[i], 2);
       appendByType(dcContents, result[i]);
     }
   }
@@ -193,9 +206,9 @@ const updatedFeedRender = function() {
   let func = function(result) {
     for(let i=result.length-1; i>=0; i--) {
       if(result[i].from === 1) {
-        getDivideUpdate(allContents, dcContents, result[i], result[i].from);
-      } else {
         getDivideUpdate(allContents, fbContents, result[i], result[i].from);
+      } else {
+        getDivideUpdate(allContents, dcContents, result[i], result[i].from);
       }
     }
   };
