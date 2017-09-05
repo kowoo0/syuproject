@@ -2,62 +2,157 @@
 <html>
 <head>
 <meta charset='utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <title>울창한 대나무 숲</title>
-<link rel="stylesheet" href="./css/core.css">
-<link rel="stylesheet" href="./css/main.css">
+
+<!-- Bootstrap core CSS -->
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="./css/blog-home.css" rel="stylesheet">
+<link href="./css/core.css" rel="stylesheet">
+<!-- <link href="./css/main.css" rel="stylesheet"> -->
+<style>
+  .fix {
+    position: fixed;
+    right: 20px;
+  }
+  @media screen and (max-width: 767px) {
+    .fix {
+      position: sticky;
+    }
+  }
+  .fb-contents {
+    display: none;
+  }
+  .dc-contents {
+    display: none;
+  }
+</style>
 </head>
 <body>
-<!-- 좌측 슬라이드 메뉴바 -->
-<div id="aside-bar">
-  <button id="close-menu" class="close-btn">닫기</button>
-  <button id="signup-menu" class="href-btn">회원가입</button>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">울창한 대나무숲</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <!-- 토글 드랍다운 .. 타입에 따른 분류 -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a id="show-allfeed" class="nav-link" href="#">ALL
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a id="show-fbfeed" class="nav-link" href="#">Facebook</a>
+        </li>
+        <li class="nav-item">
+          <a id="show-dcfeed" class="nav-link" href="#">DCInside</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+      <h1 class="my-4">
+        <small></small>
+      </h1>
+
+      <!-- Community Post -->
+      <ul class="all-contents"></ul>
+      <ul class="fb-contents"></ul>
+      <ul class="dc-contents"></ul>
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="fix col-md-4">
+
+      <!-- Search Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button">Go!</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#">Web Design</a>
+                </li>
+                <li>
+                  <a href="#">HTML</a>
+                </li>
+                <li>
+                  <a href="#">Freebies</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#">JavaScript</a>
+                </li>
+                <li>
+                  <a href="#">CSS</a>
+                </li>
+                <li>
+                  <a href="#">Tutorials</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side Widget -->
+      <!-- <div class="card my-4">
+        <h5 class="card-header">Side Widget</h5>
+        <div class="card-body">
+          You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+        </div>
+      </div> -->
+
+    </div>
+
+  </div>
+  <!-- /.row -->
+
 </div>
 
-<!-- 메인 영역 -->
-<div id="wrap">
-  <!-- 상단 헤더 영역 (슬라이드 메뉴바 버튼, 로고) -->
-  <div class="header">
-      <!-- 고정 메뉴바 -->
-      <div class="fixed-bar">
-        <button id="show-menu" class="show-btn">목록</button>
-        <h2 class="logo">Logo</h2>
-        <button id="show-allfeed" class="feed-btn1">모두보기</button>
-        <button id="show-fbfeed" class="feed-btn2">대나무숲</button>
-        <button id="show-dcfeed" class="feed-btn3">삼육갤</button>
-      </div>
-  </div>
-  <!-- 크롤링한 정보들을 보여줄 콘텐츠 영역 -->
-  <div class="section">
-    <ul class="all-contents"></ul>
-    <ul class="fb-contents"></ul>
-    <ul class="dc-contents"></ul>
-  </div>
-</div>
 <!-- JQuery 라이브러리 임포트 -->
 <script src="./components/jquery-1.12.0.min.js"></script>
+<script src="./components/popper.min.js"></script>
+<script src="./components/bootstrap.min.js"></script>
 <script src="./components/ajaxsend.js"></script>
 <script src="./components/main.js"></script>
 <script>
-  // show-menu 버튼 요소 접근
-  const showMenu = $('#show-menu');
-  // close-menu 버튼 요소 접근
-  const closeMenu = $('#close-menu');
-  // side-bar 요소 접근
-  const sideBar = $('#aside-bar');
-  // jquery 이용, show-menu 버튼 클릭 시 이벤트 발생
-  showMenu.bind('click', function() {
-    // left: -30% => 0px 이동
-    sideBar.css('left', '0px');
-  });
-  // jquery 이용, close-menu 버튼 클릭 시 이벤트 발생
-  closeMenu.bind('click', function() {
-    // left: 0px => -30% 이동
-    sideBar.css('left', '-30%');
-  });
-
-  $('#signup-menu').bind('click', () => {
-    window.location.href = '/member';
-  });
 </script>
 </body>
 </html>

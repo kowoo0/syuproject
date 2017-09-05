@@ -25,13 +25,13 @@ let getDividedDate = function(contents, feed, type) {
   }
   if(year === 'unde') { return; }
   if(type === 0) {
-    contents.append(`<li class='dateBox'>${year}년 ${month}월 ${day}일</li>`);
+    contents.append(`<li class='dateBox card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
   }
   else if(type === 1) {
-    contents.append(`<li class='fbDateBox'>${year}년 ${month}월 ${day}일</li>`);
+    contents.append(`<li class='fbDateBox card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
   }
   else {
-    contents.append(`<li class='dcDateBox'>${year}년 ${month}월 ${day}일</li>`);
+    contents.append(`<li class='dcDateBox card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
   }
   monthCheck = month;
   dayCheck = day;
@@ -55,15 +55,15 @@ let getDivideUpdate = function(contents, subContents, feed, type) {
     }
     return;
   }
-  contents.prepend(`<li class='dateBox'>${year}년 ${month}월 ${day}일</li>`);
+  contents.prepend(`<li class='dateBox card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
   if(type === 1) {
     console.log('fb 업데이트 추가');
-    subContents.prepend(`<li class='fbDateBox'>${year}년 ${month}월 ${day}일</li>`);
+    subContents.prepend(`<li class='fbDateBox card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
     $('.dateBox').first().after(getFbText(feed));
     $('.fbDateBox').first().after(getFbText(feed));
   } else {
     console.log('dc 업데이트 추가');
-    subContents.prepend(`<li class='dcDateBox'>${year}년 ${month}월 ${day}일</li>`);
+    subContents.prepend(`<li class='dcDateBox card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
     $('.dateBox').first().after(getDcText(feed));
     $('.dcDateBox').first().after(getDcText(feed));
   }
@@ -72,23 +72,32 @@ let getDivideUpdate = function(contents, subContents, feed, type) {
 }
 let getFbText = function(feed) {
   let fbText = `
-    <li class="content">
-      <h3>삼육대학교 대나무숲</h4>
-      <hr>
-      <p class="fb-title">${feed.message}</p>
-      <p class="created-time">${feed.created_time}</p>
+    <li class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">대나무숲</h2>
+        <p class="card-text">${feed.message}</p>
+        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+      </div>
+      <div class="card-footer text-muted">
+        ${feed.created_time} by
+        <a href="#">facebook</a>
+      </div>
     </li>
   `;
   return fbText;
 }
 let getDcText = function(feed) {
   let dcText = `
-    <li class="content">
-      <h3>디시인사이드</h4>
-      <hr>
-      <p class="title">${feed.message}</p>
-      <a href="http://gall.dcinside.com${feed.link}">해당 페이지</a>
-      <p class="dc-created-time">${feed.created_time}</p>
+    <li class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">삼육대 갤러리</h2>
+        <p class="card-text">${feed.message}</p>
+        <a href="http://gall.dcinside.com${feed.link}" class="btn btn-primary">Read More &rarr;</a>
+      </div>
+      <div class="card-footer text-muted">
+        ${feed.created_time} by
+        <a href="#">dcinside</a>
+      </div>
     </li>
   `;
   return dcText;
@@ -111,23 +120,23 @@ let appendByType = function(contents, feed) {
 
 // 피드 종류에 따른 슬라이드
 showallFeed.bind('click', function() {
-  allContents.css({'left': '0%', 'display': 'block'});
-  fbContents.css({'left': '-100%', 'display': 'none'});
-  dcContents.css({'left': '-100%', 'display': 'none'});
+  allContents.css('display', 'block');
+  fbContents.css('display', 'none');
+  dcContents.css('display', 'none');
   type = 0;
 });
 
 showfbFeed.bind('click', function() {
-  allContents.css({'left': '-100%', 'display': 'none'});
-  fbContents.css({'left': '0%', 'display': 'block'});
-  dcContents.css({'left': '-100%', 'display': 'none'});
+  allContents.css('display', 'none');
+  fbContents.css('display', 'block');
+  dcContents.css('display', 'none');
   type = 1;
 });
 
 showdcFeed.bind('click', function() {
-  allContents.css({'left': '-100%', 'display': 'none'});
-  fbContents.css({'left': '-100%', 'display': 'none'});
-  dcContents.css({'left': '0%', 'display': 'block'});
+  allContents.css('display', 'none');
+  fbContents.css('display', 'none');
+  dcContents.css('display', 'block');
   type = 2;
 });
 
