@@ -1,20 +1,23 @@
-// test
+// all feeds
 const showallFeed = $('#show-allfeed');
-// test
+// facebook feeds
 const showfbFeed = $('#show-fbfeed');
-// test
+// dcinside feeds
 const showdcFeed = $('#show-dcfeed');
-// test
+// feed contents box
 const allContents = $('.all-contents');
 const fbContents  = $('.fb-contents');
 const dcContents  = $('.dc-contents');
+
+const prettyDate = moment();
+moment.locale('ko');
+
 
 let fn;
 let flag = 0, monthCheck = '00', dayCheck = '00';
 let type = 0;
 let allPageCount = 2, fbPageCount = 2, dcPageCount = 2;
 let primaryFeed;
-
 let getDividedDate = function(contents, feed, type) {
   let date = String(feed.created_time);
   let year = date.substring(0, 4);
@@ -70,7 +73,17 @@ let getDivideUpdate = function(contents, subContents, feed, type) {
   primaryFeed = feed;
   flag = 1;
 }
+let compareDate = function(cTime) {
+  let now = moment().format('YYYYMMDD000000');
+  Number(now);
+  if(cTime >= now) {
+    return moment(cTime, 'YYYYMMDDhhmmss').fromNow();
+  } else {
+    return moment(cTime, 'YYYYMMDDhhmmss').format("M월 D일 h:mm a");
+  }
+}
 let getFbText = function(feed) {
+  let time = compareDate(feed.created_time);
   let fbText = `
     <li class="card mb-4">
       <div class="card-body">
@@ -79,7 +92,7 @@ let getFbText = function(feed) {
         <a href="#" class="btn btn-primary">Read More &rarr;</a>
       </div>
       <div class="card-footer text-muted">
-        ${feed.created_time} by
+        ${time} by
         <a href="#">facebook</a>
       </div>
     </li>
@@ -87,6 +100,7 @@ let getFbText = function(feed) {
   return fbText;
 }
 let getDcText = function(feed) {
+  let time = compareDate(feed.created_time);
   let dcText = `
     <li class="card mb-4">
       <div class="card-body">
@@ -95,7 +109,7 @@ let getDcText = function(feed) {
         <a href="http://gall.dcinside.com${feed.link}" class="btn btn-primary">Read More &rarr;</a>
       </div>
       <div class="card-footer text-muted">
-        ${feed.created_time} by
+        ${time} by
         <a href="#">dcinside</a>
       </div>
     </li>
