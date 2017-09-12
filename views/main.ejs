@@ -13,13 +13,24 @@
 <link href="./css/core.css" rel="stylesheet">
 <!-- <link href="./css/main.css" rel="stylesheet"> -->
 <style>
-  .fix {
-    position: fixed;
-    right: 20px;
-  }
   @media screen and (max-width: 767px) {
+    .row {
+      position: relative;
+    }
     .fix {
-      position: sticky;
+      position: fixed;
+      padding: 0px;
+      z-index: 999;
+    }
+    .topfix {
+      position: absolute;
+      top: 192px;
+    }
+    .category-custom, .search-custom {
+      width: 100% !important;
+      margin: 0 !important;
+      border-radius: 0px;
+      border-top: 0px;
     }
   }
   .fb-contents {
@@ -66,55 +77,14 @@
 
   <div class="row">
 
-    <!-- Blog Entries Column -->
-    <div class="col-md-8">
-
-      <h1 class="my-4">
-        <small></small>
-      </h1>
-
-      <!-- Community Post -->
-      <ul class="all-contents"></ul>
-      <ul class="fb-contents"></ul>
-      <ul class="dc-contents"></ul>
-
-    </div>
-
     <!-- Sidebar Widgets Column -->
-    <div class="fix col-md-4">
-
-      <!-- Search Widget -->
-      <div class="card my-4">
-        <h5 class="card-header">Search</h5>
-        <div class="card-body">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-secondary" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div>
+    <div class="col-md-4 fix">
 
       <!-- Categories Widget -->
-      <div class="card my-4">
-        <h5 class="card-header">Categories</h5>
+      <div class="card my-4 category-custom">
         <div class="card-body">
           <div class="row">
-            <div class="col-lg-6">
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#">Web Design</a>
-                </li>
-                <li>
-                  <a href="#">HTML</a>
-                </li>
-                <li>
-                  <a href="#">Freebies</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
+            <div class="col-lg-12">
               <ul class="list-unstyled mb-0">
                 <li>
                   <a href="#">JavaScript</a>
@@ -131,6 +101,18 @@
         </div>
       </div>
 
+      <!-- Search Widget -->
+      <div class="card my-4 search-custom">
+        <div class="card-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button">Go!</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
       <!-- Side Widget -->
       <!-- <div class="card my-4">
         <h5 class="card-header">Side Widget</h5>
@@ -138,6 +120,20 @@
           You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
         </div>
       </div> -->
+
+    </div>
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8 topfix">
+
+      <h1 class="my-4">
+        <small></small>
+      </h1>
+
+      <!-- Community Post -->
+      <ul class="all-contents"></ul>
+      <ul class="fb-contents"></ul>
+      <ul class="dc-contents"></ul>
 
     </div>
 

@@ -69,5 +69,28 @@ const AJAX = {
       const moreResult = JSON.parse(xhr.responseText);
       fn(moreResult);
     });
+  },
+  fbcommentsload: (url, fn) => {
+    let data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const commentsResult = JSON.parse(xhr.responseText);
+      fn(commentsResult);
+    });
+  },
+  fblikesload: (url) => {
+    let data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const likesResult = JSON.parse(xhr.responseText);
+    });
   }
 }

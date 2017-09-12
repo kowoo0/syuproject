@@ -18,6 +18,30 @@ let flag = 0, monthCheck = '00', dayCheck = '00';
 let type = 0;
 let allPageCount = 2, fbPageCount = 2, dcPageCount = 2;
 let primaryFeed;
+
+// 피드 종류에 따른 슬라이드
+showallFeed.bind('click', function() {
+  allContents.css('display', 'block');
+  fbContents.css('display', 'none');
+  dcContents.css('display', 'none');
+  type = 0;
+});
+
+showfbFeed.bind('click', function() {
+  allContents.css('display', 'none');
+  fbContents.css('display', 'block');
+  dcContents.css('display', 'none');
+  type = 1;
+});
+
+showdcFeed.bind('click', function() {
+  allContents.css('display', 'none');
+  fbContents.css('display', 'none');
+  dcContents.css('display', 'block');
+  type = 2;
+});
+
+
 let getDividedDate = function(contents, feed, type) {
   let date = String(feed.created_time);
   let year = date.substring(0, 4);
@@ -40,6 +64,8 @@ let getDividedDate = function(contents, feed, type) {
   dayCheck = day;
   flag = 1;
 }
+
+
 let getDivideUpdate = function(contents, subContents, feed, type) {
   let date = String(feed.created_time), pDate = String(primaryFeed.created_time);
   let year = date.substring(0, 4), pYear = pDate.substring(0, 4);
@@ -73,6 +99,8 @@ let getDivideUpdate = function(contents, subContents, feed, type) {
   primaryFeed = feed;
   flag = 1;
 }
+
+
 let compareDate = function(cTime) {
   let now = moment().format('YYYYMMDD000000');
   Number(now);
@@ -82,14 +110,16 @@ let compareDate = function(cTime) {
     return moment(cTime, 'YYYYMMDDhhmmss').format("M월 D일 h:mm a");
   }
 }
+
+
 let getFbText = function(feed) {
   let time = compareDate(feed.created_time);
   let fbText = `
     <li class="card mb-4">
-      <div class="card-body">
+      <div class="card-body ${feed.storyid}">
         <h4 class="card-title">대나무숲</h2>
         <p class="card-text">${feed.message}</p>
-        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+        <a href="https://${feed.link}" class="btn btn-primary">Read More &rarr;</a>
       </div>
       <div class="card-footer text-muted">
         ${time} by
@@ -99,6 +129,8 @@ let getFbText = function(feed) {
   `;
   return fbText;
 }
+
+
 let getDcText = function(feed) {
   let time = compareDate(feed.created_time);
   let dcText = `
@@ -116,6 +148,8 @@ let getDcText = function(feed) {
   `;
   return dcText;
 }
+
+
 let appendByType = function(contents, feed) {
   if(feed.from === 1) {
     contents.append(getFbText(feed));
@@ -125,62 +159,58 @@ let appendByType = function(contents, feed) {
   }
   else {
     contents.append(`
-      <li class="content">
-        <h3>피드가 더 존재하지 않습니다.</h4>
+      <li class="card mb-4">
+        <div class="card-body">
+          <h4>피드가 더 존재하지 않습니다.</h4>
+        </div>
       </li>
     `);
   }
 }
-
-// 피드 종류에 따른 슬라이드
-showallFeed.bind('click', function() {
-  allContents.css('display', 'block');
-  fbContents.css('display', 'none');
-  dcContents.css('display', 'none');
-  type = 0;
-});
-
-showfbFeed.bind('click', function() {
-  allContents.css('display', 'none');
-  fbContents.css('display', 'block');
-  dcContents.css('display', 'none');
-  type = 1;
-});
-
-showdcFeed.bind('click', function() {
-  allContents.css('display', 'none');
-  fbContents.css('display', 'none');
-  dcContents.css('display', 'block');
-  type = 2;
-});
+let test = function(contents, feed) {
+  if(feed.from === 1) {
+    let pageid = `973432719345219_${feed.storyid}`;
+    fn = (result) => {
+      $(`.${feed.storyid}`).append(`<h5>${result.result}</h5>`);
+    }
+    AJAX.fbcommentsload('http://localhost:3000/fbobject/' + pageid, fn);
+  } else {
+    return;
+  }
+}
 
 // 초기 온 로드 렌더링
 $(() => {
+  // 전체 피드들 렌더링
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
       primaryFeed = result[0];
       getDividedDate(allContents, result[i], 0);
       appendByType(allContents, result[i]);
+      test(allContents, result[i]);
     }
   }
-  // 전체 피드들 렌더링
   AJAX.allfeedload('http://localhost:3000/dbrender/allfeeds', fn);
+
+  // 페이스북 피드만 렌더링
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
       getDividedDate(fbContents, result[i], 1);
-      appendByType(fbContents, result[i]);
+      // appendByType(fbContents, result[i]);
     }
   }
-  // 페이스북 피드만 렌더링
   AJAX.fbfeedload('http://localhost:3000/dbrender/fbfeeds', fn);
+
+  // 디시인사이드 피드만 렌더링
   fn = (result) => {
     for(let i=0; i<result.length; i++) {
       getDividedDate(dcContents, result[i], 2);
       appendByType(dcContents, result[i]);
     }
   }
-  // 디시인사이드 피드만 렌더링
   AJAX.dcfeedload('http://localhost:3000/dbrender/dcfeeds', fn);
+
+  // AJAX.fblikesload('http://localhost:3000/fbobject/likes');
 });
 
 // 무한 스크롤링 시 렌더링
