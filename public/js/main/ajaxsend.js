@@ -53,7 +53,7 @@ const AJAX = {
       if(updatedResult.hasUpdate === 'no') {
         console.log('not updated..');
       } else {
-        fn(updatedResult);
+        fn(updatedResult.data, updatedResult.fb_count);
       }
     });
   },
@@ -78,19 +78,34 @@ const AJAX = {
     xhr.send(data);
 
     xhr.addEventListener('load', () => {
-      const commentsResult = JSON.parse(xhr.responseText);
-      fn(commentsResult);
+      const CLResult = JSON.parse(xhr.responseText);
+      fn(CLResult);
     });
   },
-  fblikesload: (url) => {
-    let data = null;
+  morecommentsload: (url, count, fn) => {
+    let data = { 'count': count };
+    data = JSON.stringify(data);
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
+    xhr.open('POST', url);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(data);
 
     xhr.addEventListener('load', () => {
-      const likesResult = JSON.parse(xhr.responseText);
+      const MCLResult = JSON.parse(xhr.responseText);
+      fn(MCLResult);
     });
-  }
+  },
+  updatecommentsload: (url, count, fn) => {
+    let data = { 'count': count };
+    data = JSON.stringify(data);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const UCLResult = JSON.parse(xhr.responseText);
+      fn(UCLResult);
+    });
+  },
 }

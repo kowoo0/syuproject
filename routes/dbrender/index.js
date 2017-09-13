@@ -3,6 +3,8 @@ const router = express.Router();
 const ALLFeeds = require('../../models/all-model');
 const DCFeeds = require('../../models/all-model');
 const FBFeeds = require('../../models/all-model');
+const FBComments = require('../../models/fb-comments-model');
+const FBLikes = require('../../models/fb-likes-model');
 
 // 맞는지 모르겠지만... 스태틱 변수 생성.. 크롤링해오는 데이터 중 최신 피드의 생성 시간을 저장한다.
 let mostRecentlyData = (function() {
@@ -61,9 +63,13 @@ router.get('/updatefeeds', (req, res) => {
     if(err) throw err;
     // 저장되어있는 최신 생성 시간으로 정보가 업데이트 되어있는지 아닌지를 확인하는 구문
     let arr = [];
+    let fb_update_count = 0;
     console.log('mostRecentlyData: ', mostRecentlyData); //
     for(let i in docs) {
       if(docs[i].created_time > mostRecentlyData) {
+        if(docs[i].from === 1) {
+          fb_update_count++;
+        }
         arr.push(docs[i]); // 최신 피드만 따로 저장한다.
       } else {
         mostRecentlyData = docs[0].created_time;
@@ -73,7 +79,11 @@ router.get('/updatefeeds', (req, res) => {
     }
     if(arr.length) {
       console.log(`${arr.length} new feeds updated!!`);
-      res.json(arr);
+      let updated = {
+        "fb_count": fb_update_count,
+        "data": arr
+      }
+      res.json(updated);
     } else {
       console.log('feeds not updated');
       res.json({ hasUpdate: 'no' });
@@ -104,5 +114,65 @@ router.post('/morefeeds', (req, res) => {
   }
 });
 
+// 댓글 수를 가져 온다.
+router.get('/fbcomment', (req, res) => {
+  FBComments.find({}).sort({ 'storyid': -1 }).exec(function(err, docs) {
+    if(err) return res.status(400).json(err);
+    let comments_25 = pageShowLimit(0, 25, docs);
+    FBLikes.find({}).sort({ 'storyid': -1 }).exec(function(err_2, docs_2) {
+      if(err_2) return res.status(400).json(err_2);
+      let likes_25 = pageShowLimit(0, 25, docs_2)
+      let both = {
+        "comment": comments_25,
+        "like": likes_25
+      };
+      res.json(both);
+    });
+  });
+});
+
+// 스크롤링 시, 댓글 수를 가져 온다.
+router.post('/morecomment', (req, res) => {
+  let result = req.body;
+  FBComments.find({ 'created_time': { $lte: fixedPrimaryDate } }).sort({ 'created_time': -1 }).exec(function(err, docs) {
+    if(err) return res.status(400).json(err);
+    let min = result.count;
+    let max = result.count + 25;
+    let comments_25 = pageShowLimit(min, max, docs);
+    FBLikes.find({ 'created_time': { $lte: fixedPrimaryDate } }).sort({ 'created_time': -1 }).exec(function(err_2, docs_2) {
+      if(err_2) return res.status(400).json(err_2);
+
+      let likes_25 = pageShowLimit(min, max, docs_2);
+      let both = {
+        "comment": comments_25,
+        "like": likes_25
+      };
+      res.json(both);
+    });
+  });
+});
+
+// 업데이트 시, 댓글 수를 가져 온다.
+router.post('/updatecomment', (req, res) => {
+  let result = req.body;
+  FBComments.find({}).sort({ 'created_time': -1 }).exec(function(err, docs) {
+    if(err) return res.status(400).json(err);
+
+    // 저장되어있는 최신 생성 시간으로 정보가 업데이트 되어있는지 아닌지를 확인하는 구문
+    let min = 0;
+    let max = result.count;
+    let comments_25 = pageShowLimit(min, max, docs);
+    FBLikes.find({}).sort({ 'created_time': -1 }).exec(function(err_2, docs_2) {
+      if(err_2) return res.status(400).json(err_2);
+
+      let likes_25 = pageShowLimit(min, max, docs_2);
+      let both = {
+        "comment": comments_25,
+        "like": likes_25
+      };
+      res.json(both);
+    });
+  });
+});
 
 module.exports = router;

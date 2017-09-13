@@ -5,8 +5,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const mg_config = require('./config/mg-config.json');
 const router = require('./routes/index');
-const FB = require('fb');
-const fb_config = require('./config/fb-config.json');
 
 // public 폴더 안의 스크립트 파일 임포트 적용
 app.use(express.static('public'));
@@ -23,24 +21,6 @@ conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.us
 conn.once('open', () => {
 	console.log("mongoose connect successfully..");
 });
-
-function getAccessToken() {
-	FB.api('oauth/access_token', {
-		client_id: fb_config.clientId,
-		client_secret: fb_config.clientSecret,
-		grant_type: fb_config.grantType
-	}, function(res) {
-		if(!res || res.error) {
-			console.log(!res ? 'error occurred' : res.error);
-			return;
-		} else {
-			const accessToken = res.access_token;
-			FB.setAccessToken(accessToken);
-			console.log('get access token successfully');
-		}
-	});
-}
-getAccessToken();
 
 // 서버 실행
 server.listen(3000, () => {
