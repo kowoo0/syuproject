@@ -25,9 +25,8 @@ app.get('/search', function(req,res){
 });
 
 app.post('/search/result', function(req,res){
-  var text = req.body.t1;
-  var keyword = "/"+text+"/";
-  var search = {name : keyword};
+  var keyword = req.body.t1;
+  var search = {name : {$regex : keyword}};
   db.collection("test").find(search).toArray(function(err,topics){
   if (err) throw err;
   res.render('search', {topics:topics});
