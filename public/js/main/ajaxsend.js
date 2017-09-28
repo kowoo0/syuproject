@@ -12,30 +12,6 @@ const AJAX = {
       fn(allResult);
     });
   },
-  fbfeedload: (url, fn) => {
-    let data = null;
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(data);
-
-    xhr.addEventListener('load', () => {
-      const fbResult = JSON.parse(xhr.responseText);
-      fn(fbResult);
-    });
-  },
-  dcfeedload: (url, fn) => {
-    let data = null;
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(data);
-
-    xhr.addEventListener('load', () => {
-      const dcResult = JSON.parse(xhr.responseText);
-      fn(dcResult);
-    });
-  },
   updatefeed: (url, fn) => {
     let data = null;
     const xhr = new XMLHttpRequest();
@@ -53,7 +29,7 @@ const AJAX = {
       if(updatedResult.hasUpdate === 'no') {
         console.log('not updated..');
       } else {
-        fn(updatedResult.data, updatedResult.fb_count);
+        fn(updatedResult.data);
       }
     });
   },
@@ -68,44 +44,6 @@ const AJAX = {
     xhr.addEventListener('load', () => {
       const moreResult = JSON.parse(xhr.responseText);
       fn(moreResult);
-    });
-  },
-  fbcommentsload: (url, fn) => {
-    let data = null;
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(data);
-
-    xhr.addEventListener('load', () => {
-      const CLResult = JSON.parse(xhr.responseText);
-      fn(CLResult);
-    });
-  },
-  morecommentsload: (url, count, fn) => {
-    let data = { 'count': count };
-    data = JSON.stringify(data);
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(data);
-
-    xhr.addEventListener('load', () => {
-      const MCLResult = JSON.parse(xhr.responseText);
-      fn(MCLResult);
-    });
-  },
-  updatecommentsload: (url, count, fn) => {
-    let data = { 'count': count };
-    data = JSON.stringify(data);
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(data);
-
-    xhr.addEventListener('load', () => {
-      const UCLResult = JSON.parse(xhr.responseText);
-      fn(UCLResult);
     });
   },
 }
