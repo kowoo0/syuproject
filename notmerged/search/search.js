@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
+var bodyParser= require('body-parser');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/sample');
+mongoose.connect('mongodb://localhost:27017/sample', {useMongoClient : true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console,'connection error'));
 db.once('open', function callback(){
@@ -24,10 +25,10 @@ app.get('/search', function(req,res){
 });
 
 app.post('/search/result', function(req,res){
-  var t1 = req.body.t1;
-  var keyword = '/'+t1+'/';
+  var text = req.body.t1;
+  var keyword = "/"+text+"/";
   var search = {name : keyword};
-  db.collection("test").find(keyword).toArray(function(err,topics){
+  db.collection("test").find(search).toArray(function(err,topics){
   if (err) throw err;
   res.render('search', {topics:topics});
 });
