@@ -11,11 +11,11 @@ const getWallFeeds = require('../../../modules/fb-modules/get-wall-feeds');
 
 const args = { fields: ['id', 'from', 'message', 'created_time', 'picture'] }; // 가져올 데이터를 설정
 
-let syuBamboo = '973432719345219/posts', bamboo = 1;
-let syuDeliver = '444709775685040/posts', deliver = 1;
-let syuChonghak = '387323668280049/posts', chonghak = 1;
-let syuYeonhab = '1412584238989232/posts', yeonhab = 1;
-let syuComputer = '451966671514736/posts', computer = 1;
+let syuBamboo = 'TARGET_FEED_LINK/posts', bamboo = 1;
+let syuDeliver = 'TARGET_FEED_LINK/posts', deliver = 1;
+let syuChonghak = 'TARGET_FEED_LINK/posts', chonghak = 1;
+let syuYeonhab = 'TARGET_FEED_LINK/posts', yeonhab = 1;
+let syuComputer = 'TARGET_FEED_LINK/posts', computer = 1;
 
 // promise 객체로부터 '페이지 엑세스 토큰' 파리미터 값을 받음
 getAccessToken()

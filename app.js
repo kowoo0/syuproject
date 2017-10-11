@@ -17,7 +17,7 @@ const conn = mongoose.connection;
 mongoose.Promise = global.Promise;
 
 conn.on('error', console.error.bind(console, "mongoose connection error:"));
-conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.userLocal}/${mg_config.db}`);
+conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.userLocal}:${mg_config.port}/${mg_config.db}`);
 conn.once('open', () => {
 	console.log("mongoose connect successfully..");
 });
