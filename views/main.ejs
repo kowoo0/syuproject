@@ -3,8 +3,9 @@
 <head>
 <meta charset='utf-8'>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <title>울창한 대나무 숲</title>
+
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
 <!-- Bootstrap core CSS -->
 <link href="./css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -18,14 +19,17 @@
       position: relative;
     }
 
-    /*.category-custom, .search-custom {
-      width: 100% !important;
-      margin: 0 !important;
-      border-radius: 0px;
-      border-top: 0px;
-      box-sizing: border-box;
-    }*/
+    .card {
+      border-left: none;
+      border-right: none;
+      border-radius: 0px !important;
+
+    }
+    li.card-body {
+      padding-top: 13px;
+    }
   }
+
 </style>
 </head>
 <body>
@@ -34,9 +38,25 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <a class="navbar-brand" href="#">울창한 대나무숲</a>
+    <button class="navbar-toggler button-custom" type="button" data-toggle="collapse" data-target="#searchResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-search-icon"></span>
+    </button>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="collapse navbar-collapse" id="searchResponsive">
+      <!-- 토글 드랍다운 .. 타입에 따른 분류 -->
+      <ul class="navbar-nav ml-auto">
+        <li class="card-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button">Go!</button>
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <!-- 토글 드랍다운 .. 타입에 따른 분류 -->
       <ul class="navbar-nav ml-auto">
@@ -64,52 +84,6 @@
 
   <div class="row">
 
-    <!-- Sidebar Widgets Column -->
-    <!-- <div class="col-md-4 fix"> -->
-
-      <!-- Categories Widget -->
-      <!-- <div class="card my-4 category-custom">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-lg-12">
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#">Bamboo-icon</a>
-                </li>
-                <li>
-                  <a href="#">Deliver-icon</a>
-                </li>
-                <li>
-                  <a href="#">Dcinside-icon</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- Search Widget -->
-      <!-- <div class="card my-4 search-custom">
-        <div class="card-body">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-secondary" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- Side Widget -->
-      <!-- <div class="card my-4">
-        <h5 class="card-header">Side Widget</h5>
-        <div class="card-body">
-          You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-        </div>
-      </div> -->
-
-    <!-- </div> -->
-
     <!-- Blog Entries Column -->
     <div class="col-md-12">
 
@@ -131,49 +105,6 @@
 <script src="./js/main/show-more-text.js"></script>
 <script src="./js/main/main.js"></script>
 <script>
-  let currentScrollTop = 0;
-  let box;
-  window.onload = function() {
-    // scrollController();
-
-    $(window).on('scroll', function() {
-      scrollController();
-    });
-  }
-
-  function scrollController() {
-    currentScrollTop = $(window).scrollTop();
-    box = $('#20171001');
-    // console.log($('#20171001').position().top, currentScrollTop)
-
-
-    if(currentScrollTop < 56) {
-      $('nav').css('top', -(currentScrollTop));
-      box.css('top', 56-(currentScrollTop));
-      if(box.hasClass('fixed')) {
-        box.removeClass('fixed');
-      }
-    } else {
-      if(!box.hasClass('fixed')) {
-        $('nav').css('top', -56);
-        box.css('top', 0);
-        box.addClass('fixed');
-      }
-    }
-
-    // if($('#20171001').offset().top - currentScrollTop <= 0) {
-    //   if($('#20171001').hasClass('fixed')) {
-    //
-    //   } else {
-    //   $('#20171001').addClass('fixed');
-    //   }
-    // }
-    // if($('#20171001').position().top - currentScrollTop === 0) {
-    //   if($('#20171001').hasClass('fixed')) {
-    //     $('#20171001').removeClass('fixed');
-    //   }
-    // }
-  }
 </script>
 </body>
 </html>

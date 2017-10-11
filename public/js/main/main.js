@@ -13,51 +13,9 @@ let allPageCount = 2; // 스크롤링 시, 카운트
 let primaryFeed; // 처음 렌더링 시의 첫 번째 피드를 고정. 날짜별로 분리하기 위해
 
 
-let getDividedDate = function(contents, feed, type) {
-  let date = String(feed.created_time);
-  let year = date.substring(0, 4);
-  let month = date.substring(4, 6);
-  let day = date.substring(6, 8);
 
-  if((flag === 1 && month === monthCheck) && day === dayCheck ) {
-    return;
-  }
-  if(year === 'undefined') { return; }
-  if(type === 0) {
-    contents.append(`<li id='${year}${month}${day}' class='date-box card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
-  }
-  monthCheck = month;
-  dayCheck = day;
-  flag = 1;
-}
-
-
-let getDivideUpdate = function(contents, feed, type) {
-  let date = String(feed.created_time), pDate = String(primaryFeed.created_time);
-  let year = date.substring(0, 4), pYear = pDate.substring(0, 4);
-  let month = date.substring(4, 6), pMonth = pDate.substring(4, 6);
-  let day = date.substring(6, 8), pDay = pDate.substring(6, 8);
-
-  if((flag === 1 && month === pMonth) && day === pDay ) {
-    if(type === 1) {
-      console.log('fb 업데이트 추가');
-      $('.date-box').first().after(getFbText(feed));
-    } else {
-      console.log('dc 업데이트 추가');
-      $('.date-box').first().after(getDcText(feed));
-    }
-    return;
-  }
-  contents.prepend(`<li class='date-box card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
-  if(type === 1) {
-    console.log('fb 업데이트 추가');
-    $('.date-box').first().after(getFbText(feed));
-  } else {
-    console.log('dc 업데이트 추가');
-    $('.date-box').first().after(getDcText(feed));
-  }
-  primaryFeed = feed;
-  flag = 1;
+let getDivideUpdate = function(contents, feed) {
+  contents.prepend(getFbText(feed));
 }
 
 
@@ -77,7 +35,7 @@ let getFbText = function(feed) {
   let fbText = `
     <li class="card mb-4">
       <div class="card-body ${feed.storyid}">
-        <h4 class="card-title">${feed.name}</h2>
+        <h5 class="card-title">${feed.name}</h2>
         <p class="card-text">${textReduce(feed.message)}</p>
         <a href="${feed.link}" class="btn btn-primary">Read More &rarr;</a>
       </div>
@@ -100,7 +58,7 @@ let getDcText = function(feed) {
   let dcText = `
     <li class="card mb-4">
       <div class="card-body">
-        <h4 class="card-title">삼육갤</h2>
+        <h5 class="card-title">삼육갤</h2>
         <p class="card-text">${feed.message}</p>
         <a href="http://gall.dcinside.com${feed.link}" class="btn btn-primary">Read More &rarr;</a>
       </div>
@@ -132,7 +90,6 @@ $(() => {
   fn = (result) => {
     primaryFeed = result[0];
     for(let i=0; i<result.length; i++) {
-      getDividedDate(allContents, result[i], 0);
       appendByType(allContents, result[i]);
     }
     // 어떻게 고치니~~
@@ -149,7 +106,6 @@ $(window).scroll(function(e) {
     // setTimeout(function( preloader('hide'); ), 1000) => AJAX 콜이 성공하면 피드 추가 후, 로딩 아이콘 숨김
     fn = (result) => {
       for(let i=0; i<result.length; i++) {
-        getDividedDate(allContents, result[i], 0);
         appendByType(allContents, result[i]);
       }
       showMoreText();
@@ -163,7 +119,7 @@ $(window).scroll(function(e) {
 const updatedFeedRender = function() {
   fn = (result) => {
     for(let i=result.length-1; i>=0; i--) {
-      getDivideUpdate(allContents, result[i], 1);
+      getDivideUpdate(allContents, result[i]);
     }
     showMoreText();
   };
