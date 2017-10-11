@@ -10,11 +10,31 @@
   padding-right: 21px;
 
   height: 26px;
-  line-height: 26px;
+  line-height: 27px;
+  font-weight: bold;
 
   float: left;
 }
+.invs {
+  display: none;
+}
+.pull-right {
+  float: right;
+  padding-right: 8px;
+  font-weight: bolder;
+}
+.col-md-12 {
+  margin-top: 56px;
+  padding: 0;
+}
 
+.date-box {
+  width: 100%;
+}
+.fixed {
+  position: fixed;
+  z-index: 1040;
+}
 /* 사이드 메뉴 CSS */
 /*#aside-bar {
   position: fixed;

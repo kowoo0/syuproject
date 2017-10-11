@@ -12,6 +12,7 @@ const AJAX = {
       fn(allResult);
     });
   },
+
   updatefeed: (url, fn) => {
     let data = null;
     const xhr = new XMLHttpRequest();
@@ -33,6 +34,7 @@ const AJAX = {
       }
     });
   },
+
   morefeed: (url, count, type, fn) => {
     let data = { 'count': count, 'type': type };
     data = JSON.stringify(data);

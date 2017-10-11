@@ -17,27 +17,14 @@
     .row {
       position: relative;
     }
-    .fix {
-      position: fixed;
-      padding: 0px;
-      z-index: 999;
-    }
-    .topfix {
-      position: absolute;
-      top: 192px;
-    }
-    .category-custom, .search-custom {
+
+    /*.category-custom, .search-custom {
       width: 100% !important;
       margin: 0 !important;
       border-radius: 0px;
       border-top: 0px;
-    }
-  }
-  .fb-contents {
-    display: none;
-  }
-  .dc-contents {
-    display: none;
+      box-sizing: border-box;
+    }*/
   }
 </style>
 </head>
@@ -78,10 +65,10 @@
   <div class="row">
 
     <!-- Sidebar Widgets Column -->
-    <div class="col-md-4 fix">
+    <!-- <div class="col-md-4 fix"> -->
 
       <!-- Categories Widget -->
-      <div class="card my-4 category-custom">
+      <!-- <div class="card my-4 category-custom">
         <div class="card-body">
           <div class="row">
             <div class="col-lg-12">
@@ -99,10 +86,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Search Widget -->
-      <div class="card my-4 search-custom">
+      <!-- <div class="card my-4 search-custom">
         <div class="card-body">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search for...">
@@ -111,7 +98,7 @@
             </span>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Side Widget -->
       <!-- <div class="card my-4">
@@ -121,14 +108,10 @@
         </div>
       </div> -->
 
-    </div>
+    <!-- </div> -->
 
     <!-- Blog Entries Column -->
-    <div class="col-md-8 topfix">
-
-      <h1 class="my-4">
-        <small></small>
-      </h1>
+    <div class="col-md-12">
 
       <!-- Community Post -->
       <ul class="all-contents"></ul>
@@ -145,8 +128,52 @@
 <script src="./components/popper/popper.min.js"></script>
 <script src="./components/bootstrap/bootstrap.min.js"></script>
 <script src="./js/main/ajaxsend.js"></script>
+<script src="./js/main/show-more-text.js"></script>
 <script src="./js/main/main.js"></script>
 <script>
+  let currentScrollTop = 0;
+  let box;
+  window.onload = function() {
+    // scrollController();
+
+    $(window).on('scroll', function() {
+      scrollController();
+    });
+  }
+
+  function scrollController() {
+    currentScrollTop = $(window).scrollTop();
+    box = $('#20171001');
+    // console.log($('#20171001').position().top, currentScrollTop)
+
+
+    if(currentScrollTop < 56) {
+      $('nav').css('top', -(currentScrollTop));
+      box.css('top', 56-(currentScrollTop));
+      if(box.hasClass('fixed')) {
+        box.removeClass('fixed');
+      }
+    } else {
+      if(!box.hasClass('fixed')) {
+        $('nav').css('top', -56);
+        box.css('top', 0);
+        box.addClass('fixed');
+      }
+    }
+
+    // if($('#20171001').offset().top - currentScrollTop <= 0) {
+    //   if($('#20171001').hasClass('fixed')) {
+    //
+    //   } else {
+    //   $('#20171001').addClass('fixed');
+    //   }
+    // }
+    // if($('#20171001').position().top - currentScrollTop === 0) {
+    //   if($('#20171001').hasClass('fixed')) {
+    //     $('#20171001').removeClass('fixed');
+    //   }
+    // }
+  }
 </script>
 </body>
 </html>

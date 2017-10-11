@@ -31,8 +31,8 @@ router.get('/allfeeds', (req, res) => {
     console.log("all feeds sent");
     mostRecentlyData = docs[0].created_time; // 페이지 업로드 시, 가장 최신 데이터의 시간을 저장한다.
     fixedPrimaryDate = docs[0].created_time; // 추가 피드들을 처음 렌더링한 기준으로 불러오기 위해 쓰일 고정 시간
-    let docs_25 = pageShowLimit(0, 25, docs);
-    res.json(docs_25);
+    let docs_8 = pageShowLimit(0, 8, docs);
+    res.json(docs_8);
   });
 });
 
@@ -71,19 +71,19 @@ router.post('/morefeeds', (req, res) => {
     ALLFeeds.find({ 'created_time': { $lte: fixedPrimaryDate } }).sort({ 'created_time': -1 }).exec(function(err, docs) {
       if(err) return res.status(400).json(err);
       console.log("more feeds sent");
-      let min = 25 * (result.count - 1);
-      let max = 25 * result.count;
-      let docs_25 = pageShowLimit(min, max, docs);
-      res.json(docs_25);
+      let min = 8 * (result.count - 1);
+      let max = 8 * result.count;
+      let docs_8 = pageShowLimit(min, max, docs);
+      res.json(docs_8);
     });
   } else {
     ALLFeeds.find({ $and: [{ 'from': result.type }, {'created_time': {$lte:fixedPrimaryDate}}] }).sort({ 'created_time': -1 }).exec(function(err, docs) {
       if(err) return res.status(400).json(err);
       console.log("more feeds sent");
-      let min = 25 * (result.count - 1);
-      let max = 25 * result.count;
-      let docs_25 = pageShowLimit(min, max, docs);
-      res.json(docs_25);
+      let min = 8 * (result.count - 1);
+      let max = 8 * result.count;
+      let docs_8 = pageShowLimit(min, max, docs);
+      res.json(docs_8);
     });
   }
 });

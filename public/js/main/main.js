@@ -12,6 +12,7 @@ let type = 0; // 추후에, 타입에 따른 호출을 위한 변수
 let allPageCount = 2; // 스크롤링 시, 카운트
 let primaryFeed; // 처음 렌더링 시의 첫 번째 피드를 고정. 날짜별로 분리하기 위해
 
+
 let getDividedDate = function(contents, feed, type) {
   let date = String(feed.created_time);
   let year = date.substring(0, 4);
@@ -21,9 +22,9 @@ let getDividedDate = function(contents, feed, type) {
   if((flag === 1 && month === monthCheck) && day === dayCheck ) {
     return;
   }
-  if(year === 'unde') { return; }
+  if(year === 'undefined') { return; }
   if(type === 0) {
-    contents.append(`<li class='dateBox card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
+    contents.append(`<li id='${year}${month}${day}' class='date-box card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
   }
   monthCheck = month;
   dayCheck = day;
@@ -40,20 +41,20 @@ let getDivideUpdate = function(contents, feed, type) {
   if((flag === 1 && month === pMonth) && day === pDay ) {
     if(type === 1) {
       console.log('fb 업데이트 추가');
-      $('.dateBox').first().after(getFbText(feed));
+      $('.date-box').first().after(getFbText(feed));
     } else {
       console.log('dc 업데이트 추가');
-      $('.dateBox').first().after(getDcText(feed));
+      $('.date-box').first().after(getDcText(feed));
     }
     return;
   }
-  contents.prepend(`<li class='dateBox card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
+  contents.prepend(`<li class='date-box card mb-4'><div class='card-body'>${year} - ${month} - ${day}</div></li>`);
   if(type === 1) {
     console.log('fb 업데이트 추가');
-    $('.dateBox').first().after(getFbText(feed));
+    $('.date-box').first().after(getFbText(feed));
   } else {
     console.log('dc 업데이트 추가');
-    $('.dateBox').first().after(getDcText(feed));
+    $('.date-box').first().after(getDcText(feed));
   }
   primaryFeed = feed;
   flag = 1;
@@ -66,23 +67,18 @@ let compareDate = function(cTime) {
   if(cTime >= now) {
     return moment(cTime, 'YYYYMMDDhhmmss').fromNow();
   } else {
-    return moment(cTime, 'YYYYMMDDhhmmss').format("M월 D일 h:mm a");
+    return moment(cTime, 'YYYYMMDDhhmmss').format("M월 D일 a h:mm");
   }
 }
 
 
 let getFbText = function(feed) {
-  if(feed.message !== undefined) {
-    feed.message = feed.message.replace(/[.\n]/g, '<br>');
-  } else {
-    feed.message = "";
-  }
   let time = compareDate(feed.created_time);
   let fbText = `
     <li class="card mb-4">
       <div class="card-body ${feed.storyid}">
         <h4 class="card-title">${feed.name}</h2>
-        <p class="card-text">${feed.message}</p>
+        <p class="card-text">${textReduce(feed.message)}</p>
         <a href="${feed.link}" class="btn btn-primary">Read More &rarr;</a>
       </div>
       <div class="card-footer text-muted ovfl">
@@ -90,10 +86,9 @@ let getFbText = function(feed) {
         <span class="txt-custom">${feed.likes}</span>
         <div class="img-wrap"><img src="../../images/fb-comment-icon.png" width="26px" height="26px" alt=""/></div>
         <span class="txt-custom">${feed.comments}</span>
-      </div>
-      <div class="card-footer text-muted">
-        ${time} by
-        <a href="#">facebook</a>
+        <span class="txt-custom text-muted pull-right">
+          ${time}
+        </span>
       </div>
     </li>
   `;
@@ -110,8 +105,7 @@ let getDcText = function(feed) {
         <a href="http://gall.dcinside.com${feed.link}" class="btn btn-primary">Read More &rarr;</a>
       </div>
       <div class="card-footer text-muted">
-        ${time} by
-        <a href="#">dcinside</a>
+        ${time}
       </div>
     </li>
   `;
@@ -141,7 +135,9 @@ $(() => {
       getDividedDate(allContents, result[i], 0);
       appendByType(allContents, result[i]);
     }
-  }
+    // 어떻게 고치니~~
+    showMoreText();
+  };
   AJAX.allfeedload('http://localhost:3000/dbrender/allfeeds', fn);
 });
 
@@ -156,6 +152,7 @@ $(window).scroll(function(e) {
         getDividedDate(allContents, result[i], 0);
         appendByType(allContents, result[i]);
       }
+      showMoreText();
     };
     AJAX.morefeed('http://localhost:3000/dbrender/morefeeds', allPageCount, type, fn); // 타입은 디씨, 페북 나누기 위해
     allPageCount++;
@@ -168,6 +165,7 @@ const updatedFeedRender = function() {
     for(let i=result.length-1; i>=0; i--) {
       getDivideUpdate(allContents, result[i], 1);
     }
+    showMoreText();
   };
   AJAX.updatefeed('http://localhost:3000/dbrender/updatefeeds', fn);
 };
