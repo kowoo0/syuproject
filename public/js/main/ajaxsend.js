@@ -48,4 +48,21 @@ const AJAX = {
       fn(moreResult);
     });
   },
+
+  reqcomments: (url, count, id, fn) => {
+    let data = { 'count': count, 'id': id };
+    data = JSON.stringify(data);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const commentResult = JSON.parse(xhr.responseText);
+      // commentResult.sort(function(a, b) {
+      //   return new Date(b.created_time).getTime() - new Date(a.created_time).getTime();
+      // })
+      fn(commentResult);
+    });
+  },
 }

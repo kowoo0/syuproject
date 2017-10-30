@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Define Schemas
-var commentSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
   // story: [{ type: Schema.Types.ObjectId, ref: 'fbfeeds' }],
-  storyid: Number,
-  created_time: Number,
+  comment_id: Number,
+  data: Array,
   total_count: Number
 },
 {

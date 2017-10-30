@@ -46,7 +46,7 @@ const updateReact = (feed_id, regExp, type) => {
         FBfeeds.update({ "storyid": storyId }, query, (update_err, result) => {
           if(update_err) throw update_err;
 
-          // 응답 처리 보류
+          // 응답 처리 보류 [댓글 수 변화 시 fbcomments 콜렉션 업데이트 필요]
           if(result.nModified === 1) {
             console.log(`# ID:[${storyId}] updated `);
           }

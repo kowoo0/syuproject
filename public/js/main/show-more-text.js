@@ -21,19 +21,27 @@ let textReduce = (text) => {
   let lastIndex;
   let ellipsis = "...";
 
-  text = text.replace(/[.\n]/g, '<br>');
+  text = text.replace(/[\n]/g, '<br>');
+  text = text.replace(/<br><br><br>/g, '<br><br>');
   splitIndex = text.lastIndexOf('<br>', limitIndex);
   lastIndex = text.lastIndexOf('<br>', splitIndex - 1);
   // console.log(text, splitIndex, text.length);
-  if(lastIndex < 0 || lastIndex === text.length - 4 || splitIndex === text.length - 4) {
+  if(splitIndex < 0 || lastIndex === text.length - 4 || splitIndex === text.length - 4) {
     return text;
   } else {
-    let vsText = text.substring(0, lastIndex);
-    let invsText = text.substring(lastIndex).replace(/<br>/, '');
+    let vsText = "";
+    let invsText = "";
+    if(lastIndex < 0) {
+      vsText = text.substring(0, splitIndex);
+      invsText = text.substring(splitIndex).replace(/<br>/, '');
+    } else {
+      vsText = text.substring(0, lastIndex);
+      invsText = text.substring(lastIndex).replace(/<br>/, '');
+    }
 
     return `${vsText}
       <span class="el">${ellipsis}</span>
-      <a href="javascript:;" class="more"> + more</a>
+      <a href="javascript:;" class="more">계속 읽기</a>
       <p class="invs">${invsText}</p>`;
   }
 };

@@ -6,6 +6,7 @@ const FB = require('fb');
 const FBfeeds = require('../../models/all-model');
 const fbDateFix = require('./date-fix');
 const updateReact = require('./update-react');
+const reqComments = require('./request-comments');
 
 const saveMessage = (data, type) => {
   let feed;
@@ -22,7 +23,7 @@ const saveMessage = (data, type) => {
     if(data[i].message === null) continue;
 
     // 대나무숲 피드일 경우
-    if(type === 1) {
+    if(type === 1 && data[i].message !== undefined) {
       convertMessage = data[i].message.replace(regExp2, ''); // 해시태그 내용 버리기
     } else {
       convertMessage = data[i].message;
@@ -76,7 +77,10 @@ const saveMessage = (data, type) => {
       else {
         console.log(`@ ${convertName} >>> exist: ${exists}, insert: ${inserts}`);
         for(let i = 0; i<data.length; i++) {
+          let dataSet = [];
+          let cnt = 0;
           updateReact(data[i].id, regExp, type); // 해당 피드의 좋아요 수와 댓글 수를 업데이트
+          reqComments(data[i].id, {}, type, dataSet, cnt);
         }
       }
     }

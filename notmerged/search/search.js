@@ -1,9 +1,10 @@
 var express = require('express');
 var app = express();
 var bodyParser= require('body-parser');
+var Allfeeds = require('../../models/all-model');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/sample', {useMongoClient : true});
 var db = mongoose.connection;
+db.openUri('mongodb://kkodu:nawy8476*-@localhost/admin');
 db.on('error', console.error.bind(console,'connection error'));
 db.once('open', function callback(){
   console.log("mongo db connection OK.");
@@ -26,9 +27,9 @@ app.get('/search', function(req,res){
 
 app.post('/search/result', function(req,res){
   var keyword = req.body.t1;
-  var search = {name : {$regex : keyword}};
-  db.collection("test").find(search).toArray(function(err,topics){
+  var search = { message : {$regex : keyword}};
+  Allfeeds.find(search).sort({ created_time: -1 }).exec(function(err,topics){
   if (err) throw err;
   res.render('search', {topics:topics});
-});
+  });
 });

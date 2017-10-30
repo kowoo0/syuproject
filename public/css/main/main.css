@@ -1,48 +1,43 @@
-.ovfl {
-  overflow: hidden;
-}
-.img-wrap {
-  float: left;
-}
-.txt-custom {
-  display: block;
-  padding-left: 8px;
-  padding-right: 19px;
-
-  height: 26px;
-  line-height: 27px;
-  font-weight: bold;
-
-  float: left;
-}
-.invs {
-  display: none;
-}
-.pull-right {
-  float: right;
-  padding-right: 8px;
-  font-weight: normal;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 15px;
-}
-.col-md-12 {
-  margin-top: 56px;
-  padding: 0;
-
-  background-color: #eaeaea;
-}
 li.card-body {
   padding: 3px;
 }
 input.form-control {
+  border: none;
+}
+span.input-group-btn > button {
   border-color: #ffffff;
 }
 
-button.button-custom {
-  position: absolute;
-  top: 8px; right: 86px;
+/* navbar section */
+.navbar {
+  padding: 5px 2px 5px 12px;
+  background-color: #ffffff;
 }
+.navbar-brand {
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: semi-condensed;
+  font-family: 'Ubuntu', sans-serif;
 
+  text-shadow: 1px 1px 1px #666666;
+}
+.navbar-toggler {
+  border: none;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.navbar-toggler-custom {
+
+}
+.search-body {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-right: 10px;
+}
+.search-body .btn {
+  background-color: #007bff;
+  border-color: #ffffff;
+}
 .navbar-search-icon {
   display:inline-block;
   width:1.5em;
@@ -56,17 +51,187 @@ button.button-custom {
   background-image:url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIzMnB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzkyOTI5MiIgaWQ9Imljb24tMTExLXNlYXJjaCI+PHBhdGggZD0iTTE5LjQyNzExNjQsMjEuNDI3MTE2NCBDMTguMDM3MjQ5NSwyMi40MTc0ODAzIDE2LjMzNjY1MjIsMjMgMTQuNSwyMyBDOS44MDU1NzkzOSwyMyA2LDE5LjE5NDQyMDYgNiwxNC41IEM2LDkuODA1NTc5MzkgOS44MDU1NzkzOSw2IDE0LjUsNiBDMTkuMTk0NDIwNiw2IDIzLDkuODA1NTc5MzkgMjMsMTQuNSBDMjMsMTYuMzM2NjUyMiAyMi40MTc0ODAzLDE4LjAzNzI0OTUgMjEuNDI3MTE2NCwxOS40MjcxMTY0IEwyNy4wMTE5MTc2LDI1LjAxMTkxNzYgQzI3LjU2MjExODYsMjUuNTYyMTE4NiAyNy41NTc1MzEzLDI2LjQ0MjQ2ODcgMjcuMDExNzE4NSwyNi45ODgyODE1IEwyNi45ODgyODE1LDI3LjAxMTcxODUgQzI2LjQ0Mzg2NDgsMjcuNTU2MTM1MiAyNS41NTc2MjA0LDI3LjU1NzYyMDQgMjUuMDExOTE3NiwyNy4wMTE5MTc2IEwxOS40MjcxMTY0LDIxLjQyNzExNjQgTDE5LjQyNzExNjQsMjEuNDI3MTE2NCBaIE0xNC41LDIxIEMxOC4wODk4NTExLDIxIDIxLDE4LjA4OTg1MTEgMjEsMTQuNSBDMjEsMTAuOTEwMTQ4OSAxOC4wODk4NTExLDggMTQuNSw4IEMxMC45MTAxNDg5LDggOCwxMC45MTAxNDg5IDgsMTQuNSBDOCwxOC4wODk4NTExIDEwLjkxMDE0ODksMjEgMTQuNSwyMSBMMTQuNSwyMSBaIiBpZD0ic2VhcmNoIi8+PC9nPjwvZz48L3N2Zz4=")
 }
 
+
+/* card section css */
+.card {
+  margin-bottom: 12px !important;
+
+  box-shadow: 0px 1px 3px #666666;
+}
+.card-profile {
+  margin-bottom: 5px;
+}
+.photo-wrap {
+  width: 14%;
+  box-sizing: border-box;
+  float: left;
+}
+.photo-wrap > img {
+  border: 1px solid #ffffff;
+  border-radius: 32px;
+}
+.title-wrap {
+  margin-left: 50px;
+  box-sizing: border-box;
+}
 .card-title {
+  margin-top: 2px;
+  margin-bottom: 0px;
+
   color: #365899;
+  font-weight: bold;
+  font-size: 15px;
 }
 .card-text {
+  margin-bottom: 0px;
+
+  color: #363636;
+  font-weight: 500;
+  font-size: 15px;
+}
+.card-time {
+  margin-top: 5px;
+
+  color: #a9a9a9;
+  font-weight: 600;
+  font-size: 11px;
+}
+.card-body {
+  padding-top: 16px;
+  padding-bottom: 12px;
+}
+.card-body > p {
+  margin-bottom: 0px;
+}
+.btn-custom {
+  margin-top: 3px;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 1;
+}
+.el, .more {
+  color: #007bff;
+  font-size: 13px;
+  font-weight: 600;
+}
+.card-footer {
+  padding: 8px 20px;
+  background-color: #ffffff;
+}
+.border-none {
+  border: none !important;
+}
+.ovfl {
+  overflow: hidden;
+}
+.likes {
+  float: left;
+}
+.comments {
+  float: left;
+}
+.txt-custom {
+  display: block;
+  padding-left: 7px;
+  padding-right: 14px;
+
+  height: 26px;
+  line-height: 27px;
+  font-weight: bold;
+
+  float: right;
+  cursor: pointer;
+}
+.invs {
+  display: none;
+
+  color: #363636;
+  font-weight: 500;
+  font-size: 15px;
+}
+.pull-right {
+  float: right;
+  padding-right: 0;
+  font-weight: 600;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 15px;
+}
+.col-md-12 {
+  margin-top: 48px;
+  padding: 0;
+
+  background-color: #eaeaea;
+}
+
+/* 댓글 CSS */
+.modal-title {
+  font-weight: 600;
+  color: #1661e3;
+}
+.comment-wrap, .more-comment-wrap {
+  overflow: hidden;
+}
+.comment-img {
+  float: left;
+}
+.comment-text {
+  float: left;
+  padding: 0px 0px 8px 12px;
+  width: 79%;
+}
+.in-block {
+  display: inline-grid;
+  width: 100%;
+}
+.comment-name {
+  font-weight: bold;
+  font-size: 15px;
+}
+.comment-msg {
   font-weight: 500;
   font-size: 15px;
   color: #363636;
 }
-.card-footer {
-  background-color: #ffffff;
+.comment-time {
+  font-weight: 600;
+  font-size: 12px;
+  color: #a7a7a7;
 }
+.modal-footer > button {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 댓글 업데이트 부분 */
+.comment-update-wrap {
+  overflow: hidden;
+  margin-top: 4px;
+  cursor: pointer;
+}
+.comment-update-img {
+  float: left;
+  padding-left: 8px;
+}
+.comment-update-text {
+  margin: 0 0 0 42px;
+  padding: 10px;
+}
+.comment-loader {
+  border: 5px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  animation: spin 1s ease-out infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 /* 사이드 메뉴 CSS */
 /*#aside-bar {
   position: fixed;

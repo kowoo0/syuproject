@@ -8,7 +8,7 @@ const saveMessage = require('./save-message');
 const getWallFeeds = (feedLink, args, count, type) => {
 
   // 테스트 용, 긁어올 페이지 횟수
-  if(count > 2) {
+  if(count > 1) {
     return 1;
   }
 
@@ -19,6 +19,7 @@ const getWallFeeds = (feedLink, args, count, type) => {
       return;
     }
     console.log(`count >> ${count}`);
+
 
     let data = res.data; // 인수로 설정한 필드 값이 담긴 데이터가 넘어온다.
     saveMessage(data, type); // 데이터 접근이 성공하면, 이 함수를 호출하여 데이터를 데이터베이스에 저장한다.
