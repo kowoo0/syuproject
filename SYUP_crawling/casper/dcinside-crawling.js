@@ -3,17 +3,28 @@ const target = encodeURIComponent('syu');
 const fs = require('fs');
 const utils = require('utils');
 
-var linkObj;  // 링크 및 타이틀
-var dateObj;  // 작성 시간
-var idObj;    // 번호
-var json;
 // var path = './data/dcinside-data.json';
-var targetPage = 3;
+var targetPage = 1;
+
+// 번호를 반환
+function getIds() {
+  var ids = document.querySelectorAll('tr.tb > td.t_notice');
+  var idObj = {};
+
+  return Array.prototype.map.call(ids, function(e) {
+    var targetId = e.textContent;
+    idObj = {
+      id: targetId
+    }
+    return idObj;
+  });
+}
 
 // 링크 및 타이틀 객체를 반환
 function getLinks() {
   // scrape the links from a href
   var links = document.querySelectorAll('td.t_subject > a:nth-child(1)');
+  var linkObj = {};
 
   return Array.prototype.map.call(links, function(e) {
     var targetAttr = e.getAttribute('href');
@@ -26,9 +37,30 @@ function getLinks() {
   });
 }
 
+// 댓글 수를 반환
+function getCountOfComments() {
+  var trList = document.querySelectorAll('tbody.list_tbody > tr.tb');
+  var commentObj = [];
+
+  for(var k=0; k<trList.length; k++) {
+    var getComment = trList[k].querySelector('td.t_subject > a:nth-child(2) > em');
+    if(getComment) {
+      var textComment = getComment.innerHTML;
+      var convertToNum = Number(textComment.replace(/\[/, "").replace(/\]/, ""));
+      commentObj.push(convertToNum);
+    } else {
+      commentObj.push(0);
+    }
+  }
+
+  return commentObj;
+}
+
+
 // 작성 시간을 반환
 function getDates() {
   var dates = document.querySelectorAll('tr.tb > td.t_date');
+  var dateObj = {};
 
   return Array.prototype.map.call(dates, function(e) {
     var targetDate = e.getAttribute('title');
@@ -39,17 +71,24 @@ function getDates() {
   });
 }
 
-// 번호를 반환
-function getIds() {
-  var ids = document.querySelectorAll('tr.tb > td.t_notice');
-
-  return Array.prototype.map.call(ids, function(e) {
-    var targetId = e.textContent;
-    idObj = {
-      id: targetId
+// 조회 수 반환
+function getHits() {
+  var hit = document.querySelectorAll('tr.tb td.t_hits');
+  var hitObj = [];
+  var temp = {};
+  for(var j=0; j<hit.length; j++) {
+    // 인덱스가 짝수
+    if(j%2 != 0) {
+      continue;
+    } else {
+      temp = {
+        hits: Number(hit[j].innerHTML),
+        likes: Number(hit[j+1].innerHTML)
+      };
+      hitObj.push(temp);
     }
-    return idObj;
-  })
+  }
+  return hitObj;
 }
 
 // 즉시 실행 함수를 통한 클로져 생성
@@ -68,9 +107,12 @@ var getFeeds = (function() {
 
     // 접속 후 데이터 취득
     casper.then(function() {
-      links = this.evaluate(getLinks);
-      dates = this.evaluate(getDates);
-      ids = this.evaluate(getIds);
+      var links = this.evaluate(getLinks);
+      var dates = this.evaluate(getDates);
+      var ids = this.evaluate(getIds);
+      var comments = this.evaluate(getCountOfComments);
+      var hits = this.evaluate(getHits);
+      var data = {};
 
       // 광고 글인 0번 인덱스 제외
       for(var i=1; i<links.length; i++) {
@@ -78,14 +120,19 @@ var getFeeds = (function() {
         if(ids[i].id === '공지') {
           continue;
         }
-        json = {
+
+        data = {
           id: ids[i].id,
           attr: links[i].attr,
           text: links[i].text,
-          date: dates[i].date
+          date: dates[i].date,
+          comments: comments[i],
+          hits: hits[i].hits,
+          likes: hits[i].likes
         }
-        arr.push(json);
+        arr.push(data);
       }
+
       pageCount++;
       getFeeds();
     });

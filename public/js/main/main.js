@@ -14,7 +14,11 @@ let primaryFeed; // 처음 렌더링 시의 첫 번째 피드를 고정. 날짜�
 
 
 let getDivideUpdate = function(contents, feed) {
-  contents.prepend(getFbText(feed));
+  if(feed.from === 6) {
+    contents.prepend(getDcText(feed));
+  } else {
+    contents.prepend(getFbText(feed));
+  }
 }
 
 
@@ -49,7 +53,7 @@ let getFbText = function(feed, count) {
       photo = '../../images/syu-computer.jpg';
       break;
     default:
-      photo = '../../images/apeach.jpg';
+      photo = '../../images/kakaofriends/1.jpg';
   }
   if(count === undefined) {
     count = 0;
@@ -68,6 +72,8 @@ let getFbText = function(feed, count) {
         </div>
         <p class="card-text">${textReduce(feed.message)}</p>
       </div>
+      ${feed.picture ? hasPicture(feed.picture, feed.picture_link, feed.source) : ""}
+      ${feed.source ? hasSource(feed.source, feed.picture, feed.picture_link) : ""}
       <div class="card-footer text-muted ovfl">
           <div class="likes">
             <img src="../../images/fb-like-icon.jpg" width="20px" height="20px" alt="">
@@ -86,27 +92,49 @@ let getFbText = function(feed, count) {
   return fbText;
 }
 
-let getDcText = function(feed) {
+let getDcText = function(feed, count) {
+  let photo = '../../images/syugall.png';
   let time = compareDate(feed.created_time);
   let dcText = `
     <li class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">삼육갤</h2>
-        <p class="card-text">${feed.message}</p>
-        <a href="http://gall.dcinside.com${feed.link}" class="btn btn-primary">Read More &rarr;</a>
+    <div class="card-body">
+      <div class="card-profile ovfl">
+        <div class="photo-wrap">
+          <img src="${photo}" width="42px" height="42px">
+        </div>
+        <div class="title-wrap">
+          <h5 class="card-title">${feed.name}</h5>
+          <h5 class="card-time">${time}</h7>
+        </div>
       </div>
-      <div class="card-footer text-muted">
-        ${time}
-      </div>
+      <p class="card-text">${feed.message}</p>
+    </div>
+    <div class="card-footer text-muted ovfl">
+        <div class="likes">
+          <img src="../../images/fb-like-icon.jpg" width="20px" height="20px" alt="">
+          <span class="txt-custom">${feed.likes}</span>
+        </div>
+        <div class="comments ${feed.storyid} comments-${count}" data-toggle="modal" data-target="#exampleModalLong">
+          <img src="../../images/fb-comment-icon.jpg" width="20px" height="20px" alt="">
+          <span class="txt-custom">${feed.comments}</span>
+        </div>
+        <span class="txt-custom text-muted pull-right">
+        <a href="http://gall.dcinside.com${feed.link}">Read More &rarr;</a>
+      </span>
+    </div>
     </li>
   `;
   return dcText;
 }
 
 let appendByType = function(contents, feed, count) {
-  if(feed.from !== 'not exist') {
+  if(feed.from > 0 && feed.from < 6) {
     contents.append(getFbText(feed, count));
-  } else {
+  }
+  else if (feed.from === 6) {
+    contents.append(getDcText(feed, count));
+  }
+  else {
     contents.append(`
       <li class="card mb-4">
         <div class="card-body">

@@ -28,6 +28,7 @@ mongoose.Promise = global.Promise;
 // 이벤트 드리븐.. 연결 시 오류가 발생할 시 이벤트 호출
 conn.on("error", console.error.bind(console, "mongoose connection error:"));
 // 사용자 db로 접속..
+// conn.openUri("mongodb://kkodu:nawy8476*-@ds129013.mlab.com:29013/heroku_gs6915df");
 conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.userLocal}/${mg_config.db}`);
 
 // 디비 연결이 성공적으로 연결될 시 한 번만 실행된다.

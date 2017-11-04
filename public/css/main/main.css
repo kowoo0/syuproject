@@ -231,6 +231,28 @@ span.input-group-btn > button {
   100% { transform: rotate(360deg); }
 }
 
+/* 이미지 및 동영상 CSS */
+.picture-wrap {
+  width: 100%;
+  border: 1px 0px solid #e5e5e5;
+}
+.picture-link {
+  display: block;
+  width: 100%;
+}
+.picture-custom {
+
+}
+
+.source-wrap {
+  width: 100%;
+  border: 1px 0px solid #e5e5e5;
+}
+.source-link {
+  display: block;
+  width:100%;
+}
+
 
 /* 사이드 메뉴 CSS */
 /*#aside-bar {

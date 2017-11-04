@@ -39,7 +39,9 @@ const saveMessage = (data, type) => {
       message: convertMessage,
       link: `https://www.facebook.com/${data[i].id}/`,
       created_time: convertDate,
-      picture: data[i].picture,
+      picture: data[i].full_picture,
+      picture_link: data[i].link,
+      source: data[i].source,
       likes: 0,
       comments: 0
     });

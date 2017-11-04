@@ -8,9 +8,9 @@
 // // 몽구스의 콜백 함수? 이벤트? 비동기적인 실행을 Promise를 사용해 동기적으로 실행
 // mongoose.Promise = global.Promise;
 // // 디시인사이드 피드 데이터 모델 임포트
-// var DCfeeds = require('../../models/all-model');
+// var DCfeeds = require('../../../models/all-model');
 // // CasperJS로 추출한 피드 데이터 파일
-// var jsonData = require('../../data/dcinside-data.json');
+// var jsonData = require('../../../data/dcinside-data.json');
 //
 // // Feeds를 처리하기 위한 생성자 함수
 // function Feeds(feeds) {
@@ -27,6 +27,8 @@
 //
 //           var arr = [];
 //           var convertDate;
+//           var convertId;
+//
 //           // 콜렉션 없을 시, 생성
 //           if(!collinfo) {
 //             DCfeeds.create(function(err, allfeeds) {
@@ -38,13 +40,18 @@
 //           for(var i in datas) {
 //             convertDate = datas[i].date.replace(/\./g, '').replace(' ', '').replace(/:/g, '');
 //             convertDate = Number(convertDate);
+//             convertId = Number(datas[i].id);
 //
 //             var feedData = new DCfeeds({
-//               from: 002, // dcinside number
-//               storyid: datas[i].id,
+//               from: 006, // dcinside number
+//               no: convertId,
+//               name: "DC인사이드",
 //               message: datas[i].text,
 //               link: datas[i].attr,
-//               created_time: convertDate
+//               created_time: convertDate,
+//               comments: datas[i].comments,
+//               hits: datas[i].hits,
+//               likes: datas[i].likes
 //             });
 //             arr.push(feedData);
 //           }
@@ -55,7 +62,7 @@
 //           })();
 //           arr.forEach(function(feed, index) {
 //             // 중복 데이터가 있는지 확인 후 저장
-//             DCfeeds.findOne({ "storyid" : feed.storyid }, function(err, result) {
+//             DCfeeds.findOne({ "no" : feed.no }, function(err, result) {
 //               if(err) throw err;
 //               if(result) {
 //                 count++;
@@ -79,8 +86,8 @@
 //           });
 //         });
 //     }
-//     // setTimeout을 통해, 데이터베이스가 성공 한 후 호출, 넉넉하게 5초로 설정..
-//     setTimeout(saveAfterConnection, 10000);
+//     // setTimeout을 통해, 데이터베이스가 성공 한 후 호출, 넉넉하게 30초로 설정..
+//     setTimeout(saveAfterConnection, 20000);
 //   }
 // }
 //

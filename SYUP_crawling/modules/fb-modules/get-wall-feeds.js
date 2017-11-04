@@ -19,7 +19,7 @@ const getWallFeeds = (feedLink, args, count, type) => {
       return;
     }
     console.log(`count >> ${count}`);
-
+    console.log(res);
 
     let data = res.data; // 인수로 설정한 필드 값이 담긴 데이터가 넘어온다.
     saveMessage(data, type); // 데이터 접근이 성공하면, 이 함수를 호출하여 데이터를 데이터베이스에 저장한다.
@@ -33,7 +33,7 @@ const getWallFeeds = (feedLink, args, count, type) => {
 
       // 새로운 객체에 페이지 갯수 제한, 다음 페이지 토큰, 액세스 토큰을 저장한다.
       nextArgs = {
-        fields: ['id', 'from', 'message', 'created_time', 'picture'],
+        fields: ['id', 'from', 'message', 'link', 'created_time', 'full_picture', 'source'],
         limit: nextLinkParts.query.limit,
         after: nextLinkParts.query.after,
         access_token: nextLinkParts.query.access_token

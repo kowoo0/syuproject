@@ -10,7 +10,7 @@ const FB = require('fb');
 const getAccessToken = require('../../../modules/fb-modules/get-access-token');
 const getWallFeeds = require('../../../modules/fb-modules/get-wall-feeds');
 
-const args = { fields: ['id', 'from', 'message', 'created_time', 'picture'] }; // 가져올 데이터를 설정
+const args = { fields: ['id', 'from', 'message', 'link', 'created_time', 'full_picture', 'source'] }; // 가져올 데이터를 설정
 
 let syuBamboo = '973432719345219/posts', bamboo = 1;
 let syuDeliver = '444709775685040/posts', deliver = 1;
