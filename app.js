@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const mg_config = require('./config/mg-config.json');
 const router = require('./routes/index');
 
-// public 폴더 안의 스크립트 파일 임포트 적용
+// public 폴더 안의 파일 임포트 적용
 app.use(express.static('public'));
 // request.body에 객체 형식의 데이터 포맷을 넘겨주는 함수
 app.use(bodyParser.json());
@@ -28,4 +28,5 @@ server.listen(3000, () => {
 });
 // use ejs template
 app.set('view engine', 'ejs');
+app.set('view engine', 'jade');
 app.use(router);

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var BoardContents = require('./user.js');
+var BoardContents = require('../../models/board-model.js');
 
 router.get('/', function (req, res) {
     // 처음 index로 접속 했을시 나오는 부분
