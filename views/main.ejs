@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>울창한 대나무 숲</title>
+
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+<!-- Bootstrap core CSS -->
+<link href="./css/bootstrap/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="./css/etc/blog-home.css" rel="stylesheet">
+<link href="./css/main/main.css" rel="stylesheet">
+<link href="./css/main/preload.css" rel="stylesheet">
+<link href="./css/core.css" rel="stylesheet">
+<style>
+  @media screen and (max-width: 767px) {
+    .row {
+      position: relative;
+    }
+
+    .card {
+      border-left: none;
+      border-right: none;
+      border-radius: 0px !important;
+
+    }
+
+    .bottom-navbar {
+      position: fixed;
+      left: 0px; bottom: 0px;
+
+      width: 100%;
+      height: 56px;
+      box-sizing: border-box;
+      border-top: 1px solid #a7a7a7;
+      background-color: #e5e5e5;
+
+      z-index: 1010;
+      overflow: hidden;
+    }
+    .bottom-nav-item {
+      width: 25%;
+      height: 100%;
+      box-sizing: border-box;
+
+      float: left;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">울창한 대나무숲</a>
+    <div class="">
+      <button class="navbar-toggler button-custom" type="button" data-toggle="collapse" data-target="#searchResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-search-icon"></span>
+      </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="searchResponsive">
+      <!-- 검색창 부분 -->
+      <ul class="navbar-nav ml-auto">
+        <li class="search-body">
+          <form class="input-group" method="get" action="http://localhost:3000/search/result">
+            <input type="text" class="form-control" name="t1" placeholder="Search for...">
+            <span class="input-group-btn">
+              <input class="btn btn-secondary" type="submit" value="Go!">
+            </span>
+          </form>
+        </li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <!-- 토글 드랍다운 .. 타입에 따른 분류 -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a id="show-allfeed" class="nav-link" href="#">ALL
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a id="show-fbfeed" class="nav-link" href="#">Facebook</a>
+        </li>
+        <li class="nav-item">
+          <a id="show-dcfeed" class="nav-link" href="#">Community</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-12">
+
+      <!-- Community Post -->
+      <ul class="all-contents"></ul>
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>
+
+<div class="container">
+	<div class="row">
+		<div id="loader">
+    	<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+		</div>
+	</div>
+</div>
+
+<div class="bottom-navbar">
+  <div class="bottom-nav-item"></div>
+  <div class="bottom-nav-item"></div>
+  <div class="bottom-nav-item"></div>
+  <div class="bottom-nav-item"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLongTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary comment-link">&nbsp;Link&nbsp;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JQuery 라이브러리 임포트 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
+<script src="./components/jquery/jquery-1.12.0.min.js"></script>
+<script src="./components/popper/popper.min.js"></script>
+<script src="./components/bootstrap/bootstrap.min.js"></script>
+<script src="./js/main/ajaxsend.js"></script>
+<script src="./js/main/show-more-text.js"></script>
+<script src="./js/main/main.js"></script>
+<script>
+function handler(event) {
+  var target = $(event.target);
+  if(target.is("span") || target.is("img")) {
+    var getId = target.parent().attr("class");
+    var reqId = getId.split(" ")[1];
+    let count = 0;
+    var fn = function(result) {
+      if(result.noComment) {
+          $('.modal-title').text("현재 댓글이 존재하지 않습니다 ㅠ__ㅠ");
+          $('.modal-body').append(`
+            <div class="comment-wrap">
+              <div class="comment-img">
+                <img src="./images/kakaofriends/4.jpg" width="58px" height="50px" alt="">
+              </div>
+              <div class="comment-text">
+                <span class="in-block comment-name">댓글을 달아주세요!</span>
+              </div>
+            </div>
+          `)
+          return;
+      }
+      $('.modal-title').text("더 자세히 보려면 링크를 클릭하세요!");
+      // $('.comment-link').on('click', function() {
+      //   window.location.href = ''
+      // });
+      let length = result.length;
+      for(let i=0; i<length-1; i++) {
+          let imageNum = Math.floor((Math.random() * 14) + 1);
+          $('.modal-body').append(`
+            <div class="comment-wrap">
+              <div class="comment-img">
+                <img src="./images/kakaofriends/${imageNum}.jpg" width="58px" height="50px" alt="">
+              </div>
+              <div class="comment-text">
+                <span class="in-block comment-name">${result[i].name}</span>
+                <span class="in-block comment-msg">${result[i].message.replace(/\n/g, '<br>')}</span>
+                <span class="in-block comment-time">${moment(result[i].created_time).format('LLL')}</span>
+              </div>
+            </div>
+          `);
+      }
+      //이전 댓글 보기
+      if(result[length-1].morecomment) {
+        $('.modal-body').append(`<div class="comment-update-wrap">
+            <div class="comment-update-img">
+              <img class="update-icon" src="./images/update.jpg" width="38px" height="38px" alt="">
+            </div>
+            <div class="comment-update-left">
+              <h5 class="comment-update-text">이전 댓글</h5>
+            </div>
+          </div>`);
+
+        $('.comment-update-wrap').on('click', function(e) {
+          $('.update-icon').css('display', 'none');
+          $('.comment-update-img').append(`
+              <div class="comment-loader">
+              </div>
+            `);
+          $('.comment-update-text').text('잠시만여..');
+          $('.comment-update-text').css('color', '#3498db');
+          $('.comment-update-text').css('margin-left', '53px');
+          $('.comment-update-text').css('font-size', '17px');
+          $('.comment-update-text').css('font-weight', '600');
+
+          setTimeout(function() {
+            $('.comment-update-wrap').fadeOut("slow");
+            AJAX.reqcomments("http://localhost:3000/comment/facebook", ++count, reqId, fn);
+          }, 1400);
+        });
+      }
+    }
+    AJAX.reqcomments("http://localhost:3000/comment/facebook", count, reqId, fn);
+  }
+}
+
+// 모달 사라질 때 댓글 비우기
+$("#exampleModalLong").on('hidden.bs.modal', function(e) {
+  $('.modal-body').empty();
+});
+
+</script>
+</body>
+</html>
