@@ -6,16 +6,30 @@
 <title>울창한 대나무 숲</title>
 
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
 
 <!-- Bootstrap core CSS -->
 <link href="./css/bootstrap/bootstrap.min.css" rel="stylesheet">
+<!-- Swiper CSS -->
+<link href="./css/swiper/swiper.min.css" rel="stylesheet">
+<!-- Font-Awesome CSS -->
+<link href="./css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" >
 <!-- Custom styles for this template -->
 <link href="./css/etc/blog-home.css" rel="stylesheet">
 <link href="./css/main/main.css" rel="stylesheet">
+<link href="./css/main/gnb.css" rel="stylesheet">
 <link href="./css/main/preload.css" rel="stylesheet">
+<link href="./css/main/notice.css" rel="stylesheet">
+<link href="./css/main/weather.css" rel="stylesheet">
+<link href="./css/main/imglist.css" rel="stylesheet">
+<link href="./css/main/rank-slide.css" rel="stylesheet">
 <link href="./css/core.css" rel="stylesheet">
 <style>
   @media screen and (max-width: 767px) {
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+    }
     .row {
       position: relative;
     }
@@ -26,27 +40,27 @@
       border-radius: 0px !important;
 
     }
+  }
 
-    .bottom-navbar {
-      position: fixed;
-      left: 0px; bottom: 0px;
-
-      width: 100%;
-      height: 56px;
-      box-sizing: border-box;
-      border-top: 1px solid #a7a7a7;
-      background-color: #e5e5e5;
-
-      z-index: 1010;
-      overflow: hidden;
-    }
-    .bottom-nav-item {
-      width: 25%;
-      height: 100%;
-      box-sizing: border-box;
-
-      float: left;
-    }
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-container > .swiper-wrapper > .swiper-slide {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  .slide-1 {
+  }
+  .slide-2 {
+    background-color: #fff;
+  }
+  .slide-3 {
+    background-color: #fff;
+  }
+  .slide-4 {
+    background-color: #fff;
   }
 </style>
 </head>
@@ -99,37 +113,213 @@
   </div>
 </nav>
 
+<!-- gnb -->
+<div class="global-nav-btn-list">
+  <div class="gnb-wrapper">
+    <a class="gnb-item gnb-index-0" data-target="nav-main">
+      <i class="fa fa-list-alt" aria-hidden="true"></i>
+    </a>
+    <a class="gnb-item gnb-index-1" data-target="nav-notice">
+      <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+    </a>
+    <a class="gnb-item gnb-index-2" data-target="nav-ranking">
+      <i class="fa fa-star-o" aria-hidden="true"></i>
+    </a>
+    <a class="gnb-item gnb-index-3" data-target="nav-mylist">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+
 <!-- Page Content -->
 <div class="container">
 
   <div class="row">
 
-    <!-- Blog Entries Column -->
-    <div class="col-md-12">
+      <!-- Blog Entries Column -->
+      <div class="col-md-12">
 
-      <!-- Community Post -->
-      <ul class="all-contents"></ul>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide slide-1" data-hash="nav-main">
+              <!-- Community Post -->
+              <ul class="all-contents"></ul>
+              <div class="container">
+                <div class="row">
+                  <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide slide-2" data-hash="nav-notice">
+              <!-- Haksa Post -->
+              <div class="haksa-wrapper">
+                <div class="notice">
+                  <div class="notice-header">
+                    <div class="pulse-container">
+                      <div class="circle notice-title">
+                        학사
+                      </div>
+                      <div class="circle delay-1"></div>
+                      <div class="circle delay-2"></div>
+                      <div class="circle delay-3"></div>
+                    </div>
+                    <span class="notice-text">SU NOTICE</span>
+                  </div>
+                  <div class="slide-section">
+                    <!-- Swiper -->
+                    <div class="swiper-container-2">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                          <ul class="haksa-contents"></ul>
+                        </div>
+                        <div class="swiper-slide">
+                          <ul class="life-contents"></ul>
+                        </div>
+                        <div class="swiper-slide">
+                          <ul class="events-contents"></ul>
+                        </div>
+                        <div class="swiper-slide">
+                          <ul class="job-contents"></ul>
+                        </div>
+                        <div class="swiper-slide">
+                          <ul class="scholarship-contents"></ul>
+                        </div>
+                        <div class="swiper-slide">
+                          <ul class="org-contents"></ul>
+                        </div>
+                      </div>
+                      <!-- Add Pagination -->
+                      <div class="swiper-pagination"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="weather-box">
+                  <div class="weather-wrapper">
+                    <div class="weather-header">
+                      <span class="weather-title">삼육동 날씨</span>
+                      <span class="dayafter day">모레</span>
+                      <span class="tomorrow day">내일</span>
+                      <span class="today day">오늘</span>
+                    </div>
+                    <div class="swiper-container-3">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide today-slide">
+                          <div class="weather-content">
+                            <div class="weather-main-icon">
+
+                            </div>
+                            <div class="weather-main-desc">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide tomorrow-slide">
+                          <div class="tomorrow-wrapper">
+
+                          </div>
+                        </div>
+                        <div class="swiper-slide dayafter-slide">
+                          <div class="dayafter-wrapper">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flat-plate">
+
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide slide-3" data-hash="nav-ranking">
+              <div class="rank-slide-desc">
+                <a href="#">최근 7일내 이슈를 확인하세요!</a>
+              </div>
+              <div class="swiper-container-4">
+                <div class="swiper-pagination"></div>
+                <div class="swiper-wrapper rank-slide-control">
+                  <div class="swiper-slide"></div>
+                  <div class="swiper-slide"></div>
+                  <div class="swiper-slide"></div>
+                  <div class="swiper-slide"></div>
+                  <div class="swiper-slide"></div>
+                  <div class="swiper-slide"></div>
+                  <div class="swiper-slide"></div>
+                  <div class="swiper-slide"></div>
+                  <div class="swiper-slide"></div>
+                  <div class="swiper-slide"></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+              <div class="rank-deliver">
+                <div class="rank-type-desc">
+                  <a href="#">대신 전해드립니다</a>
+                </div>
+                <ul class="rank-deliver-ul">
+                </ul>
+              </div>
+              <div class="rank-bamboo">
+                <div class="rank-type-desc">
+                  <a href="#">대나무숲</a>
+                </div>
+                <ul class="rank-bamboo-ul">
+                </ul>
+              </div>
+              <div class="rank-syumain">
+                <div class="rank-type-desc">
+                  <a href="#">삼육대학교(Sahmyook University)</a>
+                </div>
+                <ul class="rank-syumain-ul">
+                </ul>
+              </div>
+              <div class="rank-chonghak">
+                <div class="rank-type-desc">
+                  <a href="#">제 57대 We Can 총학생회</a>
+                </div>
+                <ul class="rank-chonghak-ul">
+                </ul>
+              </div>
+              <div class="rank-yeonhab">
+                <div class="rank-type-desc">
+                  <a href="#">학회연합회</a>
+                </div>
+                <ul class="rank-yeonhab-ul">
+                </ul>
+              </div>
+              <div class="rank-computer">
+                <div class="rank-type-desc">
+                  <a href="#"></a>
+                </div>
+                <ul class="rank-computer-ul">
+                </ul>
+              </div>
+            </div>
+            <div class="swiper-slide slide-4" data-hash="nav-mylist">
+              <div class="list-slide-wrapper">
+
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
-
-  </div>
   <!-- /.row -->
+  </div>
 
 </div>
 
-<div class="container">
-	<div class="row">
-		<div id="loader">
-    	<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-		</div>
-	</div>
-</div>
 
 <!-- <div class="bottom-navbar">
   <div class="bottom-nav-item"></div>
@@ -162,94 +352,483 @@
 <!-- JQuery 라이브러리 임포트 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
 <script src="./components/jquery/jquery-1.12.0.min.js"></script>
+<script src="./components/jquery-ui-dist/jquery-ui.min.js"></script>
 <script src="./components/popper/popper.min.js"></script>
 <script src="./components/bootstrap/bootstrap.min.js"></script>
+<script src="./components/swiper/swiper.min.js"></script>
+<script src="./components/owl/owl.carousel.min.js"></script>
+<script src="./components/skycons/skycons.js"></script>
+<script src="./components/raindrops/raindrops.js"></script>
 <script src="./js/main/ajaxsend.js"></script>
 <script src="./js/main/show-more-text.js"></script>
 <script src="./js/main/get-picture.js"></script>
 <script src="./js/main/get-source.js"></script>
 <script src="./js/main/main.js"></script>
+<script src="./js/main/gnb-control.js"></script>
+<script src="./js/main/comment.js"></script>
+<script src="./js/main/weather-check.js"></script>
 <script>
-function handler(event) {
-  var target = $(event.target);
-  if(target.is("span") || target.is("img")) {
-    var getId = target.parent().attr("class");
-    var reqId = getId.split(" ")[1];
-    let count = 0;
-    var fn = function(result) {
-      if(result.noComment) {
-          $('.modal-title').text("현재 댓글이 존재하지 않습니다 ㅠ__ㅠ");
-          $('.modal-body').append(`
-            <div class="comment-wrap">
-              <div class="comment-img">
-                <img src="./images/kakaofriends/4.jpg" width="58px" height="50px" alt="">
-              </div>
-              <div class="comment-text">
-                <span class="in-block comment-name">댓글을 달아주세요!</span>
-              </div>
-            </div>
-          `)
-          return;
-      }
-      $('.modal-title').text("더 자세히 보려면 링크를 클릭하세요!");
-      // $('.comment-link').on('click', function() {
-      //   window.location.href = ''
-      // });
-      let length = result.length;
-      for(let i=0; i<length-1; i++) {
-          let imageNum = Math.floor((Math.random() * 14) + 1);
-          $('.modal-body').append(`
-            <div class="comment-wrap">
-              <div class="comment-img">
-                <img src="./images/kakaofriends/${imageNum}.jpg" width="58px" height="50px" alt="">
-              </div>
-              <div class="comment-text">
-                <span class="in-block comment-name">${result[i].name}</span>
-                <span class="in-block comment-msg">${result[i].message.replace(/\n/g, '<br>')}</span>
-                <span class="in-block comment-time">${moment(result[i].created_time).format('LLL')}</span>
-              </div>
-            </div>
-          `);
-      }
-      //이전 댓글 보기
-      if(result[length-1].morecomment) {
-        $('.modal-body').append(`<div class="comment-update-wrap">
-            <div class="comment-update-img">
-              <img class="update-icon" src="./images/update.jpg" width="38px" height="38px" alt="">
-            </div>
-            <div class="comment-update-left">
-              <h5 class="comment-update-text">이전 댓글</h5>
-            </div>
-          </div>`);
+  var swiper1 = new Swiper('.swiper-container', {
+    spaceBetween: 5,
+    hashNavigation: {
+      watchState: true
+    },
+  });
+  var bodyHeight = $('body').height();
+  $('.swiper-slide').height(bodyHeight-48);
 
-        $('.comment-update-wrap').on('click', function(e) {
-          $('.update-icon').css('display', 'none');
-          $('.comment-update-img').append(`
-              <div class="comment-loader">
-              </div>
-            `);
-          $('.comment-update-text').text('잠시만여..');
-          $('.comment-update-text').css('color', '#3498db');
-          $('.comment-update-text').css('margin-left', '53px');
-          $('.comment-update-text').css('font-size', '17px');
-          $('.comment-update-text').css('font-weight', '600');
+  $('.gnb-item').on('click', function(e) {
+    var target = $(this).data("target");
+    window.location.hash = target;
+  });
 
-          setTimeout(function() {
-            $('.comment-update-wrap').fadeOut("slow");
-            AJAX.reqcomments("http://localhost:3000/comment/facebook", ++count, reqId, fn);
-          }, 1400);
+  $(`.gnb-index-${swiper1.activeIndex}`).addClass('gnb-active');
+
+  let swiperFlag = true;
+  swiper1.on('slideChangeTransitionEnd', function() {
+    let targetHash = this.activeIndex;
+    let prevHash = this.previousIndex;
+    $(`.gnb-index-${prevHash}`).removeClass('gnb-active');
+    $(`.gnb-index-${targetHash}`).addClass('gnb-active');
+
+    // 학사 슬라이더 폼에 갈 시,
+    if(targetHash === 1) {
+      if(!swiperFlag) {
+        return;
+      }
+      let fn = function(result, from) {
+        for(let i=result.length-1; i>=0; i--) {
+          let addClass = "";
+          if(result[i].category === "공지") {
+            addClass = "notice-gongji";
+          }
+          let getInfoText = `
+            <li class="notice-feed">
+              <div class="notice-cg">
+                <span class="${addClass}">${result[i].category.replace(/\[/, "").replace(/\]/, "")}</span>
+              </div>
+              <div class="message-wrap">
+                <a class="notice-msg" href="${result[i].link}">${result[i].text}</a>
+                <span class="notice-date">${result[i].date}</span>
+              </div>
+            </li>
+          `;
+          $(`.${from}-contents`).prepend(getInfoText);
+        }
+      };
+      AJAX.reqnotice('http://localhost:3000/syuinfo/notice/' + 'haksa', fn);
+      AJAX.reqnotice('http://localhost:3000/syuinfo/notice/' + 'life', fn);
+      AJAX.reqnotice('http://localhost:3000/syuinfo/notice/' + 'events', fn);
+      AJAX.reqnotice('http://localhost:3000/syuinfo/notice/' + 'job', fn);
+      AJAX.reqnotice('http://localhost:3000/syuinfo/notice/' + 'scholarship', fn);
+      AJAX.reqnotice('http://localhost:3000/syuinfo/notice/' + 'org', fn);
+
+      fn = function(result) {
+        let date = new Date();
+        let curHours = date.getHours();
+
+        console.log(curHours);
+        for(let i=0; i<result.length; i++) {
+          let now = result[i];
+          if(now.hour === 24) {
+            now.hour = 0;
+          }
+          if(now.day === 0 && (curHours >= now.hour && curHours < now.hour+3)) {
+            let status = weatherCheck(now.status, now.hour);
+
+            let icon = `
+              <figure class="icons">
+                <canvas class="${status}" width="69" height="64">
+              </figure>
+            `;
+            let desc = `
+              <span class="details temperature">${now.temp}℃</span>
+              <span class="details temp-max-min">
+                <strong>${now.temp_max < -50 ? '-' : now.temp_max}</strong>
+                &nbsp;/&nbsp;
+                <strong>${now.temp_min < -50 ? '-' : now.temp_min}</strong>
+              </span>
+              <span class="details rainprob"><strong>강수확률:</strong>  ${now.rainprob}%</span>
+              <span class="details humidity"><strong>습도:</strong>  ${now.humidity}%</span>
+            `;
+            $('.weather-main-icon').append(icon);
+            $('.weather-main-desc').append(desc);
+            let footer = `
+              <div class="weather-footer">
+                <div class="mini-weather hour-6"></div>
+                <div class="mini-weather hour-9"></div>
+                <div class="mini-weather hour-12"></div>
+                <div class="mini-weather hour-15"></div>
+                <div class="mini-weather hour-18"></div>
+                <div class="mini-weather hour-21"></div>
+              </div>
+            `;
+            $('.weather-content').after(footer);
+            let itemList = [];
+            let padZero = function(hours) {
+              let value = "";
+              if(hours >= 0 && hours < 10) {
+                value = "0" + hours;
+                return value;
+              } else {
+                value = hours;
+                return value;
+              }
+            }
+            for(let i=0; i<result.length; i++) {
+              let temp = result[i];
+              if(temp.day === 0 && (temp.hour >= 6 && temp.hour <= 21)) {
+                itemList.push(temp);
+              }
+            }
+            $.each(itemList, function(index, value) {
+              let ministatus = weatherCheck(value.status, value.hour);
+              let minidesc = `
+                <figure class="icons">
+                  <canvas class="${ministatus}" width="42" height="24">
+                </figure>
+                <div class="mini-hour">${padZero(value.hour)}</div>
+                `;
+              let target = $(`.hour-${value.hour}`);
+              $('.weather-footer').find(target).append(minidesc);
+            });
+          }
+
+          if(now.day === 1) {
+            if(now.hour === 9) {
+              let status = weatherCheck(now.status, now.hour);
+              let am = `
+                <div class="tomorrow-am">
+                  <h6 class="tomorrow-desc">오전</h6>
+                  <div class="tomor-box">
+                    <figure class="icons">
+                      <canvas class="${status}" width="48" height="48">
+                    </figure>
+                    <span class="tomor-temp">${now.temp}<span>℃</span></span>
+                  </div>
+                  <div class="tomor-details">
+                    <img src="../../images/temp-max.png" alt="">
+                    <span class="tomor-max">${now.temp_max}</span>
+                    <img src="../../images/temp-min.png" alt="">
+                    <span class="tomor-min">${now.temp_min}</span>
+                    <img src="../../images/rainprob.png" alt="">
+                    <span class="tomor-rainpob">${now.rainprob}%</span>
+                  </div>
+                </div>
+              `;
+              $('.tomorrow-wrapper').append(am);
+            }
+            if(now.hour === 15) {
+              let status = weatherCheck(now.status, now.hour);
+              let pm = `
+                <div class="tomorrow-pm">
+                  <h6 class="tomorrow-desc">오후</h6>
+                  <div class="tomor-box">
+                    <figure class="icons">
+                      <canvas class="${status}" width="48" height="48">
+                    </figure>
+                    <span class="tomor-temp">${now.temp}<span>℃</span></span>
+                  </div>
+                  <div class="tomor-details">
+                    <img src="../../images/temp-max.png" alt="">
+                    <span class="tomor-max"> ${now.temp_max}</span>
+                    <img src="../../images/temp-min.png" alt="">
+                    <span class="tomor-min">${now.temp_min}</span>
+                    <img src="../../images/rainprob.png" alt="">
+                    <span class="tomor-rainpob"> ${now.rainprob}%</span>
+                  </div>
+                </div>
+              `;
+              $('.tomorrow-wrapper').append(pm);
+            }
+          }
+
+          if(now.day === 2) {
+            if(now.hour === 9) {
+              let status = weatherCheck(now.status, now.hour);
+              let am = `
+                <div class="dayafter-am">
+                  <h6 class="dayafter-desc">오전</h6>
+                  <div class="dayafter-box">
+                    <figure class="icons">
+                      <canvas class="${status}" width="48" height="48">
+                    </figure>
+                    <span class="dayafter-temp">${now.temp}<span>℃</span></span>
+                  </div>
+                  <div class="dayafter-details">
+                    <img src="../../images/temp-max.png" alt="">
+                    <span class="dayafter-max"> ${now.temp_max}</span>
+                    <img src="../../images/temp-min.png" alt="">
+                    <span class="dayafter-min"> ${now.temp_min}</span>
+                    <img src="../../images/rainprob.png" alt="">
+                    <span class="dayafter-rainpob"> ${now.rainprob}%</span>
+                  </div>
+                </div>
+              `;
+              $('.dayafter-wrapper').append(am);
+            }
+            if(now.hour === 15) {
+              let status = weatherCheck(now.status, now.hour);
+              let pm = `
+                <div class="dayafter-pm">
+                  <h6 class="dayafter-desc">오후</h6>
+                  <div class="dayafter-box">
+                    <figure class="icons">
+                      <canvas class="${status}" width="48" height="48">
+                    </figure>
+                    <span class="dayafter-temp">${now.temp}<span>℃</span></span>
+                  </div>
+                  <div class="dayafter-details">
+                    <img src="../../images/temp-max.png" alt="">
+                    <span class="dayafter-max"> ${now.temp_max}</span>
+                    <img src="../../images/temp-min.png" alt="">
+                    <span class="dayafter-min"> ${now.temp_min}</span>
+                    <img src="../../images/rainprob.png" alt="">
+                    <span class="dayafter-rainpob"> ${now.rainprob}%</span>
+                  </div>
+                </div>
+              `;
+              $('.dayafter-wrapper').append(pm);
+            }
+          }
+        }
+        let icons = new Skycons(),
+            list  = [
+              "clear-day", "clear-night", "partly-cloudy-day",
+              "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+              "fog"
+            ],
+            i;
+
+        for(i = list.length; i--; )
+          icons.set(list[i], list[i]);
+        icons.play();
+
+        $('.weather-box').raindrops({
+          canvasHeight: 30
         });
       }
+      AJAX.reqweatherinfo('http://localhost:3000/syuinfo/weather', fn);
+
+      fn = function(result) {
+        for(let i=result.length-1; i>=0; i--) {
+          if(/^\//.test(result[i].link)) {
+            result[i].link = `https://www.syu.ac.kr${result[i].link}`;
+          }
+          let item = `
+            <div class="plate-image-item">
+              <div class="plate-link" href="${result[i].link}">
+                <h5 class="plate-text"><img src="./images/pattern.png"> ${result[i].title}</h5>
+                <img class="plate-img" src="${result[i].source}">
+              </div>
+            </div>
+          `;
+          $('.flat-plate').append(item);
+        }
+        $('.plate-link').one('click', function(e) {
+          let target = e.currentTarget;
+          let link = target.getAttribute('href');
+          let width = $('body').width();
+          let height = $('body').height();
+          let strWindowFeatures = `location=yes,width=${width},height=${height},scrollbars=yes,status=yes`;
+          window.open(link, '', strWindowFeatures);
+        });
+      }
+      AJAX.reqimagelist('http://localhost:3000/syuinfo/imglist', fn);
+
+      swiperFlag = false;
     }
-    AJAX.reqcomments("http://localhost:3000/comment/facebook", count, reqId, fn);
-  }
-}
 
-// 모달 사라질 때 댓글 비우기
-$("#exampleModalLong").on('hidden.bs.modal', function(e) {
-  $('.modal-body').empty();
-});
 
+    // ranking page
+    let rankingFlag = true;
+    if(this.activeIndex === 2) {
+      if(!rankingFlag) {
+        return;
+      }
+      let fn = function(result) {
+        if(result === 'empty') {
+          $('.rank-slide-control').append('<p>데이터가 없습니다..</p>');
+        } else {
+          for(let i=0; i<result.length; i++) {
+            let item = result[i];
+            let photo = "";
+            if(item === undefined) continue;
+            switch(item.from) {
+              case 1:
+                photo = "./images/syu-bamboo.jpg";
+                break;
+              case 2:
+                photo = './images/syu-deliver.jpg';
+                break;
+              case 3:
+                photo = './images/syu-chonghak.jpg';
+                break;
+              case 4:
+                photo = './images/syu-yeonhab.jpg';
+                break;
+              case 5:
+                photo = './images/syu-computer.jpg';
+                break;
+              case 6:
+                photo = './images/syumain.jpg';
+                break;
+              case 7:
+                photo = './images/syugall.png';
+                break;
+              default:
+                photo = './images/kakaofriends/1.jpg';
+            }
+            if(item.message === undefined) item.message = "";
+            let appendEl = `
+              <div class="rank-slide-wrapper">
+                <div class="rank-all">
+                  <img src="${photo}" alt="">
+                  <span class="rank-from">${item.name}</span>
+                  <a class="rank-link" href="${item.link}">Link</a>
+                </div>
+                <div class="rank-slide-section">
+                </div>
+                <div class="rank-footer">
+                  <div class="rank-date-box">
+
+                  </div>
+                  <div class="rank-likes">
+
+                  </div>
+                  <div class="rank-comments">
+
+                  </div>
+                </div>
+              </div>
+            `;
+            $(`.rank-slide-control > div.swiper-slide:nth-child(${i+1})`).append(appendEl);
+          }
+        }
+      }
+      AJAX.reqrankingslide('http://localhost:3000/ranking/rank-slide', fn);
+      fn = function(result, type) {
+        for(let i=0; i<result.length; i++) {
+          let item = result[i];
+          if(!item) {
+            continue;
+          } else {
+            let apppendEl = `
+              <li class=""
+            `;
+          }
+        }
+
+
+        console.log(type, result);
+
+      }
+      AJAX.reqrankingtype('http://localhost:3000/ranking/rank-type/' + 2, fn); // 삼대전
+      AJAX.reqrankingtype('http://localhost:3000/ranking/rank-type/' + 1, fn); // 대나무숲
+      AJAX.reqrankingtype('http://localhost:3000/ranking/rank-type/' + 6, fn); // 삼육대학교
+      AJAX.reqrankingtype('http://localhost:3000/ranking/rank-type/' + 3, fn); // 총학
+      AJAX.reqrankingtype('http://localhost:3000/ranking/rank-type/' + 4, fn); // 연합
+      AJAX.reqrankingtype('http://localhost:3000/ranking/rank-type/' + 5, fn); // 컴과
+
+      rankingFlag = false;
+   }
+
+
+
+
+
+
+  });
+
+  var swiper2 = new Swiper('.swiper-container-2', {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    loop: true,
+    fadeEffect: {
+    crossFade: true
+    },
+    centeredSlides: true,
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  });
+
+  swiper2.on('slideChangeTransitionEnd', function() {
+    let curSlide = this.realIndex;
+    switch(curSlide) {
+      case 0:
+        $('.notice-title').text('학사');
+        $('.notice').css('background', '#D5D5DF');
+        $('.circle').css('background', '#7B7B7B');
+        $('.notice-text').css('color', '#454545');
+        break;
+      case 1:
+        $('.notice-title').text('생활');
+        $('.notice').css('background', '#74db77');
+        $('.circle').css('background', '#22741C');
+        $('.notice-text').css('color', '#10620A');
+        break;
+      case 2:
+        $('.notice-title').text('행사');
+        $('.notice').css('background', '#FFC19E');
+        $('.circle').css('background', '#FF7012');
+        $('.notice-text').css('color', '#930000');
+        break;
+      case 3:
+        $('.notice-title').text('취업');
+        $('.notice').css('background', '#D4F4F2');
+        $('.circle').css('background', '#00A2C9');
+        $('.notice-text').css('color', '#00365D');
+        break;
+      case 4:
+        $('.notice-title').text('장학');
+        $('.notice').css('background', '#1F50B5');
+        $('.circle').css('background', '#C6F9FF');
+        $('.notice-text').css('color', '#FFFFFF');
+        break;
+      case 5:
+        $('.notice-title').text('기관');
+        $('.notice').css('background', '#660033');
+        $('.circle').css('background', '#D941C5');
+        $('.notice-text').css('color', '#F6F6F6');
+        break;
+      default:
+        break;
+    }
+  });
+
+  var swiper3 = new Swiper('.swiper-container-3', {
+    slidesPerView: 1,
+  });
+  swiper3.on('slideChangeTransitionEnd', function() {
+    // 날씨 슬라이드 이동 시
+    if(this.activeIndex === 0) {
+      $('.today').css('color', '#1DDB16');
+      $('.tomorrow').css('color', '#000');
+      $('.dayafter').css('color', '#000');
+    }
+    else if(this.activeIndex === 1) {
+      $('.today').css('color', '#000');
+      $('.tomorrow').css('color', '#1DDB16');
+      $('.dayafter').css('color', '#000');
+    }
+    else {
+      $('.today').css('color', '#000');
+      $('.tomorrow').css('color', '#000');
+      $('.dayafter').css('color', '#1DDB16');
+    }
+  });
+
+  var swiper4 = new Swiper('.swiper-container-4', {
+    pagination: {
+        el: '.swiper-pagination',
+        type: 'progressbar',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
 </script>
 </body>
 </html>

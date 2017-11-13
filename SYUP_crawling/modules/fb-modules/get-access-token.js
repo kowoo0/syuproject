@@ -21,7 +21,7 @@ const getAccessToken = () => {
       console.log("getAccessToken function exit..")
     });
   });
-}
+};
 
 
 module.exports = getAccessToken;

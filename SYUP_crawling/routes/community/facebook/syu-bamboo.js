@@ -17,6 +17,7 @@ let syuDeliver = '444709775685040/posts', deliver = 1;
 let syuChonghak = '387323668280049/posts', chonghak = 1;
 let syuYeonhab = '1412584238989232/posts', yeonhab = 1;
 let syuComputer = '451966671514736/posts', computer = 1;
+let syuMain = '207112896076930/posts', main = 1;
 
 // promise 객체로부터 '페이지 엑세스 토큰' 파리미터 값을 받음
 setTimeout(function() {
@@ -31,6 +32,7 @@ setTimeout(function() {
     getWallFeeds(syuChonghak, args, chonghak, 3); // '총학생회' 페이지 피드 접근
     getWallFeeds(syuYeonhab, args, yeonhab, 4); // '연합동아리' 페이지 피드 접근
     getWallFeeds(syuComputer, args, computer, 5); // '컴퓨터학부' 페이지 피드 접근
+    getWallFeeds(syuMain, args, main, 6);
   }, (error) => {
     console.log(error);
   });

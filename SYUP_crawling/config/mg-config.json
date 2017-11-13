@@ -1,7 +1,7 @@
 {
-  "userId": "MONGO_USER",
-  "userPass": "MONGO_PASSWORD",
-  "userLocal": "MONGO_LOCAL",
-  "port": "MONGO_PORT",
-  "db": "MONGO_ADMIN"
+  "userId": "kkodu",
+  "userPass": "nawy8476*-",
+  "userLocal": "localhost",
+  "port": "27017",
+  "db": "admin"
 }

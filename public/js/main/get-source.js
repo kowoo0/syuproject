@@ -6,7 +6,6 @@ let hasSource = function(source, picture, link) {
         <a href='javascript:;' class='source-link'>
           <video x-webkit-airplay='allow'
             width='100%'
-            autoplay
             controls
             src='${source}'
             poster='${picture}'>

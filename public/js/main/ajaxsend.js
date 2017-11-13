@@ -65,4 +65,70 @@ const AJAX = {
       fn(commentResult);
     });
   },
+
+  reqnotice: (url, fn) => {
+    let data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const noticeResult = JSON.parse(xhr.responseText);
+      fn(noticeResult.data, noticeResult.from);
+    });
+  },
+
+  reqweatherinfo: (url, fn) => {
+    let data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const weatherResult = JSON.parse(xhr.responseText);
+      fn(weatherResult);
+    });
+  },
+
+  reqimagelist: (url, fn) => {
+    let data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const imgListResult = JSON.parse(xhr.responseText);
+      fn(imgListResult);
+    });
+  },
+
+  reqrankingslide: (url, fn) => {
+    let data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const rankslideResult = JSON.parse(xhr.responseText);
+      fn(rankslideResult.data);
+    });
+  },
+
+  reqrankingtype: (url, fn) => {
+    let data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+
+    xhr.addEventListener('load', () => {
+      const ranktypeResult = JSON.parse(xhr.responseText);
+      fn(ranktypeResult.data, ranktypeResult.type);
+    });
+  },
+  
 }

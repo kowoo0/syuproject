@@ -1,3 +1,4 @@
+
 li.card-body {
   padding: 3px;
 }
@@ -139,7 +140,7 @@ span.input-group-btn > button {
 
   height: 26px;
   line-height: 27px;
-  font-weight: bold;
+  font-weight: 600 !important;
 
   float: right;
   cursor: pointer;
@@ -159,7 +160,7 @@ span.input-group-btn > button {
   font-size: 15px;
 }
 .col-md-12 {
-  margin-top: 48px;
+  margin-top: 97px;
   padding: 0;
 
   background-color: #eaeaea;

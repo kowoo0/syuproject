@@ -52,6 +52,9 @@ let getFbText = function(feed, count) {
     case 5:
       photo = '../../images/syu-computer.jpg';
       break;
+    case 6:
+      photo = '../../images/syumain.jpg';
+      break;
     default:
       photo = '../../images/kakaofriends/1.jpg';
   }
@@ -114,7 +117,7 @@ let getDcText = function(feed, count) {
           <img src="../../images/fb-like-icon.jpg" width="20px" height="20px" alt="">
           <span class="txt-custom">${feed.likes}</span>
         </div>
-        <div class="comments ${feed.storyid} comments-${count}" data-toggle="modal" data-target="#exampleModalLong">
+        <div class="comments ${feed.no} comments-${count}" data-toggle="modal" data-target="#exampleModalLong">
           <img src="../../images/fb-comment-icon.jpg" width="20px" height="20px" alt="">
           <span class="txt-custom">${feed.comments}</span>
         </div>
@@ -128,10 +131,10 @@ let getDcText = function(feed, count) {
 }
 
 let appendByType = function(contents, feed, count) {
-  if(feed.from > 0 && feed.from < 6) {
+  if(feed.from > 0 && feed.from < 7) {
     contents.append(getFbText(feed, count));
   }
-  else if (feed.from === 6) {
+  else if (feed.from === 7) {
     contents.append(getDcText(feed, count));
   }
   else {
@@ -158,6 +161,7 @@ $(() => {
     $(".comments").on('click', handler);
   };
   AJAX.allfeedload('http://localhost:3000/dbrender/allfeeds', fn);
+
 });
 
 let scrollFlag = true;
@@ -170,9 +174,10 @@ const preloader = function(result) {
 };
 
 // 무한 스크롤링 시 렌더링
-$(window).scroll(function(e) {
+$('.slide-1').scroll(function(e) {
+
   // 스크롤이 문서 아래 부분 근처에 왔을 시
-  if($(window).scrollTop() >= $(document).height() - $(window).height()) {
+  if($('.slide-1').scrollTop() >= $('.all-contents').height() - $('.slide-1').height()) {
     if(scrollFlag) {
 
       scrollFlag = false; // 접근 제한 플래그
@@ -208,4 +213,4 @@ const updatedFeedRender = function() {
   };
   AJAX.updatefeed('http://localhost:3000/dbrender/updatefeeds', fn);
 };
-const checkLoop = setInterval(updatedFeedRender, 20000); // 15초간 간격으로 피드들을 확인 후, 새로 업데이트 된 피드가 있을 시 렌더링
+const checkLoop = setInterval(updatedFeedRender, 40000); // 15초간 간격으로 피드들을 확인 후, 새로 업데이트 된 피드가 있을 시 렌더링

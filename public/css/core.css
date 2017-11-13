@@ -1,4 +1,8 @@
 /* 초기화 */
+html, body {
+  position: relative;
+  height: 100%;
+}
 body { padding: 0; }
 ul { margin: 0; padding: 0; }
 li { list-style: none; }

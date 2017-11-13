@@ -7,7 +7,7 @@ const showMoreText = (function() {
       e.preventDefault();
       $(this).css('display', 'none');
       $(this).prev().css('display', 'none');
-      $(this).parent().next().css('display', 'inline-block');
+      $(this).parent().next().css('display', 'block');
     });
   };
 })();
@@ -21,7 +21,7 @@ let textReduce = (text) => {
   let lastIndex;
   let ellipsis = "...";
 
-  text = text.replace(/[\n]/g, '<br>');
+  text = text.replace(/\n/g, '<br>');
   text = text.replace(/<br><br><br>/g, '<br><br>');
   splitIndex = text.lastIndexOf('<br>', limitIndex);
   lastIndex = text.lastIndexOf('<br>', splitIndex - 1);

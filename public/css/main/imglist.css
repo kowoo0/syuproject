@@ -1,0 +1,35 @@
+@import url('http://fonts.googleapis.com/earlyaccess/jejuhallasan.css');
+.flat-plate {
+  margin-top: 7px;
+}
+.plate-image-item {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 3px;
+  box-sizing: border-box;
+}
+
+.plate-link {
+  display: block;
+  width: 100%;
+}
+
+.plate-text {
+  padding-left: 6px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Jeju Hallasan', cursive;
+
+  overflow: hidden;
+}
+.plate-text > img {
+  width: 15px; height: 15px;
+  float: left;
+}
+
+.plate-img {
+  width: 100%;
+  border: 1px solid #f0ffff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
