@@ -6,6 +6,8 @@
   </head>
   <body>
 
+
+
     <script>
       // initialize and setup facebook js sdk
       window.fbAsyncInit = function() {
@@ -15,9 +17,12 @@
           xfbml            : true,
           version          : 'v2.11'
         });
+
+        //redirect
         FB.getLoginStatus(function(response){
           if(response.status === 'connected'){
             document.getElementById('status').innerHTML = 'We are connected';
+            location.href='http://localhost:3000/';
           }else if (response.status === 'not_authorized') {
             documnet.getElementById('status').innerHTML = 'We are not logged in.';
           }else{
@@ -38,6 +43,7 @@
         FB.login(function(response){
           if(response.status === 'connected'){
             document.getElementById('status').innerHTML = 'We are connected';
+            location.href='http://localhost:3000/';
           }else if (response.status === 'not_authorized') {
             documnet.getElementById('status').innerHTML = 'We are not logged in.';
           }else{
@@ -53,6 +59,7 @@
         js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.11&appId=943413989149707';
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'))
+
     </script>
 
     <div id="status"></div>

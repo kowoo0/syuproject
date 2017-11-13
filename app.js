@@ -32,7 +32,5 @@ app.set('view engine', 'jade');
 app.use(router);
 
 app.get('/login',function(req,res){
-	//var refreshToken = Kakao.Auth.getRefreshToken();
-	//Kakao.Auth.setAccessToken(accessTokenFromServer);
   res.sendfile(__dirname + '/login.html' )
 })
