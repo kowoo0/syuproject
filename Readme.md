@@ -19,15 +19,16 @@ DB: MongoDB
 ```
 
 ## 실행 결과
-```
+
 1. 메인 렌더링 페이지
-
+  ![main](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-1.png)
 2. 부가 정보 제공 페이지
-
+  ![info](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-2.png)
 3. 추천(랭킹) 페이지
-
+  ![rank](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-3.png)
 4. 관리, 설정 페이지
-```  
+  ![setting](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-4.png)
+
 
 ## 데이터 수집(크롤링)
 
