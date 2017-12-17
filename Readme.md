@@ -18,18 +18,6 @@ Server Side: Node.js
 DB: MongoDB
 ```
 
-## 실행 결과
-
-1. 메인 렌더링 페이지
-  ![main](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-1.png)
-2. 부가 정보 제공 페이지
-  ![info](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-2.png)
-3. 추천(랭킹) 페이지
-  ![rank](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-3.png)
-4. 관리, 설정 페이지
-  ![setting](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-4.png)
-
-
 ## 데이터 수집(크롤링)
 
 #### 페이스북 커뮤니티 피드
@@ -40,7 +28,7 @@ DB: MongoDB
     > `SYUP_crawling/modules/fb-modules/get-access-token.js [접근 권한 토큰 요청]`\
     > `SYUP_crawling/modules/fb-modules/get-wall-feeds.js [커뮤니티 페이지 접근 후 피드 요청]`\
     > `SYUP_crawling/modules/fb-moudles/save-message.js [피드 저장]`\
-    > `SYUP_crawling/modules/fb-modules/update-react.js [피드 댓글 및 좋아요 저장 및 업데이트]`\
+    > `SYUP_crawling/modules/fb-modules/update-react.js [피드 댓글 및 좋아요 저장 및 업데이트]`
   
   - 수집 데이터 요소
     ID, 커뮤니티페이지명, 내용, 포스팅날짜, 사진, 사진_링크, 동영상, 좋아요 수, 댓글 수
@@ -93,6 +81,21 @@ XMLHttpRequest 객체를 사용한 AJAX 비동기 통신을 통한 렌더링
 ```
     
 ```
+
+## 실행 결과
+
+1. 메인 렌더링 페이지\
+  ![main](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-1.png)
+
+2. 부가 정보 제공 페이지\
+  ![info](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-2.png)
+
+3. 추천(랭킹) 페이지\
+  ![rank](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-3.png)
+
+4. 관리, 설정 페이지\
+  ![setting](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-4.png)
+
 
 ## 이슈 해결
 ```
