@@ -30,7 +30,7 @@ DB: MongoDB
 ```  
 
 ## 데이터 수집(크롤링)
-```
+
 ### 페이스북 커뮤니티 피드
   - Facebook API 사용
   
@@ -66,10 +66,10 @@ DB: MongoDB
   
 ### 날씨 데이터
   - request-httpcli 사용, RSS데이터 수집
-```
+
 
 ## 페이지 렌더링
-```
+
 XMLHttpRequest 객체를 사용한 AJAX 비동기 통신을 통한 렌더링
 
 메인페이지 렌더링은 세 가지로 구분
@@ -86,7 +86,6 @@ XMLHttpRequest 객체를 사용한 AJAX 비동기 통신을 통한 렌더링
   - 업데이트는 setInterval를 이용하여 2분 간격으로 데이터베이스 상태를 체크
   - 기준은 created_time 요소로 비교
   
-```
 
 ## 데이터베이스 컬렉션
 ```
