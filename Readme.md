@@ -35,11 +35,11 @@ DB: MongoDB
   - Facebook API 사용
   
   - 페이지 게시물 수집 모듈
-    > `SYUP_crawling/routes/community/facebook/syu-bamboo.js\`\
-    > `SYUP_crawling/modules/fb-modules/get-access-token.js [접근 권한 토큰 요청]`
-    > `SYUP_crawling/modules/fb-modules/get-wall-feeds.js [커뮤니티 페이지 접근 후 피드 요청]`
-    > `SYUP_crawling/modules/fb-moudles/save-message.js [피드 저장]`
-    > `SYUP_crawling/modules/fb-modules/update-react.js [피드 댓글 및 좋아요 저장 및 업데이트]`
+    > `SYUP_crawling/routes/community/facebook/syu-bamboo.js`\
+    > `SYUP_crawling/modules/fb-modules/get-access-token.js [접근 권한 토큰 요청]`\
+    > `SYUP_crawling/modules/fb-modules/get-wall-feeds.js [커뮤니티 페이지 접근 후 피드 요청]`\
+    > `SYUP_crawling/modules/fb-moudles/save-message.js [피드 저장]`\
+    > `SYUP_crawling/modules/fb-modules/update-react.js [피드 댓글 및 좋아요 저장 및 업데이트]`\
   
   - 수집 데이터 요소
     ID, 커뮤니티페이지명, 내용, 포스팅날짜, 사진, 사진_링크, 동영상, 좋아요 수, 댓글 수
@@ -51,7 +51,7 @@ DB: MongoDB
   - CasperJS Framework (가상브라우저를 이용한 페이지 접근을 통해 데이터 수집)
   
   - 페이지 게시물 수집 모듈
-    > `SYUP_crawling/casper/dcinside-crawling.js [페이지 접근, 데이터를 수집하여 JSON파일 형태로 저장]`
+    > `SYUP_crawling/casper/dcinside-crawling.js [페이지 접근, 데이터를 수집하여 JSON파일 형태로 저장]`\
     > `SYUP_crawling/routers/community/dcinside/dc-syugall.js [data폴더에 저장 된 JSON파일을 가져와 데이터베이스에 저장]`
   
   - 수집 데이터 요소
