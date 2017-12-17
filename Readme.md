@@ -35,8 +35,8 @@ DB: MongoDB
   - Facebook API 사용
   
   - 페이지 게시물 수집 모듈
-    > `SYUP_crawling/routes/community/facebook/syu-bamboo.js`
-    > `SYUP_crawling/modules/fb-modules/get-access-token.js [접근 권한 토큰 요청]`
+    > `SYUP_crawling/routes/community/facebook/syu-bamboo.js`\n
+    > `SYUP_crawling/modules/fb-modules/get-access-token.js [접근 권한 토큰 요청]`\n
     > `SYUP_crawling/modules/fb-modules/get-wall-feeds.js [커뮤니티 페이지 접근 후 피드 요청]`
     > `SYUP_crawling/modules/fb-moudles/save-message.js [피드 저장]`
     > `SYUP_crawling/modules/fb-modules/update-react.js [피드 댓글 및 좋아요 저장 및 업데이트]`
