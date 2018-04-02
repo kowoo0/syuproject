@@ -62,6 +62,22 @@
   .slide-4 {
     background-color: #fff;
   }
+
+  .list-group {
+    width: 100%;
+  }
+  .list-group-item {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0 !important;
+  }
+  .list-group-item > i {
+    font-size: 16px;
+  }
+  .list-group-item > span {
+    font-size: 14px;
+    font-weight: 500;
+  }
 </style>
 </head>
 <body>
@@ -75,7 +91,7 @@
         <span class="navbar-search-icon"></span>
       </button>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa fa-filter" aria-hidden="true"></i>
       </button>
     </div>
     <div class="collapse navbar-collapse" id="searchResponsive">
@@ -94,19 +110,19 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <!-- 토글 드랍다운 .. 타입에 따른 분류 -->
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a id="show-allfeed" class="nav-link" href="#">ALL
+        <li class="nav-item">
+          <a id="show-allfeed" class="nav-link" href="#">"DCinside 삼육대 갤러리"
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a id="show-fbfeed" class="nav-link" href="#">Facebook</a>
+          <a id="show-fbfeed" class="nav-link" href="#">...</a>
         </li>
         <li class="nav-item">
-          <a id="show-dcfeed" class="nav-link" href="#">Community</a>
+          <a id="show-dcfeed" class="nav-link" href="#">...</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="#">...</a>
         </li>
       </ul>
     </div>
@@ -244,7 +260,10 @@
             </div>
             <div class="swiper-slide slide-3" data-hash="nav-ranking">
               <div class="rank-slide-desc">
-                <a href="#">최근 7일내 이슈를 확인하세요!</a>
+                <div class="alert alert-dismissible alert-info">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  최근 일주일 추천 게시물을 확인하세요!
+                </div>
               </div>
               <div class="swiper-container-4">
                 <div class="swiper-pagination"></div>
@@ -263,52 +282,57 @@
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
               </div>
-              <div class="rank-deliver">
+              <div class="rank-sub-box">
                 <div class="rank-type-desc">
                   <a href="#">대신 전해드립니다</a>
                 </div>
-                <ul class="rank-deliver-ul">
+                <ul class="rank-type-ul ranktype-2">
                 </ul>
               </div>
-              <div class="rank-bamboo">
+              <div class="rank-sub-box">
                 <div class="rank-type-desc">
                   <a href="#">대나무숲</a>
                 </div>
-                <ul class="rank-bamboo-ul">
+                <ul class="rank-type-ul ranktype-1">
                 </ul>
               </div>
-              <div class="rank-syumain">
+              <div class="rank-sub-box">
                 <div class="rank-type-desc">
                   <a href="#">삼육대학교(Sahmyook University)</a>
                 </div>
-                <ul class="rank-syumain-ul">
+                <ul class="rank-type-ul ranktype-6">
                 </ul>
               </div>
-              <div class="rank-chonghak">
+              <div class="rank-sub-box">
                 <div class="rank-type-desc">
                   <a href="#">제 57대 We Can 총학생회</a>
                 </div>
-                <ul class="rank-chonghak-ul">
+                <ul class="rank-type-ul ranktype-3">
                 </ul>
               </div>
-              <div class="rank-yeonhab">
+              <div class="rank-sub-box">
                 <div class="rank-type-desc">
                   <a href="#">학회연합회</a>
                 </div>
-                <ul class="rank-yeonhab-ul">
+                <ul class="rank-type-ul ranktype-4">
                 </ul>
               </div>
-              <div class="rank-computer">
+              <div class="rank-sub-box">
                 <div class="rank-type-desc">
-                  <a href="#"></a>
+                  <a href="#">컴퓨터학부</a>
                 </div>
-                <ul class="rank-computer-ul">
+                <ul class="rank-type-ul ranktype-5">
                 </ul>
               </div>
             </div>
             <div class="swiper-slide slide-4" data-hash="nav-mylist">
               <div class="list-slide-wrapper">
-
+                <div class="list-group">
+                  <div class="list-group-item"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;<span>내정보</span></div>
+                  <div class="list-group-item"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;&nbsp;<span>스티커</span></div>
+                  <div class="list-group-item"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;<span>설정</span></div>
+                  <div class="list-group-item"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;&nbsp;<span>로그아웃</span></div>
+                </div>
               </div>
             </div>
           </div>
@@ -367,6 +391,10 @@
 <script src="./js/main/gnb-control.js"></script>
 <script src="./js/main/comment.js"></script>
 <script src="./js/main/weather-check.js"></script>
+<script src="./js/main/rank-section-type.js"></script>
+<script src="./js/main/new-open-window.js"></script>
+<script>
+</script>
 <script>
   var swiper1 = new Swiper('.swiper-container', {
     spaceBetween: 5,
@@ -385,6 +413,7 @@
   $(`.gnb-index-${swiper1.activeIndex}`).addClass('gnb-active');
 
   let swiperFlag = true;
+  let rankingFlag = true;
   swiper1.on('slideChangeTransitionEnd', function() {
     let targetHash = this.activeIndex;
     let prevHash = this.previousIndex;
@@ -408,13 +437,16 @@
                 <span class="${addClass}">${result[i].category.replace(/\[/, "").replace(/\]/, "")}</span>
               </div>
               <div class="message-wrap">
-                <a class="notice-msg" href="${result[i].link}">${result[i].text}</a>
+                <span class="notice-msg" href="${result[i].link}">${result[i].text}</span>
                 <span class="notice-date">${result[i].date}</span>
               </div>
             </li>
           `;
           $(`.${from}-contents`).prepend(getInfoText);
         }
+        $(`.notice-msg`).one('click', function(e) {
+          newOpenWindow(e);
+        });
       };
       AJAX.reqnotice('http://localhost:3000/syuinfo/notice/' + 'haksa', fn);
       AJAX.reqnotice('http://localhost:3000/syuinfo/notice/' + 'life', fn);
@@ -485,7 +517,7 @@
               let ministatus = weatherCheck(value.status, value.hour);
               let minidesc = `
                 <figure class="icons">
-                  <canvas class="${ministatus}" width="42" height="24">
+                  <canvas class="${ministatus}" width="25%" height="24">
                 </figure>
                 <div class="mini-hour">${padZero(value.hour)}</div>
                 `;
@@ -641,9 +673,8 @@
 
 
     // ranking page
-    let rankingFlag = true;
     if(this.activeIndex === 2) {
-      if(!rankingFlag) {
+      if(rankingFlag === false) {
         return;
       }
       let fn = function(result) {
@@ -674,10 +705,13 @@
                 photo = './images/syumain.jpg';
                 break;
               case 7:
+                photo = './images/syu-feedtest.png';
+                break;
+              case 8:
                 photo = './images/syugall.png';
                 break;
               default:
-                photo = './images/kakaofriends/1.jpg';
+                photo = './images/kakaofriends/4.jpg';
             }
             if(item.message === undefined) item.message = "";
             let appendEl = `
@@ -685,43 +719,56 @@
                 <div class="rank-all">
                   <img src="${photo}" alt="">
                   <span class="rank-from">${item.name}</span>
-                  <a class="rank-link" href="${item.link}">Link</a>
+                  <span class="rank-link" href="${item.link}">Link</a>
                 </div>
                 <div class="rank-slide-section">
+                  ${rankSectionType(item)}
                 </div>
                 <div class="rank-footer">
                   <div class="rank-date-box">
-
+                    <i>Upload</i>&nbsp;&nbsp;${moment(item.created_time, "YYYYMMDDhhmmss").format("YYYY.MM.DD HH:mm")}
                   </div>
                   <div class="rank-likes">
-
+                    <img src="./images/love_icon.png" width="23px" height="23px">
                   </div>
-                  <div class="rank-comments">
-
+                  <div class="rank-likes-count">
+                    ${item.likes}
                   </div>
                 </div>
               </div>
             `;
             $(`.rank-slide-control > div.swiper-slide:nth-child(${i+1})`).append(appendEl);
+            $(`.rank-link`).one('click', function(e) {
+              newOpenWindow(e);
+            });
           }
         }
       }
       AJAX.reqrankingslide('http://localhost:3000/ranking/rank-slide', fn);
       fn = function(result, type) {
-        for(let i=0; i<result.length; i++) {
+        for(let i=result.length-1; i>=0; i--) {
           let item = result[i];
-          if(!item) {
+          if(!item || !item.message) {
             continue;
           } else {
-            let apppendEl = `
-              <li class=""
+            let appendEl = `
+              <li class="rank-item">
+                <div class="rank-item-link" href="${item.link}">
+                  <div class="rank-item-img">
+                    ${item.likes}
+                    <img src="./images/like_yellow.png" alt="" width="18" height="18">
+                  </div>
+                  <p class="rank-item-msg">${item.message}</p>
+                  <p class="rank-item-click">click!</p>
+                </div>
+              </li>
             `;
+            $(`.ranktype-${type}`).prepend(appendEl);
           }
         }
-
-
-        console.log(type, result);
-
+        $(`.rank-item-link`).one('click', function(e) {
+          newOpenWindow(e);
+        });
       }
       AJAX.reqrankingtype('http://localhost:3000/ranking/rank-type/' + 2, fn); // 삼대전
       AJAX.reqrankingtype('http://localhost:3000/ranking/rank-type/' + 1, fn); // 대나무숲
@@ -764,8 +811,8 @@
         break;
       case 1:
         $('.notice-title').text('생활');
-        $('.notice').css('background', '#74db77');
-        $('.circle').css('background', '#22741C');
+        $('.notice').css('background', '#C9FFC3');
+        $('.circle').css('background', '#009300');
         $('.notice-text').css('color', '#10620A');
         break;
       case 2:

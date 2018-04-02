@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const mg_config = require('./config/mg-config.json');
 const router = require('./routes/index');
+const path = require('path');
 
 // public 폴더 안의 파일 임포트 적용
 app.use(express.static('public'));
@@ -27,6 +28,7 @@ server.listen(3000, () => {
 	console.log('node start!');
 });
 // use ejs template
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 app.set('view engine', 'jade');
 app.use(router);
