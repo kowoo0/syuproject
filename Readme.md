@@ -5,7 +5,7 @@
 
 사이트 주소
 -----------------
-https://kkodu.herokuapp.com/ (모바일 환경으로 개발)
+~~https://kkodu.herokuapp.com/~~ 앱 사용 중지 (모바일 환경으로 개발)
 
 ## 개발 환경
 ```
