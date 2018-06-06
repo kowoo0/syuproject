@@ -1,34 +1,39 @@
 const express = require('express');
 const app = express();
-const server = require('http').createServer(app);
+const path = require('path');
 const bodyParser = require('body-parser');
+
 const mongoose = require('mongoose');
 const mg_config = require('./config/mg-config.json');
-const router = require('./routes/index');
-const path = require('path');
 
-// public 폴더 안의 파일 임포트 적용
-app.use(express.static('public'));
-// request.body에 객체 형식의 데이터 포맷을 넘겨주는 함수
-app.use(bodyParser.json());
-// 모름
-app.use(bodyParser.urlencoded({extended: false}));
+const router = require('./routes/index');
+
+const port = process.env.PORT || 3000;
 
 const conn = mongoose.connection;
 mongoose.Promise = global.Promise;
 
-conn.on('error', console.error.bind(console, "mongoose connection error:"));
-conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.userLocal}/${mg_config.db}`);
-conn.once('open', () => {
-	console.log("mongoose connect successfully..");
-});
+// 정적 파일 요청을 위한 public 폴더 지정
+app.use(express.static('public'));
+// Request Body 내용을 가져오기 위한 미들웨어
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
-// 서버 실행
-server.listen(3000, () => {
-	console.log('node start!');
-});
-// use ejs template
+// use ejs, jade template
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 app.set('view engine', 'jade');
+
 app.use(router);
+
+conn.on('error', console.error.bind(console, 'mongoose connection error:'));
+conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.userLocal}/${mg_config.db}`);
+conn.once('open', () => {
+	console.log('mongoose connect successfully...');
+});
+
+// 서버 실행
+app.listen(port, () => {
+	console.log('Server listening port at ' + port);
+});
+

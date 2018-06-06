@@ -27,9 +27,9 @@
     "jquery": "^3.2.1",
     "jquery-ui-dist": "^1.12.1",
     "mongoose": "^4.11.7",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.17.5",
     "save": "^2.3.1",
-    "socket.io": "^2.0.3",
+    "socket.io": "^2.1.1",
     "swiper": "^4.0.3"
   },
   "directories": {
