@@ -1,0 +1,31 @@
+{
+  "name": "syup_crawling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "crawling",
+    "source'"
+  ],
+  "author": "'kkodu'",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.18.3",
+    "casperjs": "^1.1.4",
+    "cheerio-httpcli": "^0.7.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.3",
+    "fb": "^2.0.0",
+    "jsonfile": "^3.0.1",
+    "mongoose": "^5.1.4",
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.16",
+    "pretty-date": "^0.2.0",
+    "request": "^2.87.0",
+    "xml2js": "^0.4.17"
+  }
+}
