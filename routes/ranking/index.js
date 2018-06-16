@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Allfeeds = require('../../models/all-model.js');
+const Allfeeds = require('../../models/fb/post.js');
 
 router.get('/rank-slide', function(req, res) {
   let now = new Date();

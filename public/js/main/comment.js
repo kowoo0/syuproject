@@ -64,12 +64,12 @@ function handler(event) {
 
           setTimeout(function() {
             $('.comment-update-wrap').fadeOut("slow");
-            AJAX.reqcomments("http://localhost:3000/comment/facebook", ++count, reqId, fn);
+            // AJAX.reqcomments("http://localhost:3000/comment/facebook", ++count, reqId, fn);
           }, 1400);
         });
       }
     }
-    AJAX.reqcomments("http://localhost:3000/comment/facebook", count, reqId, fn);
+    // AJAX.reqcomments("http://localhost:3000/comment/facebook", count, reqId, fn);
   }
 }
 

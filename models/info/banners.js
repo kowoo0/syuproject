@@ -9,4 +9,4 @@ const infoSchema = new mongoose.Schema({
   versionKey: false
 });
 
-module.exports = mongoose.model("banner", infoSchema);
+module.exports = mongoose.model("imglist", infoSchema);

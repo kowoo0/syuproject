@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ALLFeeds = require('../../models/all-model');
+const ALLFeeds = require('../../models/fb/post.js');
 
 // 맞는지 모르겠지만... 스태틱 변수 생성.. 크롤링해오는 데이터 중 최신 피드의 생성 시간을 저장한다.
 let mostRecentlyData = (function() {

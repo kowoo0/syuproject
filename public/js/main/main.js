@@ -14,11 +14,7 @@ let primaryFeed; // 처음 렌더링 시의 첫 번째 피드를 고정. 날짜�
 
 
 let getDivideUpdate = function(contents, feed) {
-  if(feed.from === 6) {
-    contents.prepend(getDcText(feed));
-  } else {
     contents.prepend(getFbText(feed));
-  }
 }
 
 
@@ -61,6 +57,8 @@ let getFbText = function(feed, count) {
   if(count === undefined) {
     count = 0;
   }
+  // ${feed.picture ? hasPicture(feed.picture, feed.picture_link, feed.source) : ""}
+  // ${feed.source ? hasSource(feed.source, feed.picture, feed.picture_link) : ""}
   let fbText = `
     <li class="card mb-4">
       <div class="card-body">
@@ -75,19 +73,23 @@ let getFbText = function(feed, count) {
         </div>
         <p class="card-text">${textReduce(feed.message)}</p>
       </div>
-      ${feed.picture ? hasPicture(feed.picture, feed.picture_link, feed.source) : ""}
-      ${feed.source ? hasSource(feed.source, feed.picture, feed.picture_link) : ""}
+
       <div class="card-footer text-muted ovfl">
-          <div class="likes">
-            <img src="../../images/fb-like-icon.jpg" width="20px" height="20px" alt="">
-            <span class="txt-custom">${feed.likes}</span>
-          </div>
-          <div class="comments ${feed.storyid} comments-${count}" data-toggle="modal" data-target="#exampleModalLong">
-            <img src="../../images/fb-comment-icon.jpg" width="20px" height="20px" alt="">
-            <span class="txt-custom">${feed.comments}</span>
-          </div>
+          ${feed.likes ? 
+            `<div class="likes">
+              <img src="../../images/fb-like-icon.jpg" width="20px" height="20px" alt=""><span class="txt-custom">${feed.likes}</span>
+            </div>`
+            : ''
+          }
+          ${feed.comments ? 
+            `<div class="comments ${feed.storyid} comments-${count}" data-toggle="modal" data-target="#exampleModalLong">
+              <img src="../../images/fb-comment-icon.jpg" width="20px" height="20px" alt="">
+              <span class="txt-custom">${feed.comments}</span>
+            </div>` 
+            : ''
+          }
           <span class="txt-custom text-muted pull-right">
-          <a href="${feed.link}">Read More &rarr;</a>
+          <a class="txt-link" href="${feed.link}">&rarr;</a>
         </span>
       </div>
     </li>
@@ -95,57 +97,19 @@ let getFbText = function(feed, count) {
   return fbText;
 }
 
-let getDcText = function(feed, count) {
-  let photo = '../../images/syugall.png';
-  let time = compareDate(feed.created_time);
-  let dcText = `
-    <li class="card mb-4">
-    <div class="card-body">
-      <div class="card-profile ovfl">
-        <div class="photo-wrap">
-          <img src="${photo}" width="42px" height="42px">
-        </div>
-        <div class="title-wrap">
-          <h5 class="card-title">${feed.name}</h5>
-          <h5 class="card-time">${time}</h7>
-        </div>
-      </div>
-      <p class="card-text">${feed.message}</p>
-    </div>
-    <div class="card-footer text-muted ovfl">
-        <div class="likes">
-          <img src="../../images/fb-like-icon.jpg" width="20px" height="20px" alt="">
-          <span class="txt-custom">${feed.likes}</span>
-        </div>
-        <div class="comments ${feed.no} comments-${count}" data-toggle="modal" data-target="#exampleModalLong">
-          <img src="../../images/fb-comment-icon.jpg" width="20px" height="20px" alt="">
-          <span class="txt-custom">${feed.comments}</span>
-        </div>
-        <span class="txt-custom text-muted pull-right">
-        <a href="http://gall.dcinside.com${feed.link}">Read More &rarr;</a>
-      </span>
-    </div>
-    </li>
-  `;
-  return dcText;
-}
-
 let appendByType = function(contents, feed, count) {
-  if(feed.from > 0 && feed.from < 7) {
+  if (feed.from > 0 && feed.from < 7) {
     contents.append(getFbText(feed, count));
-  }
-  else if (feed.from === 7) {
-    contents.append(getDcText(feed, count));
-  }
-  else {
-    contents.append(`
-      <li class="card mb-4">
-        <div class="card-body">
-          <h4>피드가 더 존재하지 않습니다.</h4>
-        </div>
-      </li>
-    `);
-  }
+  } 
+  // else {
+  //   contents.append(`
+  //     <li class="card mb-4">
+  //       <div class="card-body">
+  //         <h4>존재하지 않는 게시물입니다.</h4>
+  //       </div>
+  //     </li>
+  //   `);
+  // }
 }
 
 // 초기 온 로드 렌더링
@@ -161,7 +125,6 @@ $(() => {
     $(".comments").on('click', handler);
   };
   AJAX.allfeedload('http://localhost:3000/dbrender/allfeeds', fn);
-
 });
 
 let scrollFlag = true;
@@ -197,7 +160,7 @@ $('.slide-1').scroll(function(e) {
         };
         AJAX.morefeed('http://localhost:3000/dbrender/morefeeds', allPageCount, type, fn); // 타입은 디씨, 페북 나누기 위해
         allPageCount++; // allpage number up
-      }, 1300);
+      }, 100);
     }
   }
 });

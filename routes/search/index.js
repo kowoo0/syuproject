@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ALLFeeds = require('../../models/all-model');
+const ALLFeeds = require('../../models/fb/post.js');
 
 
 router.get('/result', function(req,res){

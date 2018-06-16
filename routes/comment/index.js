@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const FBcomments = require('../../models/comments-store');
+const FBcomments = require('../../models/fb/comments.js');
 
 router.post('/facebook', (req, res) => {
   let id = req.body.id;

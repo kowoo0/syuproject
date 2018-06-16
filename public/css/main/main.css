@@ -1,4 +1,3 @@
-
 li.card-body {
   padding: 3px;
 }
@@ -27,9 +26,7 @@ span.input-group-btn > button {
   padding-left: 8px;
   padding-right: 8px;
 }
-.navbar-toggler-custom {
 
-}
 .search-body {
   padding-top: 6px;
   padding-bottom: 6px;
@@ -46,7 +43,7 @@ span.input-group-btn > button {
   vertical-align:middle;
   content:"";
   background:no-repeat center center;
-  background-size:100% 100%
+  background-size: 100% 100%
 }
 .navbar-search-icon {
   background-image:url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIzMnB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzkyOTI5MiIgaWQ9Imljb24tMTExLXNlYXJjaCI+PHBhdGggZD0iTTE5LjQyNzExNjQsMjEuNDI3MTE2NCBDMTguMDM3MjQ5NSwyMi40MTc0ODAzIDE2LjMzNjY1MjIsMjMgMTQuNSwyMyBDOS44MDU1NzkzOSwyMyA2LDE5LjE5NDQyMDYgNiwxNC41IEM2LDkuODA1NTc5MzkgOS44MDU1NzkzOSw2IDE0LjUsNiBDMTkuMTk0NDIwNiw2IDIzLDkuODA1NTc5MzkgMjMsMTQuNSBDMjMsMTYuMzM2NjUyMiAyMi40MTc0ODAzLDE4LjAzNzI0OTUgMjEuNDI3MTE2NCwxOS40MjcxMTY0IEwyNy4wMTE5MTc2LDI1LjAxMTkxNzYgQzI3LjU2MjExODYsMjUuNTYyMTE4NiAyNy41NTc1MzEzLDI2LjQ0MjQ2ODcgMjcuMDExNzE4NSwyNi45ODgyODE1IEwyNi45ODgyODE1LDI3LjAxMTcxODUgQzI2LjQ0Mzg2NDgsMjcuNTU2MTM1MiAyNS41NTc2MjA0LDI3LjU1NzYyMDQgMjUuMDExOTE3NiwyNy4wMTE5MTc2IEwxOS40MjcxMTY0LDIxLjQyNzExNjQgTDE5LjQyNzExNjQsMjEuNDI3MTE2NCBaIE0xNC41LDIxIEMxOC4wODk4NTExLDIxIDIxLDE4LjA4OTg1MTEgMjEsMTQuNSBDMjEsMTAuOTEwMTQ4OSAxOC4wODk4NTExLDggMTQuNSw4IEMxMC45MTAxNDg5LDggOCwxMC45MTAxNDg5IDgsMTQuNSBDOCwxOC4wODk4NTExIDEwLjkxMDE0ODksMjEgMTQuNSwyMSBMMTQuNSwyMSBaIiBpZD0ic2VhcmNoIi8+PC9nPjwvZz48L3N2Zz4=")
@@ -55,9 +52,9 @@ span.input-group-btn > button {
 
 /* card section css */
 .card {
-  margin-bottom: 12px !important;
+  margin-bottom: 10px !important;
 
-  box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 5px #eee;
 }
 .card-profile {
   margin-bottom: 5px;
@@ -79,23 +76,23 @@ span.input-group-btn > button {
   margin-top: 2px;
   margin-bottom: 0px;
 
-  color: #365899;
+  color: #0054FF;
   font-weight: bold;
   font-size: 15px;
 }
 .card-text {
   margin-bottom: 0px;
 
-  color: #363636;
-  font-weight: 500;
+  color: #232;
+  font-weight: 600;
   font-size: 15px;
 }
 .card-time {
   margin-top: 5px;
 
-  color: #a9a9a9;
+  color: #747474;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12px;
 }
 .card-body {
   padding-top: 16px;
@@ -120,6 +117,7 @@ span.input-group-btn > button {
 .card-footer {
   padding: 8px 20px;
   background-color: #ffffff;
+  border-top: 1px solid #eee;
 }
 .border-none {
   border: none !important;
@@ -140,16 +138,23 @@ span.input-group-btn > button {
 
   height: 26px;
   line-height: 27px;
-  font-weight: 600 !important;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #5D5D5D;
 
   float: right;
   cursor: pointer;
 }
+.txt-link {
+  font-size: 18px;
+  font-weight: 600;
+}
 .invs {
   display: none;
 
-  color: #363636;
-  font-weight: 500;
+  color: #232;
+  font-weight: 600;
   font-size: 15px;
 }
 .pull-right {
@@ -163,7 +168,7 @@ span.input-group-btn > button {
   margin-top: 97px;
   padding: 0;
 
-  background-color: #eaeaea;
+  background-color: #fff;
 }
 
 /* 댓글 CSS */
@@ -193,7 +198,7 @@ span.input-group-btn > button {
 .comment-msg {
   font-weight: 500;
   font-size: 15px;
-  color: #363636;
+  color: #232;
 }
 .comment-time {
   font-weight: 600;
