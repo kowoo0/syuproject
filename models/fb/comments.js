@@ -12,4 +12,4 @@ const commentSchema = new mongoose.Schema({
 });
 
 // Create Model & export
-module.exports = mongoose.model("comment", commentSchema);
+module.exports = mongoose.model("fbcomment", commentSchema);

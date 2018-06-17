@@ -15,7 +15,7 @@ function saveWeather(data) {
     let item = data[i];
     let query = {
       $set: {
-        temp: item.day,
+        temp: item.temp,
         status: item.status,
         rainprob: item.rainprob,
         humidity: item.humidity,
@@ -57,7 +57,6 @@ client.fetch(RSS, {}, function(err, $, res) {
 
     let data = new Weather(item);
     dataset.push(data);
-
   });
 
   setTimeout(function() {

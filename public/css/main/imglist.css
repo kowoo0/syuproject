@@ -1,8 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Jua');
+@import url('http://fonts.googleapis.com/earlyaccess/hanna.css');
 
 .flat-plate {
+  box-sizing: border-box;
   margin-top: 7px;
 }
+.flat-plate-wrapper {
+  padding: 5px 5px 0;
+}
+.flat-plate-header {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  overflow: hidden;
+}
+.flat-plate-title {
+  display: block;
+  position: absolute;
+  top: 0px; left: 10px;
+  padding: 10px;
+  font-size: 17px;
+  font-weight: normal;
+  font-family: 'Hanna', sans-serif;
+}
+
 .plate-image-item {
   width: 100%;
   padding: 10px;

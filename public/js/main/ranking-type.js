@@ -49,43 +49,43 @@ var makeRankingType = function (result, type) {
 }
 
 var rankSectionType = function (item) {
-  if(item.source) {
-    var el = `
-      <div class="section-source">
-        <video x-webkit-airplay='allow'
-          controls
-          autoplay
-          muted
-          src='${item.source}'
-          poster='${item.picture}'>
-        </video>
-      </div>
-    `;
+  // if(item.source) {
+  //   var el = `
+  //     <div class="section-source">
+  //       <video x-webkit-airplay='allow'
+  //         controls
+  //         autoplay
+  //         muted
+  //         src='${item.source}'
+  //         poster='${item.picture}'>
+  //       </video>
+  //     </div>
+  //   `;
 
-    return el;
-  }
-  else if(item.picture) {
-    var el;
-    if(!item.message) {
-      el = `
-        <span class="section-only-picture">
-          <img src="${item.picture}" alt="">
-        </span>
-      `
-      return el;
-    }
+  //   return el;
+  // }
+  // else if(item.picture) {
+  //   var el;
+  //   if(!item.message) {
+  //     el = `
+  //       <span class="section-only-picture">
+  //         <img src="${item.picture}" alt="">
+  //       </span>
+  //     `
+  //     return el;
+  //   }
 
-    el = `
-      <div class="section-msg-picture">
-        <img src="${item.picture}" alt="">
-        <div class="section-msg-box">
-          ${reduceText(item.message, 1)}
-        </div>
-      </div>
-    `
-    return el;
-  }
-  else {
+  //   el = `
+  //     <div class="section-msg-picture">
+  //       <img src="${item.picture}" alt="">
+  //       <div class="section-msg-box">
+  //         ${reduceText(item.message, 1)}
+  //       </div>
+  //     </div>
+  //   `
+  //   return el;
+  // }
+  // else {
     if(!item.message) return;
     var el = `
       <span class="section-only-msg">
@@ -93,5 +93,5 @@ var rankSectionType = function (item) {
       </span>
     `;
     return el;
-  }
+  // }
 }

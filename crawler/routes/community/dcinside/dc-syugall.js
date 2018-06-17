@@ -87,7 +87,7 @@ function Feeds(feeds) {
         });
     }
     // setTimeout을 통해, 데이터베이스가 성공 한 후 호출, 넉넉하게 30초로 설정..
-    setTimeout(saveAfterConnection, 30000);
+    // setTimeout(saveAfterConnection, 30000);
   }
 }
 

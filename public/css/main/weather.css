@@ -1,11 +1,8 @@
-@import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
 @import url('http://fonts.googleapis.com/earlyaccess/hanna.css');
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
-@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
 
 .weather-box {
   width: 100%;
-  height: 218px;
+  height: 204px;
   margin-top: 7px;
   background: #ffffff;
   border-bottom: 5px solid #E4E4E4;
@@ -51,7 +48,7 @@
   float: right;
 }
 .dayafter {
-  padding-right: 10px;
+  padding-right: 12px;
 }
 .today {
   color: #1DDB16;
@@ -80,7 +77,7 @@
   top: 0; right: 25px;
   color: #3E3E3E;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
 }
 .humidity {
   display: block;
@@ -88,18 +85,22 @@
   top: 26px; right: 25px;
   color: #3E3E3E;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
 }
 .weather-footer {
-  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 15px;
   overflow: hidden;
 }
 .mini-weather {
-  margin-right: 13px;
+  margin: 0 auto;
   float: left;
 }
 .mini-weather:nth-child(1) {
-  margin-left: 18px;
+  margin: 0 auto;
 }
 .mini-hour {
   font-size: 12px;
@@ -115,7 +116,7 @@
 }
 .tomorrow-wrapper, .dayafter-wrapper {
   position:relative;
-  padding-left: 14px;
+  padding: 0 8px;
   height: 100%;
   overflow:hidden;
 }
@@ -145,13 +146,13 @@
   margin-top: 7px;
   margin-bottom: 0;
   color: #212121;
-  font-size: 16px;
-  font-family: 'Hanna', sans-serif;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
 }
 .tomor-box, .dayafter-box {
   position: relative;
   margin-top: 15px;
+  margin-left: 8px;
   height : 60px;
   overflow: hidden;
 }
@@ -165,15 +166,17 @@
 
   font-size: 34px;
   font-weight: 500;
-  font-family: 'Roboto', sans-serif;
 }
 .tomor-temp > span, .dayafter-temp > span {
   font-size: 32px;
 }
 .tomor-details, .dayafter-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 4px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   overflow: hidden;
 }
 .tomor-details > img, .dayafter-details > img {

@@ -31,6 +31,7 @@ span.input-group-btn > button {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-right: 10px;
+  font-family: 'Roboto', sans-serif;
 }
 .search-body .btn {
   background-color: #007bff;
@@ -85,7 +86,8 @@ span.input-group-btn > button {
 
   color: #232;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 0.82rem;
+  line-height: 1.5rem;
 }
 .card-time {
   margin-top: 5px;
@@ -155,7 +157,8 @@ span.input-group-btn > button {
 
   color: #232;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 0.82rem;
+  line-height: 1.5rem;
 }
 .pull-right {
   float: right;
@@ -196,8 +199,8 @@ span.input-group-btn > button {
   font-size: 15px;
 }
 .comment-msg {
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 0.85rem;
   color: #232;
 }
 .comment-time {
@@ -206,8 +209,9 @@ span.input-group-btn > button {
   color: #a7a7a7;
 }
 .modal-footer > button {
-  font-size: 16px;
-  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 /* 댓글 업데이트 부분 */
@@ -218,11 +222,13 @@ span.input-group-btn > button {
 }
 .comment-update-img {
   float: left;
+  padding-top: 3px;
   padding-left: 8px;
 }
 .comment-update-text {
   margin: 0 0 0 42px;
   padding: 10px;
+  font-weight: 500;
 }
 .comment-loader {
   border: 5px solid #f3f3f3;

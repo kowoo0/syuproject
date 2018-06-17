@@ -46,8 +46,10 @@ var makeWeatherContent = function (result, date, curHours) {
           return value;
         }
       }
-      for(var i=0; i<result.length; i++) {
-        var temp = result[i];
+
+      var dayzero = Array.prototype.slice.call(result);
+      for(var j=0; j<dayzero.length; j++) {
+        var temp = dayzero[j];
         if(temp.day === 0 && (temp.hour >= 6 && temp.hour <= 21)) {
           itemList.push(temp);
         }

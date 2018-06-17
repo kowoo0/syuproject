@@ -7,12 +7,13 @@
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
 
+<!-- Font-Awesome CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+
 <!-- Bootstrap core CSS -->
 <link href="./css/bootstrap/bootstrap.min.css" rel="stylesheet">
 <!-- Swiper CSS -->
 <link href="./css/swiper/swiper.min.css" rel="stylesheet">
-<!-- Font-Awesome CSS -->
-<link href="./css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" >
 <!-- Custom styles for this template -->
 <link href="./css/main/main.css" rel="stylesheet">
 <link href="./css/main/gnb.css" rel="stylesheet">
@@ -21,6 +22,7 @@
 <link href="./css/main/weather.css" rel="stylesheet">
 <link href="./css/main/imglist.css" rel="stylesheet">
 <link href="./css/main/rank-slide.css" rel="stylesheet">
+<link href="./css/main/mypage.css" rel="stylesheet">
 <link href="./css/core.css" rel="stylesheet">
 <style>
   @media screen and (max-width: 767px) {
@@ -250,7 +252,11 @@
                   </div>
                 </div>
                 <div class="flat-plate">
-
+                  <div class="flat-plate-wrapper">
+                    <div class="flat-plate-header">
+                        <span class="flat-plate-title">삼육동 소식</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -258,7 +264,7 @@
               <div class="rank-slide-desc">
                 <div class="alert alert-dismissible alert-info">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  최근 일주일 추천 게시물을 확인하세요!
+                  최근 일주일 동안의 추천 게시물을 확인하세요!
                 </div>
               </div>
               <div class="swiper-container-4">
@@ -390,6 +396,7 @@
       watchState: true
     },
   });
+  
   var bodyHeight = $('body').height();
   $('.swiper-slide').height(bodyHeight-97);
 
@@ -402,6 +409,8 @@
 
   var swiperFlag = true;
   var rankingFlag = true;
+
+  // 메인 포스트 슬라이드
   swiper1.on('slideChangeTransitionEnd', function() {
     var targetHash = this.activeIndex;
     var prevHash = this.previousIndex;
@@ -461,6 +470,7 @@
    }
   });
 
+  // 공지, 날씨, 배너 페이지 슬라이드
   var swiper2 = new Swiper('.swiper-container-2', {
     slidesPerView: 1,
     spaceBetween: 10,
@@ -478,6 +488,7 @@
     noticeSlideOnChange(curSlide);
   });
 
+  // 랭킹 추천 페이지 슬라이드
   var swiper3 = new Swiper('.swiper-container-3', {
     slidesPerView: 1,
   });
@@ -486,6 +497,7 @@
     weatherSlideOnChange(this.activeIndex);
   });
 
+  // 마이 페이지 슬라이드
   var swiper4 = new Swiper('.swiper-container-4', {
     pagination: {
         el: '.swiper-pagination',

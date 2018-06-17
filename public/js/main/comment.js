@@ -13,7 +13,7 @@ function handler(event) {
                 <img src="./images/kakaofriends/4.jpg" width="58px" height="50px" alt="">
               </div>
               <div class="comment-text">
-                <span class="in-block comment-name">댓글을 달아주세요!</span>
+                <span class="in-block comment-name">첫 댓글을 달아주세요!</span>
               </div>
             </div>
           `)
@@ -25,7 +25,7 @@ function handler(event) {
       // });
       let length = result.length;
       for(let i=0; i<length-1; i++) {
-          let imageNum = Math.floor((Math.random() * 14) + 1);
+          let imageNum = Math.floor((Math.random() * 13) + 1);
           $('.modal-body').append(`
             <div class="comment-wrap">
               <div class="comment-img">
@@ -56,20 +56,20 @@ function handler(event) {
               <div class="comment-loader">
               </div>
             `);
-          $('.comment-update-text').text('잠시만여..');
+          $('.comment-update-text').text('잠시만요..');
           $('.comment-update-text').css('color', '#3498db');
           $('.comment-update-text').css('margin-left', '53px');
-          $('.comment-update-text').css('font-size', '17px');
-          $('.comment-update-text').css('font-weight', '600');
+          $('.comment-update-text').css('font-size', '18px');
+          $('.comment-update-text').css('font-weight', '500');
 
           setTimeout(function() {
             $('.comment-update-wrap').fadeOut("slow");
-            // AJAX.reqcomments("http://localhost:3000/comment/facebook", ++count, reqId, fn);
-          }, 1400);
+            AJAX.reqcomments("http://localhost:3000/comment/facebook", ++count, reqId, fn);
+          }, 1200);
         });
       }
     }
-    // AJAX.reqcomments("http://localhost:3000/comment/facebook", count, reqId, fn);
+    AJAX.reqcomments("http://localhost:3000/comment/facebook", count, reqId, fn);
   }
 }
 

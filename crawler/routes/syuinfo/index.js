@@ -6,22 +6,22 @@ const conn = mongoose.connection;
 mongoose.Promise = global.Promise;
 
 // 삼육대학교 정보 JSON 파일
-const haksa = require('../../data/syu-haksa-data.json');
-const life = require('../../data/syu-life-data.json');
-const events = require('../../data/syu-events-data.json');
-const job = require('../../data/syu-job-data.json');
-const scholarship = require('../../data/syu-scholarship-data.json');
-const org = require('../../data/syu-org-data.json');
-const imgList = require('../../data/syu-image-data.json');
+// const haksa = require('../../data/syu-haksa-data.json');
+// const life = require('../../data/syu-life-data.json');
+// const events = require('../../data/syu-events-data.json');
+// const job = require('../../data/syu-job-data.json');
+// const scholarship = require('../../data/syu-scholarship-data.json');
+// const org = require('../../data/syu-org-data.json');
+// const imgList = require('../../data/syu-image-data.json');
 
 // 삼육대학교 정보 모델
-const Haksa = require('../../models/haksa-model');
-const Life = require('../../models/life-model');
-const Events = require('../../models/events-model');
-const Job = require('../../models/job-model');
-const Scholarship = require('../../models/scholarship-model');
-const Org = require('../../models/org-model');
-const ImgList = require('../../models/imglist-model');
+// const Haksa = require('../../models/haksa-model');
+// const Life = require('../../models/life-model');
+// const Events = require('../../models/events-model');
+// const Job = require('../../models/job-model');
+// const Scholarship = require('../../models/scholarship-model');
+// const Org = require('../../models/org-model');
+// const ImgList = require('../../models/imglist-model');
 
 function isJSON(file) {
   if(typeof file === 'object') {
@@ -139,27 +139,27 @@ function imgSave(imgs, Model) {
   }
 }
 
-setTimeout(function() {
-  isJSON(haksa);
-  isJSON(life);
-  isJSON(events);
-  isJSON(job);
-  isJSON(scholarship);
-  isJSON(org);
-  let result1 = getDataSet(haksa, Haksa);
-  let result2 = getDataSet(life, Life);
-  let result3 = getDataSet(events, Events);
-  let result4 = getDataSet(job, Job);
-  let result5 = getDataSet(scholarship, Scholarship);
-  let result6 = getDataSet(org, Org);
-  dataSave(result1, Haksa, 'haksas');
-  dataSave(result2, Life, 'lives');
-  dataSave(result3, Events, 'events');
-  dataSave(result4, Job, 'jobs');
-  dataSave(result5, Scholarship, 'scholarships');
-  dataSave(result6, Org, 'orgs');
+// setTimeout(function() {
+//   isJSON(haksa);
+//   isJSON(life);
+//   isJSON(events);
+//   isJSON(job);
+//   isJSON(scholarship);
+//   isJSON(org);
+//   let result1 = getDataSet(haksa, Haksa);
+//   let result2 = getDataSet(life, Life);
+//   let result3 = getDataSet(events, Events);
+//   let result4 = getDataSet(job, Job);
+//   let result5 = getDataSet(scholarship, Scholarship);
+//   let result6 = getDataSet(org, Org);
+//   dataSave(result1, Haksa, 'haksas');
+//   dataSave(result2, Life, 'lives');
+//   dataSave(result3, Events, 'events');
+//   dataSave(result4, Job, 'jobs');
+//   dataSave(result5, Scholarship, 'scholarships');
+//   dataSave(result6, Org, 'orgs');
 //   imgSave(imgList, ImgList);
-}, 2000);
+// }, 2000);
 
 
 module.exports = router;

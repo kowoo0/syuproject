@@ -14,4 +14,4 @@ const weatherSchema = new mongoose.Schema({
   versionKey: false
 });
 
-module.exports = mongoose.model("weather", weatherSchema);
+module.exports = mongoose.model("weatherdata", weatherSchema);
