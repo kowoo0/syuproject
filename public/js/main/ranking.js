@@ -34,13 +34,14 @@ var makeRankingContent = function (result) {
         default:
           photo = './images/kakaofriends/4.jpg';
       }
+
       if(item.message === undefined) item.message = "";
       var appendEl = `
         <div class="rank-slide-wrapper">
           <div class="rank-all">
             <img src="${photo}" alt="">
             <span class="rank-from">${item.name}</span>
-            <span class="rank-link" href="${item.link}">Link</a>
+            <span class="rank-link" href="${item.link}"><i class="fa fa-link"></i></a>
           </div>
           <div class="rank-slide-section">
             ${rankSectionType(item)}

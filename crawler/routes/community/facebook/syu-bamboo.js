@@ -20,22 +20,22 @@ let syuComputer = '451966671514736/posts', computer = 1;
 let syuMain = '207112896076930/posts', main = 1;
 
 // promise 객체로부터 '페이지 엑세스 토큰' 파리미터 값을 받음
-// setTimeout(function() {
-//   getAccessToken()
-//   .then((accessToken) => {
-//     FB.setAccessToken(accessToken); // 엑세스 토큰 설정
-//     // check save comments collection exists
-//     collCheck('fbcomments', saveComments);
-//     // 멀티 프로세서 구현 시도?
-//     getWallFeeds(syuBamboo, args, bamboo, 1); // '대나무숲' 페이지 피드 접근
-//     getWallFeeds(syuDeliver, args, deliver, 2); // '대신 전해드립니다' 페이지 피드 접근
-//     getWallFeeds(syuChonghak, args, chonghak, 3); // '총학생회' 페이지 피드 접근
-//     getWallFeeds(syuYeonhab, args, yeonhab, 4); // '연합동아리' 페이지 피드 접근
-//     getWallFeeds(syuComputer, args, computer, 5); // '컴퓨터학부' 페이지 피드 접근
-//     getWallFeeds(syuMain, args, main, 6);
-//   }, (error) => {
-//     console.log(error);
-//   });
-// }, 2000);
+setTimeout(function() {
+  getAccessToken()
+  .then((accessToken) => {
+    FB.setAccessToken('EAACEdEose0cBABNKNyjpC7QPeeQNmdI4Qsqgqi6tpURkFwBeZBtm12ucNgS02u2zoeE2NPo1pZCz8qphdw9Igop5wd73mRfZA5V1pZAzw5DjrTzZC6jmQFCWu9shc16XXeZBW8wa7UdcQDEdSAOoTSxvBHa1ODtB7nIlfEIT8IRHzfgpz0r8PTSywZADbPHPqRzUgPTPsPyJQZDZD'); // 엑세스 토큰 설정
+    // check save comments collection exists
+    collCheck('fbcomments', saveComments);
+    // 멀티 프로세서 구현 시도?
+    getWallFeeds(syuBamboo, args, bamboo, 1); // '대나무숲' 페이지 피드 접근
+    getWallFeeds(syuDeliver, args, deliver, 2); // '대신 전해드립니다' 페이지 피드 접근
+    getWallFeeds(syuChonghak, args, chonghak, 3); // '총학생회' 페이지 피드 접근
+    getWallFeeds(syuYeonhab, args, yeonhab, 4); // '연합동아리' 페이지 피드 접근
+    getWallFeeds(syuComputer, args, computer, 5); // '컴퓨터학부' 페이지 피드 접근
+    getWallFeeds(syuMain, args, main, 6);
+  }, (error) => {
+    console.log(error);
+  });
+}, 2000);
 
 module.exports = router;

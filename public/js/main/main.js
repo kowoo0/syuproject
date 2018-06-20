@@ -57,8 +57,6 @@ let getFbText = function(feed, count) {
   if(count === undefined) {
     count = 0;
   }
-  // ${feed.picture ? hasPicture(feed.picture, feed.picture_link, feed.source) : ""}
-  // ${feed.source ? hasSource(feed.source, feed.picture, feed.picture_link) : ""}
   let fbText = `
     <li class="card mb-4">
       <div class="card-body">
@@ -73,7 +71,8 @@ let getFbText = function(feed, count) {
         </div>
         <p class="card-text">${textReduce(feed.message)}</p>
       </div>
-
+      ${feed.picture ? hasPicture(feed.picture, feed.picture_link, feed.source) : ""}
+      ${feed.source ? hasSource(feed.source, feed.picture, feed.picture_link) : ""}
       <div class="card-footer text-muted ovfl">
           ${feed.likes ? 
             `<div class="likes">
@@ -114,25 +113,62 @@ let appendByType = function(contents, feed, count) {
 
 // 초기 온 로드 렌더링
 $(() => {
+  preloader('show'); 
   // 전체 피드들 렌더링
   fn = (result) => {
     primaryFeed = result[0];
     for(let i=0; i<result.length; i++) {
       appendByType(allContents, result[i]);
     }
+    preloader('hide'); 
     // 어떻게 고치니~~
     showMoreText();
     $(".comments").on('click', handler);
   };
   AJAX.allfeedload('http://localhost:3000/dbrender/allfeeds', fn);
+
+  var fn = function(result, from) {
+    makeNoticeContent(result, from);
+  };
+  var notices = ['haksa', 'life', 'event', 'job', 'scholarship', 'org']
+  for (var i=0; i<notices.length; i++) {
+    AJAX.reqnotice('http://localhost:3000/syuinfo/notice/' + notices[i], fn);
+  }
+
+  fn = function(result) {
+    var date = new Date();
+    var curHours = date.getHours();
+    console.log(curHours);
+    makeWeatherContent(result, date, curHours);
+  }
+  AJAX.reqweatherinfo('http://localhost:3000/syuinfo/weather', fn);
+
+  fn = function(result) {
+    makeImagelistContent(result);
+  }
+  AJAX.reqimagelist('http://localhost:3000/syuinfo/imglist', fn);
+
+  fn = function(result) {
+    makeRankingContent(result);
+  }
+  AJAX.reqrankingslide('http://localhost:3000/ranking/rank-slide', fn);
+  
+  // 삼대전: 2, 대나무숲: 1, 삼육대학교: 6, 총학: 3, 연합: 4, 컴과: 5 
+  var ranktypes = [2, 1, 6, 3, 4, 5];
+  fn = function(result, type) {
+    makeRankingType(result, type);
+  }
+  for (var i=0; i<ranktypes.length; i++) {
+    AJAX.reqrankingtype('http://localhost:3000/ranking/rank-type/' + ranktypes[i], fn); // 삼대전
+  }
 });
 
 let scrollFlag = true;
 const preloader = function(result) {
   if(result === 'show') {
-    $('#loader').show();
+    $('.bouncing-loader').css('visibility', 'visible');
   } else {
-    $('#loader').hide();
+    $('.bouncing-loader').css('visibility', 'hidden');
   }
 };
 
@@ -146,11 +182,11 @@ $('.slide-1').scroll(function(e) {
       scrollFlag = false; // 접근 제한 플래그
       console.log('[loading..] more feeds');
 
-      preloader('show') // => 로딩 아이콘 보여주기
+      // => 로딩 아이콘 보여주기
 
       setTimeout(function() {
         fn = (result) => {
-          preloader('hide'); // 1.2초 후, 로딩 아이콘 숨김
+          // 1.2초 후, 로딩 아이콘 숨김
           for(let i=0; i<result.length; i++) {
             appendByType(allContents, result[i], allPageCount);
           }

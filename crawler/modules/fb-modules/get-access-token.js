@@ -1,6 +1,6 @@
 const FB = require('fb');
 
-// const fb_config = require('../../config/fb-config.json');
+const fb_config = require('../../config/fb-config.json');
 
 const getAccessToken = () => {
   return new Promise((resolve, reject) => {

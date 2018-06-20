@@ -33,35 +33,35 @@ function saveWeather(data) {
 
 
 // RSS download
-client.fetch(RSS, {}, function(err, $, res) {
-  if(err) {
-      console.log(err);
-      return;
-  }
+// client.fetch(RSS, {}, function(err, $, res) {
+//   if(err) {
+//       console.log(err);
+//       return;
+//   }
 
-  const dataset = [];
+//   const dataset = [];
 
-  // 오늘, 내일, 모레 날씨 추출
-  $("body > data").each(function(idx) {
+//   // 오늘, 내일, 모레 날씨 추출
+//   $("body > data").each(function(idx) {
 
-    let item = {
-      day: Number($(this).find('day').text()),
-      hour: Number($(this).find('hour').text()),
-      temp: Math.round(Number($(this).find('temp').text())),
-      status: $(this).find('wfKor').text(),
-      rainprob: $(this).find('pop').text(),
-      humidity: $(this).find('reh').text(),
-      temp_max : Math.round(Number($(this).find('tmx').text())),
-      temp_min : Math.round(Number($(this).find('tmn').text()))
-    }
+//     let item = {
+//       day: Number($(this).find('day').text()),
+//       hour: Number($(this).find('hour').text()),
+//       temp: Math.round(Number($(this).find('temp').text())),
+//       status: $(this).find('wfKor').text(),
+//       rainprob: $(this).find('pop').text(),
+//       humidity: $(this).find('reh').text(),
+//       temp_max : Math.round(Number($(this).find('tmx').text())),
+//       temp_min : Math.round(Number($(this).find('tmn').text()))
+//     }
 
-    let data = new Weather(item);
-    dataset.push(data);
-  });
+//     let data = new Weather(item);
+//     dataset.push(data);
+//   });
 
-  setTimeout(function() {
-    saveWeather(dataset);
-  }, 2000);
-});
+//   setTimeout(function() {
+//     saveWeather(dataset);
+//   }, 2000);
+// });
 
 module.exports = router;

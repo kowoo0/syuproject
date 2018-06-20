@@ -8,7 +8,7 @@ const reqComments = (id, args, type, dataSet, cnt) => {
     if(!res || res.error) {
       console.log(!res ? 'error' : res.error);
     }
-
+    // console.log(res.data);
     if(res.data.length < 1) {
       console.log('no comments');
       return;

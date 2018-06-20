@@ -12,8 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+app.set('view engine', 'ejs');
+
 var run = http.createServer(app, function(req, res) {
-  res.end('test');
+  res.end('crawler');
 });
 
 // Facebook dev에서 커스텀한 포트 연결을 위한 30000 포트 지정
@@ -36,5 +38,4 @@ conn.once("open", function() {
   console.log("mongoose connect successfully..");
 });
 
-app.set('view engine', 'ejs');
 app.use(router);

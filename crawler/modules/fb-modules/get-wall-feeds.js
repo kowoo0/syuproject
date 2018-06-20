@@ -21,6 +21,7 @@ const getWallFeeds = (feedLink, args, count, type) => {
     console.log(`count >> ${count}`);
     
     let data = res.data; // 인수로 설정한 필드 값이 담긴 데이터가 넘어온다.
+    console.log(data);
     saveMessage(data, type); // 데이터 접근이 성공하면, 이 함수를 호출하여 데이터를 데이터베이스에 저장한다.
 
     let nextArgs; // 다음 페이지를 위한 인수 객체

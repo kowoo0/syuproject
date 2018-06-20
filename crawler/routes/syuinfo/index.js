@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 // const org = require('../../data/syu-org-data.json');
 // const imgList = require('../../data/syu-image-data.json');
 
-// 삼육대학교 정보 모델
+// // 삼육대학교 정보 모델
 // const Haksa = require('../../models/haksa-model');
 // const Life = require('../../models/life-model');
 // const Events = require('../../models/events-model');

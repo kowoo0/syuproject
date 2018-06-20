@@ -14,7 +14,6 @@ router.post('/facebook', (req, res) => {
       console.log(`#[${id}] comment response!`);
       let data = result.data;
       let responseData = [];
-
       if(!data) {
         res.json("no comment///");
         return;
@@ -26,11 +25,8 @@ router.post('/facebook', (req, res) => {
           hasMoreComment = false;
           continue;
         }
-        if(data[i].from.name === undefined) {
-          continue;
-        }
         let extracted = {
-          name: data[i].from.name,
+          name: 'Deprecated',
           message: data[i].message,
           created_time: data[i].created_time
         }

@@ -4,6 +4,7 @@
 .flat-plate {
   box-sizing: border-box;
   margin-top: 7px;
+  background-color: #fff;
 }
 .flat-plate-wrapper {
   padding: 5px 5px 0;
@@ -54,4 +55,5 @@
   width: 100%;
   border: 1px solid #f0ffff;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  cursor: pointer;
 }
