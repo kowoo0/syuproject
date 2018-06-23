@@ -8,7 +8,7 @@ const saveMessage = require('./save-message');
 const getWallFeeds = (feedLink, args, count, type) => {
 
   // 테스트 용, 긁어올 페이지 횟수
-  if(count > 1) {
+  if(count > 10) {
     return 1;
   }
 
