@@ -26,6 +26,19 @@ let pageShowLimit = function(min, max, docs) {
 
 // 데이터베이스의 모든 피드들을 가져 온다.
 router.get('/allfeeds', (req, res) => {
+  const allowedOrigins = ['http://127.0.0.1', 'null'];
+  const origin = req.headers.origin;
+  console.log(origin);
+  res.setHeader('Content-Type', 'application/json; charset="utf-8"');
+
+  // accept CORS
+  if (allowedOrigins.indexOf(origin) > -1) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Max-Age', '3600');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+
   ALLFeeds.find({}).sort({ 'created_time': -1 }).exec(function(err, docs) {
     if(err) return res.status(400).json(err);
     console.log("all feeds sent");

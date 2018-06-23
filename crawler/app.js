@@ -31,7 +31,7 @@ mongoose.Promise = global.Promise;
 conn.on("error", console.error.bind(console, "mongoose connection error:"));
 // 사용자 db로 접속..
 
-conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.userLocal}/${mg_config.db}`);
+conn.openUri(`mongodb://${mg_config.userId}:${mg_config.userPass}@${mg_config.userLocal}:${mg_config.userPort}/${mg_config.db}`);
 
 // 디비 연결이 성공적으로 연결될 시 한 번만 실행된다.
 conn.once("open", function() {

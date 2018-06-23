@@ -23,7 +23,7 @@ let syuMain = '207112896076930/posts', main = 1;
 setTimeout(function() {
   getAccessToken()
   .then((accessToken) => {
-    FB.setAccessToken('EAACEdEose0cBABNKNyjpC7QPeeQNmdI4Qsqgqi6tpURkFwBeZBtm12ucNgS02u2zoeE2NPo1pZCz8qphdw9Igop5wd73mRfZA5V1pZAzw5DjrTzZC6jmQFCWu9shc16XXeZBW8wa7UdcQDEdSAOoTSxvBHa1ODtB7nIlfEIT8IRHzfgpz0r8PTSywZADbPHPqRzUgPTPsPyJQZDZD'); // 엑세스 토큰 설정
+    FB.setAccessToken('EAACEdEose0cBAJFDAvccSmNtOZCQcnMwwJlVWyPHqe0MlEHlBfmze7SgTotzcB83hox6OwuVSjgLOlrUFiUzY9WJGHF07nzCj6Rrb05dHTCCqLI9T0ZBgCOtVwubrKXmGi0q1BrFUAFwKAPf3EXFder37ZB2Ap6ZCSZBmiQ5iTM8JDbKcXEeB1Rbb8bcvyWiw3jqu61wwbQZDZD'); // 엑세스 토큰 설정
     // check save comments collection exists
     collCheck('fbcomments', saveComments);
     // 멀티 프로세서 구현 시도?
