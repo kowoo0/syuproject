@@ -5,7 +5,7 @@
 
 사이트 주소
 -----------------
-~~https://kkodu.herokuapp.com/~~ 앱 사용 중지 (모바일 환경으로 개발)
+https://kkodu.github.io
 
 ## 개발 환경
 ```
@@ -80,16 +80,16 @@ XMLHttpRequest 객체를 사용한 AJAX 비동기 통신을 통한 렌더링
 ## 실행 결과
 
 1. 메인 렌더링 페이지\
-  ![main](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-1.png)
+  ![main](https://github.com/kkodu/SYUProject/blob/master/markdown/gitImages/1-1.png.png)
 
 2. 부가 정보 제공 페이지\
-  ![info](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-2.png)
+  ![info](https://github.com/kkodu/SYUProject/blob/master/markdown/gitImages/1-2.png.png)
 
 3. 추천(랭킹) 페이지\
-  ![rank](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-3.png)
+  ![rank](https://github.com/kkodu/SYUProject/blob/master/markdown/gitImages/1-3.png.png)
 
 4. 관리, 설정 페이지\
-  ![setting](https://github.com/kkodu/SYUProject/blob/master/notmerged/rsimages/1-4.png)
+  ![setting](https://github.com/kkodu/SYUProject/blob/master/markdown/gitImages/1-4.png.png)
 
 
 ## 개선 방향
