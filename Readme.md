@@ -77,21 +77,6 @@ XMLHttpRequest 객체를 사용한 AJAX 비동기 통신을 통한 렌더링
   - 기준은 created_time 요소로 비교
   
 
-## 실행 결과
-
-1. 메인 렌더링 페이지\
-  ![main](https://github.com/kkodu/SYUProject/blob/master/markdown/gitImages/1-1.png)
-
-2. 부가 정보 제공 페이지\
-  ![info](https://github.com/kkodu/SYUProject/blob/master/markdown/gitImages/1-2.png)
-
-3. 추천(랭킹) 페이지\
-  ![rank](https://github.com/kkodu/SYUProject/blob/master/markdown/gitImages/1-3.png)
-
-4. 관리, 설정 페이지\
-  ![setting](https://github.com/kkodu/SYUProject/blob/master/markdown/gitImages/1-4.png)
-
-
 ## 개선 방향
  - 데이터베이스 연결 > 리퀘스트 요청의 동기화
  
