@@ -19,11 +19,13 @@ let syuYeonhab = '1412584238989232/posts', yeonhab = 1;
 let syuComputer = '451966671514736/posts', computer = 1;
 let syuMain = '207112896076930/posts', main = 1;
 
+let temp_token = ''
+
 // promise 객체로부터 '페이지 엑세스 토큰' 파리미터 값을 받음
 setTimeout(function() {
   getAccessToken()
   .then((accessToken) => {
-    FB.setAccessToken('EAACEdEose0cBAFGCXFyZAvqpnMhdT1Cb6czgbAOuFpVq64ZCDTOnHbxHdvZBh19HZBfOGjyjNZCr6Hdzr8DsixEP2H4f7w8eN7WZAW1hEB65s0Ml47SVbbbOFvQfgfOw1UOzKHtiYPegzEZB3Iio80lBrNK5KFZBas1NwfWllUTGZCuaZCzVNXwB7fnbxy5czaoA9Wd5arOjepGwZDZD'); // 엑세스 토큰 설정
+    FB.setAccessToken(temp_token); // 엑세스 토큰 설정
     // check save comments collection exists
     collCheck('fbcomments', saveComments);
     // 멀티 프로세서 구현 시도?
@@ -31,7 +33,7 @@ setTimeout(function() {
     getWallFeeds(syuDeliver, args, deliver, 2); // '대신 전해드립니다' 페이지 피드 접근
     getWallFeeds(syuChonghak, args, chonghak, 3); // '총학생회' 페이지 피드 접근
     getWallFeeds(syuYeonhab, args, yeonhab, 4); // '연합동아리' 페이지 피드 접근
-    // getWallFeeds(syuComputer, args, computer, 5); // '컴퓨터학부' 페이지 피드 접근
+    getWallFeeds(syuComputer, args, computer, 5); // '컴퓨터학부' 페이지 피드 접근
     getWallFeeds(syuMain, args, main, 6);
   }, (error) => {
     console.log(error);
